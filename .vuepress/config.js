@@ -1,10 +1,15 @@
 const getChildrenPaths = require("./getChildrenPaths");
 
 module.exports = {
-  title: "前端面试",
-  description:
-    "前端面试题收集汇总并全面给出权威优质的答案，更欢迎👏大家issues投稿 ❤️ 💞 💖，一起维护一套优质权威的前端知识体系。",
-  base: '/FE-interview/',
+  locales: {
+    "/": {
+      lang: "zh-CN",
+      title: "前端面试",
+      description:
+        "前端面试题收集汇总并全面给出权威优质的答案，更欢迎👏大家issues投稿 ❤️ 💞 💖，一起维护一套优质权威的前端知识体系。。",
+    },
+  },
+  base: "/FE-interview/",
   themeConfig: {
     repo: "GavinBirkhoff/FE-interview",
     // repoLabel: '查看源码',
