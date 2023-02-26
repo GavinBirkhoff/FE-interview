@@ -1,0 +1,26 @@
+{
+  "name": "fe-interview",
+  "version": "1.0.0",
+  "description": "前端面试题收集汇总并全面给出权威优质的答案，更欢迎👏大家issues投稿 ❤️ 💞 💖，一起维护一套优质权威的前端知识体系。",
+  "main": "index.js",
+  "scripts": {
+    "start": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GavinBirkhoff/FE-interview.git"
+  },
+  "keywords": [
+    "interview"
+  ],
+  "author": "Gavin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GavinBirkhoff/FE-interview/issues"
+  },
+  "homepage": "https://github.com/GavinBirkhoff/FE-interview#readme",
+  "devDependencies": {
+    "vuepress": "^1.9.9"
+  }
+}
