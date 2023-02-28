@@ -42,6 +42,15 @@ module.exports = {
         // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
         children: getChildrenPaths("react"),
       },
+      {
+        title: "HTTPS?/计算机网络",
+        path: "/http/",
+        collapsable: true,
+        sidebarDepth: 1,
+        collapsable: false,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("http"),
+      },
     ],
     //   sidebar: 'auto'
   },
