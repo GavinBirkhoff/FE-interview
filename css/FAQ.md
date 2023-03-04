@@ -32,6 +32,12 @@ transform-origin: 50% 100%;
 
 ## link标签和import标签的区别
 
+1. 本质区别：link是html的一个标签，除了导入css文件外，还可以定义其他事物，而import是css的法则，只供给css加载文件
+2. DOM：DOM可以控制文档中的所有元素，可以插入link修改样式，不可以操作import
+3. 权重优先级：link的修改样式的优先级高于import
+4. 加载顺序：link导入的css文件随着页面加载而加载，import等到页面加载完毕，再加载
+5. 兼容性：link作为html标签没有兼容性问题，而import不兼容ie5及以下
+
 ## transition和animation的区别
 
 ## Flex布局
