@@ -1,8 +1,34 @@
 # FAQ
 
-## 说一下css盒模型
-
 ## 画一条0.5px的线
+
+1. 采用meta viewport的方式
+
+1px像素线条 ：
+
+```
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+```
+
+0.5像素线条：
+
+```
+<meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=0">
+```
+
+2. 采用 border-image的方式
+首先需要自己制作一个0.5像素的线条作为线条背景图片。
+
+```
+p{ border-width: 0 0 1px 0; border-image: imageUrl 2 0 round; }
+```
+
+3. 采用transform: scale()的方式 推荐
+
+```
+transform: scaleY(0.5);
+transform-origin: 50% 100%;
+```
 
 ## link标签和import标签的区别
 
