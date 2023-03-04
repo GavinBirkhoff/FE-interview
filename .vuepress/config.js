@@ -25,6 +25,15 @@ module.exports = {
     sidebar: [
       "/",
       {
+        title: "Css",
+        path: "/css/",
+        collapsable: true,
+        sidebarDepth: 1,
+        collapsable: false,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("css"),
+      },
+      {
         title: "Javascript",
         path: "/javascript/",
         collapsable: true,
