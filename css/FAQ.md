@@ -38,12 +38,6 @@ transform-origin: 50% 100%;
 4. 加载顺序：link导入的css文件随着页面加载而加载，import等到页面加载完毕，再加载
 5. 兼容性：link作为html标签没有兼容性问题，而import不兼容ie5及以下
 
-## transition和animation的区别
-
-## Flex布局
-
-## BFC（块级格式化上下文，用于清楚浮动，防止margin重叠等）
-
 ## 垂直居中的方法
 
 ## 关于JS动画和css3动画的差异性
