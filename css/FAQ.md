@@ -139,88 +139,116 @@ display=none，把元素隐藏起来，并且会改变页面布局，可以理�
 
 ## 怎么样让一个元素消失，讲讲
 
-## 介绍一下盒模型
+1. display:none;
 
-## position相关属性
+把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删除掉。当display设置为none，任何对该元素直接的用户交互操作都不可能生效。
 
-## css动画如何实现
+1. visibility:hidden;
 
-## 如何实现图片在某个容器中居中的？
+该元素隐藏起来了，不会改变页面布局，仍占据原有空间，但不会触发该元素已经绑定的事件。
 
-## 如何实现元素的垂直居中
+2. opacity:0;filter:alpha(opacity=0);
 
-## CSS3中对溢出的处理
+该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定一些事件，如click事件，那么点击该区域，也能触发点击事件的它只是一种视觉隐藏，将元素变得透明。元素本身依旧占用它的位置。
 
-## float的元素，display是什么
+3. z-index:-1000;
 
-## 隐藏页面中某个元素的方法没有影响
+将元素隐藏不占据空间，会改变页面布局，不能进行交互事件
 
-## 三栏布局的实现方式，尽可能多写，浮动布局时，三个div的生成顺序有
+4. position:absolute;top:-1000px;left:-1000px;
 
-## 什么是BFC
+ 这个方法是通过将left和top的值设的很大，让元素定位到浏览器外面。不占据空间，不能点击
+将定位方式设置为relative或者fixed然后将其定位到浏览器外面可以达到同样的效果，区别在于使用relative定位仍会占有原有的空间，而使用absolute以及fixed定位不占据空间
 
-## calc属性
+5. transform:rotateY(90deg);
 
-## 有一个width300，height300，怎么实现在屏幕上垂直水平居中
+使用3d旋转，使元素隐藏，旋转x轴也可以达到同样的效果，要注意的是，css3 3D转换元素进行使用的时候，必须给父元素添加transform-style:preserve-3d;perspective:1000px;用于提供3D空间，以及设置景深
+
+6. transform: scale(0,0)
+
+通过缩放达到元素消失的视觉效果，元素仍占据空间
+
+7. width:0;height:0;overflow:hidden;
 
 ## display：table和本身的table有什么区别
 
-## position属性的值有哪些及其区别
+Display:table 和本身 table 是相对应的，区别在于，display：table 的 css 声明能
+够让一个 html 元素和它的子节点像 table 元素一样，使用基于表格的 css 布局，是我
+们能够轻松定义一个单元格的边界，背景等样式，而不会产生因为使用了 table 那样
+的制表标签导致的语义化问题。
+之所以现在逐渐淘汰了 table 系表格元素，是因为用 div+css 编写出来的文件比用
+table 边写出来的文件小，而且 table 必须在页面完全加载后才显示，div 则是逐行显
+示，table 的嵌套性太多，没有 div 简洁
 
-## z-index的定位方法
+## 伪元素选择器与伪类选择器的区别
 
-## 如果想要改变一个DOM元素的字体颜色，不在它本身上进行操作？
+1. 伪元素选择器抽象创造了新元素，而伪类选择器没有。
+2. 伪类选择器只能使用“ : ”，而伪元素选择器可以使用“ : ”或“ :: ”。
+3. 伪类选择器是类似于添加类所以可以是多个；而伪元素选择器在一个选择器中只能出现一次，并且只能出现在末尾。
+4. 所有伪类选择器实现的效果可以通过给标签添加class属性来实现；所有伪元素选择器实现的效果要用过新增标签来实现。
 
-## 对CSS的新属性有了解过的吗？
+## inline-block、inline和block的区别
 
-## 用的最多的css属性是啥？
+Block 是块级元素，其前后都会有换行符，能设置宽度，高度，margin/padding 水平
+垂直方向都有效。
 
-## line-height和height的区别
+Inline：设置 width 和 height 无效，margin 在竖直方向上无效，padding 在水平方向
+垂直方向都有效，前后无换行符
 
-## 设置一个元素的背景颜色，背景颜色会填充哪些区域？
-
-## 知道属性选择器和伪类选择器的优先级吗
-
-## inline-block、inline和block的区别；为什么img是inline还可以设置宽高
+Inline-block：能设置宽度高度，margin/padding 水平垂直方向 都有效，前后无换行
+符
 
 ## 用css实现一个硬币旋转的效果哪些方法
 
-## 了解重绘和重排吗，知道怎么去减少重绘和重排吗，让文档脱离文档流有
+[旋转coin](https://codepen.io/GavinBirkhoff/pen/JjayBeg)
+
+## 了解重绘和重排吗，知道怎么去减少重绘和重排吗
+
+DOM 的变化影响到了预算内宿的几何属性比如宽高，浏览器重新计算元素的几何属性，其他元素的几何属性也会受到影响，浏览器需要重新构造渲染树，这个过程称之为重排，浏览器将受到影响的部分重新绘制在屏幕上 的过程称为重绘，引起重排重绘的原因有：
+
+添加或者删除可见的 DOM 元素，
+元素尺寸位置的改变
+浏览器页面初始化，
+浏览器窗口大小发生改变，重排一定导致重绘，重绘不一定导致重排，
+
+减少重绘重排的方法有：
+
+不在布局信息改变时做 DOM 查询，
+使用 csstext,className 一次性改变属性
+使用 fragment
+对于多次重排的元素，比如说动画。使用绝对定位脱离文档流，使其不影响其他元素
 
 ## CSS画正方体，三角形
 
-## overflow的原理
+三角形
 
-## 清除浮动的方法
+```
+#triangle-up{
+    width:0;
+    height:0;
+    border-left:50px solid transparent;
+    border-right:50px solid transparent;
+    border-bottom:100px solid red;
+}
 
-## box-sizing的语法和基本用处
+#triangle{
+    width:0;
+    height:0;
+    border-top:50px solid blue;
+    border-right:50px solid red;
+    border-bottom:50px solid green;
+    border-left:50px solid yellow;
+}
+```
 
-## 使元素消失的方法有哪些？这个top是相对于父元素的哪个位置定位的
+[爆炸正方体](https://codepen.io/GavinBirkhoff/pen/eYLEjEK)
+[正方体](https://codepen.io/GavinBirkhoff/pen/KKxvBZZ)
 
-## 两个嵌套的div，position都是absolute，子div设置top属性，那么
+## relative 定位规则
 
-## 说说盒子模型
-
-## display
-
-## 怎么隐藏一个元素
-
-## display:none和visibilty:hidden的区别
-
-## 相对布局和绝对布局，position:relative和obsolute
-
-## flex布局
-
-## block、inline、inline-block的区别
-
-## css的常用选择器
+如果对一个元素进行相对定位，它将出现在它所在的位置上。然后，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移动。 在使用相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其它框。
 
 ## css布局
 
-## css定位
-
-## relative定位规则
-
-## 垂直居中
-
-## css预处理器有什么
+六种布局方式总结：圣杯布局、双飞翼布局、Flex 布局、绝对定位布局、表格布局、
+网格布局。
