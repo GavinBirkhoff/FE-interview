@@ -9,3 +9,5 @@
 ## Angular中路由的工作原理
 
 ## 解释rjx在Angular中的使用场景
+
+## AngularJS 双向绑定原理

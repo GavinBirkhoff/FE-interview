@@ -1,5 +1,7 @@
 # FAQ
 
+## semver规范
+
 ## Babel的原理是什么?
 
 ## 如何写一个babel插件?
