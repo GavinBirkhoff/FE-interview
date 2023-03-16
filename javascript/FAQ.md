@@ -555,3 +555,7 @@ arguments 是类数组对象，有 length 属性，不能调用数组方法
 ## 箭头函数获取arguments
 
 可用…rest 参数获取
+
+## js消除异步传染性
+
+## codePointAt()与charCodeAt()方法区别
