@@ -12,7 +12,7 @@ module.exports = {
   base: "/FE-interview/",
   themeConfig: {
     repo: "GavinBirkhoff/FE-interview",
-    // repoLabel: '查看源码',
+    repoLabel: '查看源码',
     editLinks: true,
     // 默认为 "Edit this page"
     editLinkText: "帮助我们改善此页面！",
@@ -43,6 +43,15 @@ module.exports = {
         children: getChildrenPaths("javascript"),
       },
       {
+        title: "Typescript",
+        path: "/typescript/",
+        collapsable: true,
+        sidebarDepth: 1,
+        collapsable: false,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("typescript"),
+      },
+      {
         title: "React",
         path: "/react/",
         collapsable: true,
@@ -50,6 +59,15 @@ module.exports = {
         collapsable: false,
         // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
         children: getChildrenPaths("react"),
+      },
+      {
+        title: "Vue",
+        path: "/vue/",
+        collapsable: true,
+        sidebarDepth: 1,
+        collapsable: false,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("vue"),
       },
       {
         title: "HTTPS?/计算机网络",
