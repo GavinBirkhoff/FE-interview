@@ -70,6 +70,15 @@ module.exports = {
         children: getChildrenPaths("vue"),
       },
       {
+        title: "Nodejs",
+        path: "/nodejs/",
+        collapsable: true,
+        sidebarDepth: 1,
+        collapsable: false,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("nodejs"),
+      },
+      {
         title: "HTTPS?/计算机网络",
         path: "/http/",
         collapsable: true,
