@@ -121,9 +121,68 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 ## 怎么阻止组件的渲染？
 
+在React中，我们可以使用shouldComponentUpdate生命周期方法来阻止组件的渲染。当shouldComponentUpdate返回false时，React将不会执行组件的重新渲染操作。
+
+shouldComponentUpdate方法是一个用于控制组件是否需要重新渲染的生命周期方法。它接收两个参数：nextProps和nextState。我们可以在shouldComponentUpdate方法中比较当前的props和state与下一个props和state是否发生变化，如果没有变化，则返回false来阻止组件的渲染。
+
+下面是一个示例代码：
+
+```
+class MyComponent extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    // 比较当前的props和state与下一个props和state是否相等
+    if (this.props.someProp === nextProps.someProp && this.state.someState === nextState.someState) {
+      return false; // 返回false来阻止组件的重新渲染
+    }
+    return true; // 返回true来允许组件的重新渲染
+  }
+  render() {
+    // 组件的渲染逻辑
+    return (
+      <div>
+        // ...
+      </div>
+    );
+  }
+}
+```
+
+需要注意的是，使用shouldComponentUpdate方法时需要谨慎，因为它可能会对应用程序的性能产生影响。过于频繁地在shouldComponentUpdate方法中进行比较操作会影响应用程序的性能，因此应该在必要的情况下才使用该方法。
+
+对于函数组件，我们可以使用React.memo()函数来阻止组件的重新渲染。React.memo()是一个高阶组件，它可以接收一个组件作为参数，并返回一个经过优化后的组件。
+
+React.memo()基于浅层比较来判断组件是否需要重新渲染。如果组件的props发生了变化，React.memo()会对新旧props进行浅层比较，如果发现props没有变化，则返回上一次的渲染结果，否则重新渲染组件。React.memo()可以显著提高函数组件的性能，特别是当组件的props较多时。
+
+下面是一个示例代码：
+
+```
+import React from 'react';
+
+function MyComponent(props) {
+  // 组件的渲染逻辑
+  return (
+    <div>
+      // ...
+    </div>
+  );
+}
+
+export default React.memo(MyComponent);
+```
+
+需要注意的是，React.memo()只适用于props是基本数据类型的情况。如果props是对象、数组或函数时，需要进行深层比较才能判断是否需要重新渲染组件，这时候需要手动使用shouldComponentUpdate()或shouldUpdateComponent()。
+
 ## 当渲染一个列表时，何为 key？设置 key 的目的是什么？
 
+在React中，当渲染一个列表时，key是一个用于标识列表中每个子元素的唯一标识符。key通常是一个字符串或数字类型，它被指定在列表中的每个子元素上，并用于帮助React在列表中找到和识别每个子元素。 key的设置是通过设置元素的key属性来实现的。
+
+设置key的目的是帮助React提高渲染性能。如果没有key，React将会在列表中遍历每个子元素来找到改变的元素，造成性能上的浪费。而有了唯一的key，React在进行列表元素比较时就可以精准地定位到每个子元素的位置，只更新变更的部分，从而提高了应用程序的性能。
+
+此外，设置key还可以帮助React正确地跟踪和处理列表元素的状态。当子元素在列表中添加、删除或重新排序时，key可以确保React更新相应的DOM元素，并且在进一步操作过程中能够正确识别元素的状态。
+
 ## 何为 JSX ？
+
+JSX是JavaScript XML的缩写，它是一种用于在JavaScript代码中声明用户界面的语法扩展。JSX可以让开发人员在JavaScript代码中直接编写HTML元素，从而简化了React应用程序的UI开发。在使用React时，开发人员可以使用JSX来描述应用程序的组件树，使得代码的可读性和可维护性大大提高。JSX在编译时会被转换为标准的JavaScript对象，因此不会影响应用程序的性能。
 
 ## 类组件和函数组件之间的区别是啥？
 
