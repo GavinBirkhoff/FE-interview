@@ -150,19 +150,162 @@ React 的核心工作原理是使用虚拟 DOM（Virtual DOM）来优化 UI 的�
 
 总的来说，React 是一个功能强大、性能卓越的前端框架，它的灵活性和可扩展性使得开发者可以轻松地构建高质量的应用程序。
 
-## 展 示 组 件(Presentational component)和 容 器 组 件(Container component)之间有何不同？
+## 展示组件(Presentational component)和容器组件(Container component)之间有何不同？
+
+展示组件（Presentational component）和容器组件（Container component）是 React 组件的两种基本类型，它们通常被用于不同的目的。
+
+**展示组件（Presentational component）**
+
+展示组件是负责根据输入（props）和状态（state）生成用于展示数据的视图部分。它们通常不包含逻辑代码，而是只负责 UI 的呈现。它们使用组合和属性传递来接收数据，并渲染渲染视图，但并不知道应用程序的状态或需要进行哪些操作。展示组件还通常以静态形式存在，因为它们不受外部输入的影响而单独进行绘制。
+
+**容器组件（Container component）**
+
+容器组件是负责管理应用程序的状态、处理数据流以及关注业务逻辑的组件。它们通过 props 传递数据到子组件，并且也负责将子组件中发生的事件通过回调函数传递给其他组件。它们并不直接负责 UI 的渲染，而是将任务委托给展示组件。在 React 中，容器组件通常包含代码逻辑和状态管理的整个代码结构，因为它们负责将业务逻辑与展示逻辑分离，从而使应用程序更具有可维护性和可测试性。
+
+总的来说，容器组件负责管理数据和状态，展示组件负责根据输入和状态渲染 UI。 这两种组件通过属性传递和回调函数相互作用，从而创建大型和高度可复用的 React 组件。
 
 ## 类组件(Class component)和函数式组件(Functional component)之间有何不同？
 
+**类组件（Class component）**
+
+类组件是使用 ES6 类定义的，它们是 React 组件的最初实现方式。类组件通常包含状态（state）和生命周期方法（lifecycle methods），它们还可以通过 this 引用访问实例变量以及继承命名方法。
+
+以下是一个简单的类组件的示例：
+
+```
+import React, { Component } from 'react';
+
+class Welcome extends Component {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+```
+
+**函数式组件（Functional component）**
+
+函数式组件是使用函数定义的，它们通常更加简单和精简。函数式组件通常不包含状态或生命周期方法，它们只接收输入 props 并返回呈现的内容。
+
+以下是一个简单的函数式组件的示例：
+
+```
+import React from 'react';
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+```
+
+除此之外，React 自从 16.8 版本之后，还引入了 Hooks API，它使得函数式组件中能够使用状态和其他特性。使用 Hooks，函数式组件可以方便地替代类组件完成复杂的应用程序逻辑。函数式组件与类组件的比较：
+
+- 函数式组件通常比类组件更加简单。
+- 类组件可以定义 state 和 lifecycle 方法。
+- 使用 Hooks，函数式组件也可以定义 state 和其他特性。
+
+总的来说，函数式组件具有更少的代码和更快的渲染速度，但是，如果需要使用状态和生命周期方法，那么类组件是更好的选择。
+
 ## (组件的)状态(state)和属性(props)之间有何不同？
+
+在 React 中，组件的状态(state)和属性(props)是两个不同的概念。
+
+属性(props)是从父组件传递给子组件的数据，子组件无法修改它们。属性(props)是只读的，且用于配置组件的初始值和行为。有一个约定，即所有属性(props)都应该以组件属性(props)的方式来编写，这样可以有效地组织和传递数据。
+
+状态(state)是组件内部的数据，组件可以修改它们。状态(state)是内部数据，用于跟踪和响应用户操作和其他事件的变化，以便在需要时重新渲染组件以反映变化。
+
+总之，属性(props)是从父组件传递给子组件的数据，而状态(state)是组件内部的数据，用于记录组件自身的变化。
 
 ## 应该在 React 组件的何处发起 Ajax 请求？
 
+在 React 组件中发起 Ajax 或其他异步请求时，最好的实践是在组件生命周期的 componentDidMount 方法中发起这些请求。
+
+在这种情况下，当组件挂载完成时，React 提供了一个机会来向数据库或 API 发送请求以获取数据，并将其保存在组件的状态中，以便在呈现组件时使用。
+
+以下是一个使用 componentDidMount 发起 Ajax 请求的示例：
+
+```
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class MyComponent extends Component {
+  state = {
+    data: null,
+  }
+
+  componentDidMount() {
+    axios.get('/api/data')
+      .then(response => {
+        // 处理数据并将其保存在状态中
+        this.setState({ data: response.data });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        {/* 使用状态中的数据呈现组件 */}
+        {this.state.data && <p>{this.state.data}</p>}
+      </div>
+    )
+  }
+}
+```
+
+在这个示例中，我们使用 componentDidMount 方法向服务器发起 AJAX 请求，并将返回的数据保存在组件的状态中。当数据准备好时，我们使用呈现方法将其渲染到组件。这种方法能够确保组件只在挂载后才发起请求，并且只在服务器响应时才进行数据处理。
+
 ## 在 React 中，refs 的作用是什么？
+
+在 React 中，refs提供了一种方式可以从组件中获取DOM节点或者React组件的引用。refs是React提供的一种访问真实DOM及React组件的方法，可以用于访问和操作在组件实例内部的DOM元素、组件实例和组件实例内的方法。
+
+使用refs，可以在React中控制和访问DOM元素的方法，包括获取表单元素中输入的值，聚焦表单元素，滚动到指定位置等。另外，refs也可以用于父组件和子组件之间的通信，可以让父组件直接访问子组件的props和state，这样可以使得组件之间的数据传递更加直接和高效。
+
+在具体应用中，使用 refs的方式为在需要引用的DOM元素或组件上添加 ref 属性，然后在组件中通过 this.refs.xxx的方式来访问对应的节点或组件实例。需要注意的是，使用refs方式有时会导致代码结构复杂度增加，同时也增加了组件之间的耦合度，所以应该在必要的时候才使用。
 
 ## 何为高阶组件(higher order component)？
 
-## 使用箭头函数(arrow functions)的优点是什么？
+高阶组件（Higher-Order Component，HOC）是一个可以接收一个或多个组件作为参数，并返回一个新组件的函数。 这个新组件具备了被包装的组件所没有的能力。
+
+高阶组件是 React 中的一种高级技术，用于在组件之间共享代码和行为，从而实现代码重用和抽象化。 它通常被用来编写通用的功能，如身份验证、数据获取、日志记录等。
+
+具体来说，HOC 是一个函数，接收一个组件作为参数，返回一个新的组件。新组件可以在不修改原组件的情况下增强其功能。实际上，HOC 返回了一种新的组件，这个新的组件可以操作被包装组件的 props 或者增强其渲染方法，并且可以通过被包装的组件调用来实现共享所需的函数或逻辑。
+
+以下是一个简单的高阶组件示例：
+
+```
+function withLogger(WrappedComponent) {
+  return class extends React.Component {
+    componentDidMount() {
+      console.log(`Component ${WrappedComponent.name} mounted`);
+    }
+
+    componentWillUnmount() {
+      console.log(`Component ${WrappedComponent.name} will unmount`);
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+}
+```
+
+在这个示例中，withLogger 是一个高阶组件，它接收一个组件作为参数并返回一个新的组件。新组件可以在加载和卸载时打印日志。被包装的组件可以在需要的情况下添加日志功能，而不会在组件本身中混杂日志代码。
+
+在使用时，可以通过以下方式使用：
+
+```
+class MyComponent extends React.Component {
+  render() {
+    return <div>Hello, World!</div>;
+  }
+}
+
+const MyComponentWithLogger = withLogger(MyComponent);
+```
+
+在这个示例中，MyComponent 将通过 withLogger 函数进行包装，生成一个新的组件 MyComponentWithLogger，这个新组件可以增强渲染方法并包含日志功能。 HOC 在 React 中非常常见，常用于编写可重用代码、添加共享功能并向组件注入所需的属性。
 
 ## 为什么建议传递给 setState 的参数是一个 callback 而不是一个对象？
 
