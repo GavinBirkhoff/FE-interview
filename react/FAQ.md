@@ -309,7 +309,79 @@ const MyComponentWithLogger = withLogger(MyComponent);
 
 ## 为什么建议传递给 setState 的参数是一个 callback 而不是一个对象？
 
+在 React 中，setState 方法用于更新组件的状态（state）。尽管 setState 可以接受一个新的状态对象，但是官方文档建议使用一个回调函数来代替对象来调用 setState，因为在许多情况下这会更加可靠。
+
+以下是使用回调函数的方式来进行 setState 操作的示例：
+
+```
+this.setState(prevState => ({
+  counter: prevState.counter + 1
+}));
+```
+
+以下是使用对象来进行 setState 操作的示例：
+
+```
+this.setState({
+  counter: this.state.counter + 1
+});
+```
+
+这种情况下，推荐使用回调函数的原因有以下几点：
+
+1. 异步更新状态
+
+   setState 调用是异步的，React 会将更新的状态入列并根据需要进行批处理。如果在调用 setState 时只传递一个对象，则不能确保属性当前将传递给 setState 的对象的值。 因此，在 setState 中传递回调函数，而不是对象，可以确保在异步执行的状态更新中使用最新的值。
+
+2. 避免状态竞争
+
+   使用回调函数而不是对象，还可以避免状态竞争（State Race Condition）。例如，如果两个或多个 setState 调用同时发生，并且它们试图更新相同的状态，则无法确保更新的顺序。由于 setState 回调是逐个执行的，因此使用回调函数来进行状态更新将确保它们按顺序执行。
+
+3. 更好的性能
+
+   在使用回调函数时，可以在回调函数中只更新状态中某个属性。当尝试更新状态时，React 将对新状态和旧状态进行比较，然后只更新发生更改的状态，以此来提高性能并减少系统资源的消耗。
+
+综上所述，使用回调函数来调用 setState 操作通常是一种更加可靠和安全的选择，可以避免状态竞争，提高性能，并且确保在异步执行的状态更新中始终使用最新的值。
+
 ## 除了在构造函数中绑定 this，还有其它方式吗？
+
+是的，除了在构造函数中绑定this之外，还有其他两种常见的方式来绑定 this。
+
+第一种方式是使用箭头函数。箭头函数不会创建自己的作用域，而是会捕捉当前上下文中的 this 值。因此，可以在组件中使用箭头函数来绑定this的值，而不用将this绑定在构造函数中。
+
+例如：
+
+```
+class MyComponent extends React.Component {
+  handleClick = () => {
+    console.log(this);
+  };
+
+  render() {
+    return <button onClick={this.handleClick}>Click me</button>;
+  }
+}
+```
+
+在上面的代码中， handleClick 使用箭头函数定义，因此它的 this 值会指向 MyComponent 组件实例。
+
+第二种方式是使用 bind 方法。bind 方法会创建一个新的函数实例，并绑定该函数实例的 this 值为指定的值。可以在需绑定this的函数中调用 bind，来获取绑定this后的新函数，并将这个新函数传递给需要调用它的组件或者其他地方使用。
+
+例如：
+
+```
+class MyComponent extends React.Component {
+  handleClick() {
+    console.log(this);
+  }
+
+  render() {
+    return <button onClick={this.handleClick.bind(this)}>Click me</button>;
+  }
+}
+```
+
+在上面的代码中， handleClick 方法中使用了 bind 方法来绑定this值，然后将绑定this后的新函数作为onClick属性的值传递给button组件，在用户点击button时，绑定this后的新函数会被调用。
 
 ## 怎么阻止组件的渲染？
 
