@@ -559,3 +559,5 @@ arguments 是类数组对象，有 length 属性，不能调用数组方法
 ## js消除异步传染性
 
 ## codePointAt()与charCodeAt()方法区别
+
+## 使用箭头函数(arrow functions)的优点是什么？
