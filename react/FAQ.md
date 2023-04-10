@@ -844,3 +844,11 @@ class MyComponent extends React.Component {
 其中，height属性代表懒加载图片的高度，once属性表示只加载一次。
 
 这样，当页面滚动到需要加载图片的位置时，较小的占位符图会先显示，然后再异步加载真实的图片。这可以有效地减轻页面初始加载时的负担，提高应用程序的性能。
+
+## useTransition为啥不会阻塞UI
+
+关于 “useTransition” Hook，它本质上是一个 React Hook，它可以帮助开发人员更轻松地管理组件的加载和更新。它通过在组件加载和更新时使用异步函数，从而确保它不会阻塞用户界面。
+
+当组件需要加载或更新时，“useTransition” Hook 可以通过使用 Promise 和 async/await 语法来控制组件的加载和更新。这样，组件加载和更新可以在后台运行，不会影响用户界面的响应性。
+
+因此，“useTransition” Hook 可以确保组件加载和更新不会阻塞用户界面，从而提高用户体验。
