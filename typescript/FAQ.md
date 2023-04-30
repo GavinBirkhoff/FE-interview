@@ -243,3 +243,27 @@ const staff: Staff = {
   ```
 
 上面的代码中，分别定义了四种类型保护方法，并且在相应的函数中使用了 is 关键字来说明这是一个类型保护函数，这样在使用的时候，TypeScript 就能更好地推断变量类型。
+
+## typescript 守护类型
+
+TypeScript的“守护类型”是指使用类型断言或类型保护来在运行时检查值的类型。它可以帮助在编译时减少类型错误，同时保持JavaScript的动态特性。
+
+例如，在 TypeScript 中，您可以使用以下类型保护函数检查值的类型：
+
+```
+function isNumber(value: any): value is number {
+  return typeof value === 'number';
+}
+
+let value: any = 42;
+
+if (isNumber(value)) {
+  console.log('Value is a number:', value.toFixed(2));
+} else {
+  console.log('Value is not a number.');
+}
+```
+
+在这个例子中，`isNumber`函数接受一个值作为参数，并返回一个布尔值。如果参数的类型是`number`，则返回`true`；否则返回`false`。在`if`语句中，我们使用`isNumber`函数来检查`value`的类型。如果`value`是一个数字，我们就调用`toFixed`方法打印出该数字的值，否则我们打印一个错误消息。
+
+这种基于类型保护函数的“守护类型”可以让您在编译时发现类型错误，并提供更好的类型安全保证。
