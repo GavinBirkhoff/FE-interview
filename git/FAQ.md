@@ -63,3 +63,9 @@ git checkout -- <file>
 ```
 
 其中，git reset --mixed HEAD^ 会把文件从暂存区移动到工作区，然后 git checkout – <file> 可以从工作区中恢复文件。
+
+## 你的git工作流是怎样的?
+
+## rebase 与 merge的区别?
+
+## git reset、git revert 和 git checkout 有什么区别
