@@ -166,3 +166,9 @@ export async function getServerSideProps({ res }) {
 ```
 
 这将在1秒内缓存数据，并在缓存过期时重新验证和更新数据。
+
+## setImmediate 是微任务吗
+
+不是，setImmediate 不是 JavaScript 中的微任务，而是一种浏览器之外、用于在 Node.js 中添加一个异步操作的API。在 Node.js 环境中，setImmediate 是一种宏任务（macrotask），它的执行优先级低于 process.nextTick()，但高于 setTimeout 和 setInterval。当 Node.js 中的事件循环执行到 check 阶段时，会检查 setImmediate 队列中是否有任务需要执行，如果有，则执行 setImmediate 中的任务。
+
+需要注意的是，在浏览器中并不存在 setImmediate 这个API，但可以使用 message event 或者 setTimeout 0 来模拟实现其功能，将其添加到宏任务队列中，而不是微任务队列中。因此，在浏览器中，setImmediate 计划的任务会在当前宏任务执行结束之后，下一个宏任务执行之前执行。
