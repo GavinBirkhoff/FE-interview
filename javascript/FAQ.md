@@ -561,3 +561,33 @@ arguments 是类数组对象，有 length 属性，不能调用数组方法
 ## codePointAt()与charCodeAt()方法区别
 
 ## 使用箭头函数(arrow functions)的优点是什么？
+
+## 说说async函数
+
+1. 什么是 Async 函数？
+
+Async 函数是一种异步函数，它使用 async 关键字在函数前进行修饰。它可以以一种更简单和直观的方式编写异步代码。Async 函数的返回值是一个 Promise 对象，可以使用 then 和 catch 处理。
+
+2. Async 函数与 Promise 之间有什么区别？
+
+Async 函数是 Promise 的一种语法糖，它提供了一种更简单和直观的方式来编写异步代码。Promise 是一个对象，它代表一个异步操作的最终结果，可以使用 then 和 catch 处理。
+
+3. 如何在 Async 函数中使用 await？
+
+在 Async 函数中，可以使用关键字 await 来等待一个 Promise 对象的解决。当遇到 await 表达式时，Async 函数会暂停执行，直到 Promise 对象被解决。
+
+4. Async 函数的返回值是什么类型？
+
+Async 函数的返回值是一个 Promise 对象。它可以是解决的 Promise 对象，也可以是拒绝的 Promise 对象，具体取决于 Async 函数的执行结果。
+
+5. 在 Async 函数中可以使用哪些其他异步函数？
+
+在 Async 函数中可以使用所有返回 Promise 对象的异步函数，例如 fetch、setTimeout、setInterval 等等。
+
+6. Async 函数在什么情况下会抛出异常？
+
+当 Async 函数中的任何一条语句抛出异常时，该函数将立即停止执行并返回一个拒绝的 Promise 对象。这个 Promise 对象将包含抛出的错误对象。
+
+7. 在什么情况下我们应该使用 Async 函数？
+
+通常情况下，当需要处理异步事件时，我们应该使用 Async 函数，因为 Async 函数提供了一种更直观和更易于理解的方式来编写异步代码。使用 Async 函数可以大大简化异步代码的编写和调试。
