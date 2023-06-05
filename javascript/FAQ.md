@@ -629,3 +629,38 @@ BigInt 是一种新的数据类型，用于表示任意精度的整数。它可�
 BigInt 提案的目标是提供一种标准化的方式来处理大整数，使 JavaScript 可以在处理超出双精度浮点数范围的整数时更加可靠和灵活。它提供了一组操作符和方法，用于在 BigInt 上执行各种数值运算，以及将 BigInt 与其他数字类型进行转换。
 
 需要注意的是，BigInt 是一种特殊的数据类型，与常规的数字类型（如整数和浮点数）不同，因此在使用和操作 BigInt 时需要特别注意其语法和规则。
+
+## 如何判断一个对象是空对象
+
+在 JavaScript 中，可以使用不同的方法来判断一个对象是否为空对象。下面列举几种常用的方法：
+
+1. 使用 Object.keys() 方法：该方法返回对象中可枚举属性的数组。如果对象没有可枚举属性，那么返回的数组将为空数组。因此，可以通过检查返回的数组长度是否为0来判断对象是否为空对象。
+
+```javascript
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0;
+}
+```
+
+2. 使用 for...in 循环：通过遍历对象的属性，如果对象具有可枚举的属性，则判断对象不是空对象。
+
+```javascript
+function isEmptyObject(obj) {
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+3. 使用 JSON.stringify() 方法：将对象转换为 JSON 字符串，然后检查字符串是否为空字符串来判断对象是否为空对象。
+
+```javascript
+function isEmptyObject(obj) {
+  return JSON.stringify(obj) === '{}';
+}
+```
+
+请注意，这些方法都是基于对象没有可枚举属性的前提下来判断对象是否为空对象。如果对象的原型链上有属性或者通过 Object.defineProperty() 方法定义了不可枚举的属性，上述方法可能会得出错误的结果。
