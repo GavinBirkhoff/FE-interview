@@ -682,3 +682,47 @@ const obj = new ArrowFunc(); // TypeError: ArrowFunc is not a constructor
 ```
 
 总结来说，箭头函数不适用于被实例化，它们更适合作为匿名函数或用于简化函数语法。如果你需要创建可实例化的函数，应该使用常规的函数声明或函数表达式。
+
+## new 操作符的实现步骤
+
+在 JavaScript 中，使用 `new` 操作符来创建一个对象的实例时，会经历以下步骤：
+
+1. 创建一个空对象：首先，一个新的空对象会被创建。
+
+2. 设置原型链连接：新创建的对象会被设置其原型链（`[[Prototype]]`）指向构造函数的原型对象（`Constructor.prototype`）。
+
+3. 将构造函数的作用域赋给新对象：`this` 关键字会被绑定到新对象上，使构造函数内部的代码可以访问和操作新对象。
+
+4. 执行构造函数代码：构造函数会被执行，通过 `this` 关键字来对新对象进行属性赋值、方法定义等操作。
+
+5. 返回新对象：如果构造函数中没有显式返回其他对象，则 `new` 表达式会自动返回新创建的对象实例；否则，返回构造函数中显式返回的对象。
+
+下面是一个简单的示例，演示了 `new` 操作符的实现步骤：
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
+};
+
+const john = new Person('John', 25);
+john.sayHello(); // 输出: Hello, my name is John and I'm 25 years old.
+```
+
+在上述示例中，`new Person('John', 25)` 执行过程如下：
+
+1. 创建一个空对象 `john`。
+
+2. 将 `Person.prototype` 设置为 `john` 的原型链。
+
+3. 将构造函数 `Person` 的作用域赋给 `john`，使 `this` 关键字绑定到 `john`。
+
+4. 执行构造函数内部的代码，将属性 `name` 和 `age` 赋值给 `john`。
+
+5. 返回 `john` 对象。
+
+这样，我们通过 `new` 操作符创建了一个 `Person` 的实例，并可以使用该实例调用构造函数原型对象上的方法。
