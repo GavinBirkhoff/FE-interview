@@ -726,3 +726,33 @@ john.sayHello(); // 输出: Hello, my name is John and I'm 25 years old.
 5. 返回 `john` 对象。
 
 这样，我们通过 `new` 操作符创建了一个 `Person` 的实例，并可以使用该实例调用构造函数原型对象上的方法。
+
+## 箭头函数的 this 指向哪⾥？
+
+箭头函数的 `this` 指向是在函数定义时确定的，并且在整个函数生命周期内保持不变。与常规函数（函数声明或函数表达式）不同，箭头函数没有自己的 `this` 绑定。相反，它继承了父作用域中的 `this` 值。
+
+具体来说，箭头函数的 `this` 指向的是其外部包围函数（或全局作用域）的 `this` 值。这意味着，无论如何调用箭头函数，它始终引用的是最近一层非箭头函数作用域的 `this` 值。
+
+考虑以下示例：
+
+```javascript
+function regularFunction() {
+  console.log(this); // this 指向调用 regularFunction 的对象
+}
+
+const arrowFunction = () => {
+  console.log(this); // this 指向外部作用域中的 this 值
+};
+
+const obj = {
+  method: regularFunction,
+};
+
+regularFunction(); // this 指向全局对象（浏览器环境中通常是 window）
+obj.method(); // this 指向 obj 对象
+arrowFunction(); // this 指向外部作用域中的 this 值（在此处通常是全局对象）
+```
+
+在上述示例中，`regularFunction` 是一个常规函数，它的 `this` 值取决于调用它的方式，可以通过 `obj.method()` 来改变其 `this` 指向。而 `arrowFunction` 是一个箭头函数，它的 `this` 始终继承自外部作用域，无法通过调用方式改变其 `this` 指向。
+
+需要注意的是，箭头函数不适合作为构造函数使用，因为它没有自己的 `this` 绑定，无法通过 `new` 关键字来实例化。
