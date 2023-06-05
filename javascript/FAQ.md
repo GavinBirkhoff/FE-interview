@@ -756,3 +756,55 @@ arrowFunction(); // this 指向外部作用域中的 this 值（在此处通常�
 在上述示例中，`regularFunction` 是一个常规函数，它的 `this` 值取决于调用它的方式，可以通过 `obj.method()` 来改变其 `this` 指向。而 `arrowFunction` 是一个箭头函数，它的 `this` 始终继承自外部作用域，无法通过调用方式改变其 `this` 指向。
 
 需要注意的是，箭头函数不适合作为构造函数使用，因为它没有自己的 `this` 绑定，无法通过 `new` 关键字来实例化。
+
+## 扩展运算符的作用及使用场景
+
+扩展运算符（Spread Operator）是在 ECMAScript 2015（ES6）中引入的一种语法，用于展开数组、对象、字符串等可迭代对象。它可以将可迭代对象拆分为独立的元素，方便在需要多个参数或元素的地方使用。
+
+以下是扩展运算符的主要作用和使用场景：
+
+1. 数组的展开：
+
+   ```javascript
+   const arr1 = [1, 2, 3];
+   const arr2 = [...arr1, 4, 5, 6];
+   console.log(arr2); // 输出: [1, 2, 3, 4, 5, 6]
+   ```
+
+   扩展运算符可以将数组中的每个元素拆分为独立的值，并用于创建新的数组。这对于数组合并、复制或在函数调用时传递多个参数非常有用。
+
+2. 对象的展开：
+
+   ```javascript
+   const obj1 = { name: 'John', age: 30 };
+   const obj2 = { ...obj1, occupation: 'Engineer' };
+   console.log(obj2); // 输出: { name: 'John', age: 30, occupation: 'Engineer' }
+   ```
+
+   扩展运算符可以将一个对象的属性和值展开到另一个对象中，从而创建一个新的对象。这对于对象的合并、复制或创建带有额外属性的新对象很有用。
+
+3. 函数调用时的参数传递：
+
+   ```javascript
+   function sum(a, b, c) {
+     return a + b + c;
+   }
+   
+   const numbers = [1, 2, 3];
+   const result = sum(...numbers);
+   console.log(result); // 输出: 6
+   ```
+
+   扩展运算符可以将数组中的元素作为单独的参数传递给函数。这样可以方便地将数组的元素传递给需要多个参数的函数，避免了使用 `apply()` 或手动解构的复杂性。
+
+4. 字符串的展开：
+
+   ```javascript
+   const str = 'Hello';
+   const chars = [...str];
+   console.log(chars); // 输出: ['H', 'e', 'l', 'l', 'o']
+   ```
+
+   扩展运算符可以将字符串拆分为单个字符，生成一个包含每个字符的数组。这对于需要对字符串进行迭代或处理每个字符的场景非常有用。
+
+需要注意的是，扩展运算符只能用于可迭代对象，包括数组、类数组对象（如类似数组的对象和字符串）和可迭代的内置对象（如 Set 和 Map）。在使用扩展运算符时，应根据需要选择合适的数据类型和使用场景。
