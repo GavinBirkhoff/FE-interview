@@ -927,3 +927,28 @@ DOM（Document Object Model）和 BOM（Browser Object Model）是两个与浏�
 2. BOM（浏览器对象模型）：BOM 是指浏览器提供的一组对象和方法，用于访问和控制浏览器窗口、浏览器的历史记录、浏览器的位置和尺寸、浏览器的导航等功能。BOM 提供了一些对象，如 window、navigator、location、history 等，开发者可以使用这些对象来操作浏览器的行为和属性。BOM 并没有由标准规范定义，不同浏览器可能提供不同的 BOM 实现。
 
 总结来说，DOM 是用于访问和操作文档内容的 API，而 BOM 是用于访问和控制浏览器窗口和浏览器功能的 API。它们共同组成了浏览器提供给开发者的编程接口，使得开发者可以通过 JavaScript 来与网页和浏览器进行交互。
+
+## escape、encodeURI、encodeURIComponent 的区别
+
+`escape`、`encodeURI` 和 `encodeURIComponent` 是 JavaScript 中用于编码 URL 的方法，它们有一些区别：
+
+1. `escape`：`escape` 方法用于对字符串进行编码，将字符串中的特殊字符转换为十六进制转义序列。它可以对整个字符串进行编码，包括字母、数字和特殊字符。然而，`escape` 方法已经被废弃，不推荐使用，因为它对非 ASCII 字符的处理不一致，不适用于完整的 URL 编码。
+
+2. `encodeURI`：`encodeURI` 方法用于对整个 URL 进行编码，包括协议、域名、路径和查询参数。它用于将字符串转换为有效的 URL 字符串，对于大部分情况而言是足够的。`encodeURI` 不会编码某些特殊字符，如 `:/?#[]@!$&'()*+,;=`，以保留它们在 URL 中的含义。
+
+3. `encodeURIComponent`：`encodeURIComponent` 方法用于对 URL 中的查询参数进行编码。它会对字符串中的所有非字母数字字符进行编码，以便安全地包含在 URL 的查询参数中。`encodeURIComponent` 包括对 `encodeURI` 不编码的字符的编码，如 `/`。
+
+下面是一些使用示例：
+
+```javascript
+var url = "http://example.com/my page.html?name=John&age=30";
+var encodedURL = encodeURI(url);
+console.log(encodedURL);
+// 输出："http://example.com/my%20page.html?name=John&age=30"
+
+var encodedQueryParam = encodeURIComponent("Hello, World!");
+console.log(encodedQueryParam);
+// 输出："Hello%2C%20World%21"
+```
+
+需要根据具体的使用场景选择适当的方法。通常情况下，使用 `encodeURI` 对整个 URL 进行编码，使用 `encodeURIComponent` 对查询参数进行编码是最常见的做法，以确保 URL 的正确性和安全性。
