@@ -952,3 +952,66 @@ console.log(encodedQueryParam);
 ```
 
 需要根据具体的使用场景选择适当的方法。通常情况下，使用 `encodeURI` 对整个 URL 进行编码，使用 `encodeURIComponent` 对查询参数进行编码是最常见的做法，以确保 URL 的正确性和安全性。
+
+## 对 AJAX 的理解，实现一个 AJAX 请求
+
+AJAX（Asynchronous JavaScript and XML）是一种用于在客户端和服务器之间进行异步数据交换的技术。通过 AJAX，可以在不刷新整个页面的情况下向服务器发送请求并获取数据，然后使用 JavaScript 更新页面的部分内容。
+
+实现一个 AJAX 请求的基本步骤如下：
+
+1. 创建一个 XMLHttpRequest 对象（或使用新的 fetch API）。
+2. 设置请求的方法（GET、POST 等）和 URL。
+3. 可选地设置请求的头部信息。
+4. 注册一个回调函数来处理响应结果。
+5. 发送请求到服务器。
+6. 在回调函数中处理响应数据。
+
+下面是一个使用原生 JavaScript 实现 AJAX 请求的示例：
+
+```javascript
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.example.com/data', true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      var response = xhr.responseText;
+      console.log(response);
+    } else {
+      console.error('Error: ' + xhr.status);
+    }
+  }
+};
+xhr.send();
+```
+
+接下来，我们可以使用 Promise 对象来封装 AJAX 请求，以便更方便地处理异步操作。下面是使用 Promise 封装 AJAX 请求的示例：
+
+```javascript
+function ajaxRequest(url, method) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          resolve(xhr.responseText);
+        } else {
+          reject(new Error('Request failed: ' + xhr.status));
+        }
+      }
+    };
+    xhr.send();
+  });
+}
+
+// 使用封装的 AJAX 请求
+ajaxRequest('https://api.example.com/data', 'GET')
+  .then(function(response) {
+    console.log(response);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+```
+
+在上述代码中，我们创建了一个名为 `ajaxRequest` 的函数，它返回一个 Promise 对象。在 Promise 的回调函数中，执行 AJAX 请求并根据请求的结果调用 `resolve` 或 `reject`。然后，可以使用 `then` 方法处理成功的响应结果，使用 `catch` 方法处理错误。这种封装可以更好地处理异步操作的结果，使代码更具可读性和可维护性。
