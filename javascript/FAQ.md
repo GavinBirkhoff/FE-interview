@@ -882,3 +882,38 @@ JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，�
 6. 支持的数据类型：JSON 支持字符串、数字、布尔值、数组、对象和 null。这些数据类型的组合和嵌套能够表示丰富的数据结构。
 
 需要注意的是，JSON 是一种数据格式，它描述了数据的结构和值，但并不包含行为或方法。在使用 JSON 数据时，需要将其解析为特定编程语言的对象或数据结构，以便进行进一步的处理和操作。
+
+## JavaScript 脚本延迟加载的方式有哪些？
+
+JavaScript 脚本的延迟加载是一种优化技术，它可以提高网页的加载性能。以下是几种常见的 JavaScript 脚本延迟加载的方式：
+
+1. 使用 `async` 属性：将 `<script>` 标签的 `async` 属性设置为 `true` 可以使脚本在下载的同时不阻塞页面的解析和渲染。脚本将在下载完成后立即执行，但执行时可能会打断页面的渲染。
+
+```html
+<script src="script.js" async></script>
+```
+
+2. 使用 `defer` 属性：将 `<script>` 标签的 `defer` 属性设置为 `true` 可以将脚本的执行推迟到页面解析完成后。这样脚本将在文档完全解析和渲染完成后执行，不会打断页面的渲染。
+
+```html
+<script src="script.js" defer></script>
+```
+
+3. 动态加载脚本：通过 JavaScript 动态创建 `<script>` 标签并将其插入到页面中，可以实现按需加载脚本。可以在适当的时机使用 `createElement` 和 `appendChild` 方法来动态加载脚本。
+
+```javascript
+var script = document.createElement('script');
+script.src = 'script.js';
+document.body.appendChild(script);
+```
+
+4. 使用异步加载库：一些第三方库和工具提供了异步加载的功能，例如 RequireJS、LoadJS 等。这些库可以帮助管理和加载依赖关系，并在需要时按需加载脚本。
+
+```javascript
+// 使用 RequireJS 异步加载模块
+require(['module'], function(module) {
+  // 模块加载完成后的回调函数
+});
+```
+
+需要根据具体情况选择适合的延迟加载方式。`async` 和 `defer` 属性适用于静态脚本的加载，而动态加载适用于动态生成的脚本或根据条件加载脚本。通过延迟加载 JavaScript 脚本，可以提高网页的响应速度和用户体验。
