@@ -1117,3 +1117,55 @@ for (const value of arr) {
    - `fetch`：`fetch` 使用 Promise 来处理响应，它返回一个 Promise 对象，可以使用 `then` 和 `catch` 方法来处理响应结果。但它的 API 设计相对较低级，使用起来不够简洁和友好。
 
 综上所述，`ajax` 是基于原生 `XMLHttpRequest` 的异步请求方法，没有统一的 API 设计；`axios` 是一个功能强大、易用的第三方库，基于 `XMLHttpRequest` 实现；`fetch` 是现代浏览器原生提供的方法，使用 Promise 实现。
+
+## 对原型、原型链的理解
+
+原型和原型链是 JavaScript 中的重要概念，用于实现对象的继承和属性查找。
+
+1. 原型（Prototype）：
+   - 每个 JavaScript 对象都有一个原型（prototype），它是一个对象，可以包含共享的属性和方法。
+   - 对象可以通过 `__proto__` 属性访问它的原型。
+   - 当访问对象的属性或方法时，如果对象本身没有该属性或方法，JavaScript 引擎会沿着原型链向上查找，直到找到该属性或方法或到达原型链的末尾（即 `null`）。
+
+2. 原型链（Prototype Chain）：
+   - 原型链是一系列对象的链接，每个对象都有一个指向其原型的引用。
+   - 当访问对象的属性或方法时，如果对象本身没有该属性或方法，JavaScript 引擎会沿着原型链向上查找，直到找到该属性或方法或到达原型链的末尾（即 `null`）。
+   - 每个对象的原型又是另一个对象，通过这种方式形成了一个层级关系，即原型链。
+   - 原型链的终点是 `Object.prototype`，它是大多数对象的最顶层原型，包含一些常用的方法和属性（如 `toString()`、`valueOf()` 等）。
+
+通过原型和原型链，JavaScript 实现了对象的继承和属性的共享：
+
+- 当访问对象的属性或方法时，会先在对象本身查找，如果找不到，会继续在其原型上查找，然后在原型的原型上查找，以此类推，直到找到或到达原型链的末尾。
+- 如果对象的原型上也没有该属性或方法，那么会继续在原型的原型上查找，直到找到或到达原型链的末尾。
+- 这样就可以实现属性和方法的共享，避免在每个对象上都创建一份相同的属性和方法。
+
+示例代码如下：
+
+```javascript
+// 创建一个对象 person
+const person = {
+  name: 'John',
+  age: 30,
+};
+
+// person 对象的原型是 Object.prototype
+console.log(person.__proto__ === Object.prototype); // true
+
+// 在 person 对象上访问 toString 方法，由于 person 对象没有该方法，会在原型链上查找并找到 Object.prototype 上的 toString 方法
+console.log(person.toString()); // "[object Object]"
+
+// 创建一个对象 student
+const student = {
+  school: 'XYZ School',
+};
+
+// student 对象的原型设置为 person 对象
+Object.setPrototypeOf(student, person);
+
+// student 对象的原型是 person 对象
+console.log(student.__proto__ === person); // true
+
+// 在 student 对象上访问 name 属性，由于 student 对象没有该属性，会在原型链上查找并找到 person 对象上的 name 属性
+console.log(student.name); // "John"
+
+//
