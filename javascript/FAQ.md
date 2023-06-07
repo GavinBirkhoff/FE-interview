@@ -1169,3 +1169,26 @@ console.log(student.__proto__ === person); // true
 console.log(student.name); // "John"
 
 //
+```
+
+## 原型链的终点是什么？如何打印出原型链的终点？
+
+原型链的终点是 `Object.prototype`。`Object.prototype` 是 JavaScript 中大多数对象的最顶层原型，它是原型链的末尾，没有自己的原型。
+
+可以通过以下方法打印出原型链的终点：
+
+```javascript
+// 创建一个对象
+const obj = {};
+
+// 打印原型链的终点
+let prototype = Object.getPrototypeOf(obj);
+while (prototype !== null) {
+  console.log(prototype);
+  prototype = Object.getPrototypeOf(prototype);
+}
+```
+
+在上述代码中，我们使用 `Object.getPrototypeOf()` 方法来获取对象的原型。通过一个循环，我们依次打印出每个原型对象，直到原型为 `null`，即到达了原型链的终点。注意，打印结果中会显示一些内置的原型对象，如 `Object.prototype`、`Array.prototype`、`Function.prototype` 等。
+
+请注意，在控制台中打印整个原型链可能会导致很长的输出，特别是对于复杂对象或原型链较深的对象。因此，建议在实际开发中根据需求选择打印原型链的某个部分或特定对象的原型链。
