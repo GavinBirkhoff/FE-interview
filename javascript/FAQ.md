@@ -1337,3 +1337,43 @@ greet.apply(person, ['Hi']); // 输出: Hi, John
    - Observables 可以表示一系列的异步事件或数据流，可以进行各种操作（如映射、过滤、合并等）来处理和转换数据。
 
 这些都是常见的异步编程方式，每种方式都有其适用的场景和特点。在实际开发中，可以根据具体需求选择合适的方式来实现异步编程。
+
+## 对 async/await 的理解
+
+`async/await` 是 ECMAScript 2017（ES8）中引入的一种异步编程方式，它建立在 Promise 之上，提供了一种更简洁、更直观的语法来处理异步操作。
+
+`async/await` 的基本理解如下：
+
+1. `async` 关键字：
+   - `async` 用于定义一个异步函数（Async Function），异步函数在执行时会返回一个 Promise 对象。
+   - 异步函数内部可以使用 `await` 关键字来暂停函数的执行，等待一个 Promise 对象的完成，并以同步的方式获取其结果。
+
+2. `await` 关键字：
+   - `await` 关键字只能在异步函数内部使用，用于暂停异步函数的执行，等待一个 Promise 对象的完成并获取其结果。
+   - `await` 后面可以跟随一个 Promise 对象，或者任何返回 Promise 对象的表达式，包括异步函数调用、Promise 链式调用等。
+   - 在等待的过程中，`await` 表达式会阻塞函数的执行，直到 Promise 对象的状态变为 fulfilled（已完成）或 rejected（已拒绝）。
+
+`async/await` 的特点和优点如下：
+
+1. 代码简洁易读：相比于回调函数和 Promise 的链式调用，`async/await` 提供了一种更类似同步代码的写法，使异步代码更易于理解和维护。
+2. 错误处理简单：使用 `try-catch` 块可以方便地捕获和处理异步操作中的异常，使错误处理更加直观和容易。
+
+使用 `async/await` 的示例代码如下：
+
+```javascript
+async function getData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+getData();
+```
+
+在上述代码中，`getData` 是一个异步函数，内部使用了 `await` 关键字来等待异步操作的完成。`fetch` 函数返回一个 Promise 对象，我们使用 `await` 等待其结果，并使用 `response.json()` 获取响应的 JSON 数据。通过 `try-catch` 块，我们可以捕获和处理异步操作中可能发生的错误。
+
+总结：`async/await` 是一种基于 Promise 的异步编程方式，通过使用 `async` 和 `await` 关键字，使得异步代码的书写更加简洁、可读，并提供了方便的错误处理机制。它是异步编程的一种更高级的语法糖，使得异步操作更加直观和易于编写。
