@@ -1412,6 +1412,83 @@ getData();
 2. `await` 关键字只能在 `async` 函数内部使用，无法在普通函数或全局作用域中使用。
 3. `await` 关键字只能等待 Promise 对象的完成，无法等待其他类型的异步操作（如定时器、事件等）。
 
-总的来说，`async/await` 是一种更优雅、更直观的异步编程方式，相比于直接使用 Promise，它提供了更简洁的代码结构、更简单的错误处理、更好的顺序控制和异步代码组合的能力。它是异步编程的一种更高级的语法糖，使得异步操作更加直
+总的来说，`async/await` 是一种更优雅、更直观的异步编程方式，相比于直接使用 Promise，它提供了更简洁的代码结构、更简单的错误处理、更好的顺序控制和异步代码组合的能力。它是异步编程的一种更高级的语法糖，使得异步操作更加直观和易于编写。
 
-观和易于编写。
+## 对象创建的方式有哪些？
+
+在 JavaScript 中，对象可以通过以下几种方式进行创建：
+
+1. 对象字面量（Object Literal）:
+   使用花括号 `{}` 来定义一个对象，可以在花括号中添加属性和方法。
+
+   ```javascript
+   const obj = { 
+     property1: value1,
+     property2: value2,
+     method: function() {
+       // 方法的定义
+     }
+   };
+   ```
+
+2. 构造函数（Constructor）:
+   使用构造函数创建对象，通过 `new` 关键字调用构造函数，并使用 `this` 关键字在构造函数中定义属性和方法。
+
+   ```javascript
+   function Person(name, age) {
+     this.name = name;
+     this.age = age;
+     this.sayHello = function() {
+       console.log(`Hello, my name is ${this.name}`);
+     };
+   }
+   const person = new Person('John', 30);
+   ```
+
+3. Object.create() 方法:
+   使用 `Object.create()` 方法创建一个新对象，以指定的原型对象作为新对象的原型。
+
+   ```javascript
+   const prototypeObj = { 
+     property1: value1,
+     property2: value2,
+     method: function() {
+       // 方法的定义
+     }
+   };
+   const newObj = Object.create(prototypeObj);
+   ```
+
+4. 类（Class）:
+   在 ES6 以后，JavaScript 引入了类（class）的概念，可以使用 `class` 关键字定义一个类，然后使用 `new` 关键字创建该类的实例对象。
+
+   ```javascript
+   class Person {
+     constructor(name, age) {
+       this.name = name;
+       this.age = age;
+     }
+     sayHello() {
+       console.log(`Hello, my name is ${this.name}`);
+     }
+   }
+   const person = new Person('John', 30);
+   ```
+
+5. 工厂函数（Factory Function）:
+   使用一个函数来返回一个新的对象，该函数被称为工厂函数，通过调用该函数可以创建多个类似的对象。
+
+   ```javascript
+   function createPerson(name, age) {
+     return {
+       name: name,
+       age: age,
+       sayHello: function() {
+         console.log(`Hello, my name is ${this.name}`);
+       }
+     };
+   }
+   const person = createPerson('John', 30);
+   ```
+
+以上是常用的对象创建方式，每种方式都有自己的特点和适用场景。根据实际需求，选择合适的方式来创建对象。
