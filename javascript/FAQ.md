@@ -1492,3 +1492,85 @@ getData();
    ```
 
 以上是常用的对象创建方式，每种方式都有自己的特点和适用场景。根据实际需求，选择合适的方式来创建对象。
+
+## 对象继承的方式有哪些？
+
+在 JavaScript 中，对象之间可以通过以下几种方式实现继承：
+
+1. 原型链继承（Prototype Chain Inheritance）：
+   通过将一个对象设置为另一个对象的原型，实现原型链继承。子对象将继承父对象的属性和方法。
+
+   ```javascript
+   function Parent() {
+     // 父对象的属性和方法
+   }
+   function Child() {
+     // 子对象的属性和方法
+   }
+   Child.prototype = new Parent();
+   ```
+
+2. 构造函数继承（Constructor Inheritance）：
+   在子对象的构造函数中使用 `call()` 或 `apply()` 方法来调用父对象的构造函数，实现构造函数继承。子对象将拥有父对象的属性和方法。
+
+   ```javascript
+   function Parent() {
+     // 父对象的属性和方法
+   }
+   function Child() {
+     Parent.call(this);
+     // 子对象的属性和方法
+   }
+   ```
+
+3. 组合继承（Combination Inheritance）：
+   结合原型链继承和构造函数继承，实现组合继承。通过调用父对象的构造函数来继承父对象的属性，并将父对象设置为子对象的原型，使得子对象可以继承父对象的方法。
+
+   ```javascript
+   function Parent() {
+     // 父对象的属性
+   }
+   function Child() {
+     Parent.call(this);
+     // 子对象的属性和方法
+   }
+   Child.prototype = new Parent();
+   ```
+
+4. 原型式继承（Prototypal Inheritance）：
+   使用 `Object.create()` 方法基于已有对象创建新的对象，实现原型式继承。新对象将继承原有对象的属性和方法。
+
+   ```javascript
+   const parent = {
+     // 原有对象的属性和方法
+   };
+   const child = Object.create(parent);
+   ```
+
+5. 寄生式继承（Parasitic Inheritance）：
+   在原型式继承的基础上，通过在新对象上添加额外的属性和方法，实现寄生式继承。新对象将继承原有对象的属性和方法，并拥有自己的属性和方法。
+
+   ```javascript
+   const parent = {
+     // 原有对象的属性和方法
+   };
+   function createChild() {
+     const child = Object.create(parent);
+     // 在子对象上添加额外的属性和方法
+     return child;
+   }
+   ```
+
+6. ES6 的类继承（Class Inheritance）：
+   在 ES6 中，可以使用 `extends` 关键字定义一个类的子类，实现类继承。子类将继承父类的属性和方法，并可以添加自己的属性和方法。
+
+   ```javascript
+   class Parent {
+     // 父类的属性和方法
+   }
+   class Child extends Parent {
+     // 子类的属性和方法
+   }
+   ```
+
+以上是常用的对象继承方式，每种方式都有自己的特点和适用场景。根据实际需求，选择合适的方式来实现对象的继承关系。
