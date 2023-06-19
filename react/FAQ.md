@@ -878,3 +878,23 @@ React 高阶组件（Higher-Order Components）、Render Props 和 Hooks 是 Rea
 3. Hooks：Hooks 是 React 16.8 引入的一项新特性，使函数组件能够具有状态和其他 React 特性。Hooks 可以让我们在无需编写类组件的情况下，使用状态管理、生命周期方法等功能。通过使用 Hooks，我们可以将组件的逻辑拆分为更小的可重用函数，并且可以在函数组件中使用各种 React 特性。Hooks 的优势是代码简洁、逻辑清晰，并且可以更好地处理组件的状态管理。
 
 不断迭代这些代码复用模式是为了改进 React 的开发体验和代码组织方式。React 社区根据开发者的反馈和需求，不断改进和优化 React 的特性和用法，以提供更好的开发体验和更高效的代码复用。每种模式都有其适用的场景和优势，可以根据具体需求选择最合适的方式。同时，这些模式的迭代也推动了 React 的发展和进步，使得 React 在不断变化的前端开发环境中保持活跃。
+
+## Component, Element, Instance 之间有什么区别和联系？
+
+在 React 中，"Component"、"Element" 和 "Instance" 是常用的概念，它们之间有以下区别和联系：
+
+1. Component（组件）：Component 是 React 中构建用户界面的基本单元。它是一个可复用、可组合的代码单元，用于描述用户界面的外观和行为。Component 可以是函数组件或类组件。
+
+2. Element（元素）：Element 是描述 React 组件结构和配置的对象。它是构建 React 虚拟 DOM 的基础单元，类似于一个描述性的数据结构。Element 是由 React.createElement() 函数创建的，并且可以通过 JSX 语法进行声明。
+
+3. Instance（实例）：Instance 是指通过 Component 创建的实例对象，也称为组件实例。当将 Component 渲染到 DOM 中时，React 会创建该组件的实例。每个组件实例都有自己的状态（state）和属性（props），并且可以被渲染到页面上。
+
+联系：
+
+- 通过定义 Component 可以创建 Element，并通过调用 ReactDOM.render() 方法将 Element 渲染为实际的 DOM 元素。
+
+- 在运行时，React 会将 Element 转换为对应的实例对象，并在组件的生命周期中管理实例的状态和行为。
+
+- 实例是根据 Component 的定义而创建的，每个 Component 可以创建多个实例，每个实例都具有独立的状态和属性。
+
+总结来说，Component 是组件的定义，Element 是描述组件的对象，Instance 是根据组件创建的实例对象。Component 和 Element 是静态的概念，用于描述组件结构和配置，而 Instance 是动态的，代表组件在运行时的实例。
