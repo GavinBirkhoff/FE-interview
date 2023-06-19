@@ -852,3 +852,15 @@ class MyComponent extends React.Component {
 当组件需要加载或更新时，“useTransition” Hook 可以通过使用 Promise 和 async/await 语法来控制组件的加载和更新。这样，组件加载和更新可以在后台运行，不会影响用户界面的响应性。
 
 因此，“useTransition” Hook 可以确保组件加载和更新不会阻塞用户界面，从而提高用户体验。
+
+## React 的事件和普通的 HTML 事件有什么不同？
+
+1. 事件命名方式：React 事件命名采用驼峰命名法，与普通的 HTML 事件命名方式有所不同。例如，`onclick` 在 React 中变为 `onClick`。
+
+2. 事件处理函数传参：在普通的 HTML 事件中，事件处理函数的参数是事件对象（event object），可以通过 `event.target` 等属性获取相关信息。而在 React 中，事件处理函数的参数是合成事件对象（synthetic event object），这是为了保持跨浏览器兼容性和性能优化。合成事件对象提供了与原生事件对象相似的属性和方法，但不完全一致。
+
+3. 事件绑定方式：在普通的 HTML 事件中，事件可以直接绑定在 HTML 元素的属性上，例如 `<button onclick="handleClick()">Click</button>`。而在 React 中，事件需要通过特定的语法进行绑定，通常是在组件的 JSX 中使用回调函数作为事件处理函数，例如 `<button onClick={handleClick}>Click</button>`。
+
+4. 事件冒泡和阻止默认行为：React 中的事件处理函数默认不会冒泡，也不会触发元素的默认行为。如果需要实现事件冒泡或阻止默认行为，可以使用合成事件对象提供的方法，例如 `event.stopPropagation()` 和 `event.preventDefault()`。
+
+5. 事件委托：在普通的 HTML 事件中，可以使用事件委托（event delegation）将事件处理函数绑定在父元素上，通过事件冒泡机制处理子元素的事件。而在 React 中，不需要显式使用事件委托，可以直接在子组件上绑定事件处理函数。
