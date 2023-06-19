@@ -864,3 +864,5 @@ class MyComponent extends React.Component {
 4. 事件冒泡和阻止默认行为：React 中的事件处理函数默认不会冒泡，也不会触发元素的默认行为。如果需要实现事件冒泡或阻止默认行为，可以使用合成事件对象提供的方法，例如 `event.stopPropagation()` 和 `event.preventDefault()`。
 
 5. 事件委托：在普通的 HTML 事件中，可以使用事件委托（event delegation）将事件处理函数绑定在父元素上，通过事件冒泡机制处理子元素的事件。而在 React 中，不需要显式使用事件委托，可以直接在子组件上绑定事件处理函数。
+
+## React 组件中怎么做事件代理？它的原理是什么？
