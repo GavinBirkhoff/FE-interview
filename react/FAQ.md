@@ -898,3 +898,17 @@ React 高阶组件（Higher-Order Components）、Render Props 和 Hooks 是 Rea
 - 实例是根据 Component 的定义而创建的，每个 Component 可以创建多个实例，每个实例都具有独立的状态和属性。
 
 总结来说，Component 是组件的定义，Element 是描述组件的对象，Instance 是根据组件创建的实例对象。Component 和 Element 是静态的概念，用于描述组件结构和配置，而 Instance 是动态的，代表组件在运行时的实例。
+
+## React.createClass 和 extends Component 的区别有哪些？
+
+在 React 中，React.createClass 和 extends Component 是两种创建组件的方式，它们之间有以下区别：
+
+1. 语法差异：React.createClass 是 ES5 语法的一种方式，而 extends Component 是 ES6 类语法的一种方式。React.createClass 使用对象字面量来定义组件，而 extends Component 使用类继承的方式来定义组件。
+
+2. API 的不同：React.createClass 提供了一些内置的生命周期方法（如 componentDidMount、componentWillMount 等），可以直接在组件对象中定义这些方法。而 extends Component 是通过继承 React.Component 类来创建组件，并重写相应的生命周期方法。
+
+3. Mixins 支持：React.createClass 支持使用 Mixins 来复用组件逻辑，可以在组件定义中使用 mixins 属性。而 extends Component 不直接支持 Mixins，需要使用其他方式实现相同的功能，如使用高阶组件或自定义的复用逻辑。
+
+4. 静态属性和方法：extends Component 允许在组件类中定义静态属性和静态方法，以及使用 ES6 的类特性（如箭头函数）。React.createClass 不支持定义静态属性和方法。
+
+5. ECMAScript 规范：React.createClass 是 ES5 语法，而 extends Component 是 ES6 语法。随着 JavaScript 发展，ES6 已经成为了标准的语法规范，推荐使用 extends Component 创建组件。
