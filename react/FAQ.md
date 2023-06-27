@@ -936,3 +936,26 @@ React 在判断是否需要重新渲染组件时，会进行以下步骤：
 可以通过实现 `shouldComponentUpdate()` 或使用 React 提供的纯组件（PureComponent）来控制组件的重新渲染。这些方法可以在组件更新之前进行自定义的判断，以决定是否要进行重新渲染。
 
 总结：React 使用虚拟 DOM 和协调算法来判断和触发组件的重新渲染。判断是否需要重新渲染的条件包括属性的变化、状态的变化、父组件的重新渲染，以及通过 `forceUpdate()` 方法的强制更新。开发者也可以自定义判断逻辑，通过 `shouldComponentUpdate()` 或纯组件来控制组件的重新渲染。
+
+## React 组件的 state 和 props 有什么区别？
+
+在 React 中，组件的 state 和 props 是两个不同的概念，它们有以下区别：
+
+1. 定义和所有权：
+   - state：组件的 state 是组件自身内部管理的数据，可以通过 `this.state` 来访问。state 是可变的，可以通过 `setState()` 方法来更新。
+   - props：组件的 props 是从父组件传递给子组件的数据，子组件不能直接修改 props 的值。props 是只读的，只能通过父组件来修改。
+
+2. 数据来源：
+   - state：state 是组件自身管理的数据，用于存储和跟踪组件的内部状态。通常用于存储组件的可变数据，如用户输入、组件的状态切换等。
+   - props：props 是由父组件传递给子组件的数据，作为组件的配置参数。props 用于在组件之间进行数据传递，使得组件能够复用和灵活配置。
+
+3. 更新方式：
+   - state：组件的 state 可以通过调用 `setState()` 方法来更新。React 会根据新的 state 值重新渲染组件，并更新相关的 UI。
+   - props：props 是从父组件传递给子组件的，子组件无法直接修改 props 的值。只能通过父组件的更新来改变 props 的值，当父组件的 props 发生变化时，React 会重新渲染子组件。
+
+4. 生命周期影响：
+   - state：组件的 state 的更新会触发组件的重新渲染，会经历生命周期的更新过程，包括 `shouldComponentUpdate`、`componentWillUpdate` 和 `componentDidUpdate` 等生命周期方法。
+   - props：组件的 props 的更新也会触发组件的重新渲染，但它不会触发完整的生命周期更新，只会执行 `componentWillReceiveProps`、`shouldComponentUpdate`、`componentWillUpdate` 和 `componentDidUpdate` 这几个生命周期方法。
+
+总结：
+state 是组件内部管理的可变数据，用于存储和跟踪组件的内部状态；props 是从父组件传递给子组件的只读数据，用于组件之间的数据传递和配置。state 的更新会触发组件的重新渲染，而 props 的更新也会触发组件的重新渲染，但对生命周期的影响不同。理解和正确使用 state 和 props 可以更好地管理组件的状态和数据流动。
