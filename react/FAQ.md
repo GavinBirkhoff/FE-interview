@@ -912,3 +912,27 @@ React 高阶组件（Higher-Order Components）、Render Props 和 Hooks 是 Rea
 4. 静态属性和方法：extends Component 允许在组件类中定义静态属性和静态方法，以及使用 ES6 的类特性（如箭头函数）。React.createClass 不支持定义静态属性和方法。
 
 5. ECMAScript 规范：React.createClass 是 ES5 语法，而 extends Component 是 ES6 语法。随着 JavaScript 发展，ES6 已经成为了标准的语法规范，推荐使用 extends Component 创建组件。
+
+## React 如何判断什么时候重新渲染组件？
+
+在 React 中，组件的重新渲染是由 React 自身的机制来判断和触发的。React 使用虚拟 DOM（Virtual DOM）来进行高效的组件更新。
+
+React 在判断是否需要重新渲染组件时，会进行以下步骤：
+
+1. 初始渲染：在组件首次渲染时，会执行组件的 `render()` 方法，并生成对应的虚拟 DOM 树。
+
+2. 属性变化：当组件接收到新的属性（props）时，React 会比较新旧属性的差异。如果发现属性有变化，React 将会重新调用组件的 `render()` 方法，并生成新的虚拟 DOM 树。
+
+3. 状态变化：当组件的状态（state）发生变化时，React 会触发组件的重新渲染。React 会比较新旧状态的差异，并重新调用 `render()` 方法生成新的虚拟 DOM 树。
+
+4. 父组件重新渲染：如果一个组件的父组件重新渲染，那么该组件也会重新渲染，即使它的属性和状态没有变化。
+
+5. 强制更新：通过调用组件实例的 `forceUpdate()` 方法，可以强制触发组件的重新渲染，即使属性和状态没有变化。
+
+在判断是否需要重新渲染时，React 会进行虚拟 DOM 的比较，找出前后两次渲染的差异，并仅更新有变化的部分，以提高性能和效率。React 使用一种称为 "协调"（Reconciliation）的算法来处理组件的重新渲染，通过比较虚拟 DOM 树的结构和属性来确定更新的内容。
+
+需要注意的是，React 并不是实时地比较属性和状态的变化，而是根据一定的优化策略来进行判断。这意味着在某些情况下，即使属性或状态有变化，React 也可能不会立即重新渲染组件。
+
+可以通过实现 `shouldComponentUpdate()` 或使用 React 提供的纯组件（PureComponent）来控制组件的重新渲染。这些方法可以在组件更新之前进行自定义的判断，以决定是否要进行重新渲染。
+
+总结：React 使用虚拟 DOM 和协调算法来判断和触发组件的重新渲染。判断是否需要重新渲染的条件包括属性的变化、状态的变化、父组件的重新渲染，以及通过 `forceUpdate()` 方法的强制更新。开发者也可以自定义判断逻辑，通过 `shouldComponentUpdate()` 或纯组件来控制组件的重新渲染。
