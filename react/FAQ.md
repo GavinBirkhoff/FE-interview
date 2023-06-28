@@ -973,3 +973,65 @@ state 是组件内部管理的可变数据，用于存储和跟踪组件的内�
 4. 性能优化：React 使用虚拟 DOM 进行高效的组件更新，当组件的 props 发生变化时，React 可以根据新的 props 值判断是否需要重新渲染组件。如果允许组件直接修改 props，那么组件内部对 props 的修改将无法被 React 感知到，从而导致组件无法正确更新。
 
 综上所述，将 props 设计为只读的有助于维护 React 应用的稳定性、可维护性和可测试性。如果需要修改组件的状态或数据，可以使用组件的 state 来管理可变数据，并通过父组件的 props 传递给子组件进行展示和操作。
+
+## React 中怎么检验 props？验证 props 的目的是什么？
+
+在 React 中，可以通过使用 PropTypes 或 TypeScript 来检验和验证 props。
+
+1. PropTypes：PropTypes 是 React 提供的一个属性类型检验库。通过在组件中定义静态属性 `propTypes`，可以指定每个 prop 的类型、是否必需以及其他约束条件。PropTypes 提供了多种类型检验器，如 `string`、`number`、`array`、`object` 等。在开发环境中，如果传递给组件的 prop 不符合指定的类型或约束条件，将会在控制台中显示警告信息。
+
+示例使用 PropTypes 进行检验：
+
+```jsx
+import PropTypes from 'prop-types';
+
+class MyComponent extends React.Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number,
+    hobbies: PropTypes.arrayOf(PropTypes.string),
+    address: PropTypes.shape({
+      street: PropTypes.string,
+      city: PropTypes.string,
+      zipCode: PropTypes.string
+    })
+  };
+
+  render() {
+    // ...
+  }
+}
+```
+
+2. TypeScript：如果使用 TypeScript 来编写 React 代码，可以通过类型注解来检验和验证 props。在 TypeScript 中，可以为组件的 props 定义接口，并在组件的声明中指定 props 的类型。TypeScript 在编译阶段会进行类型检查，如果传递给组件的 prop 与指定的类型不匹配，将会报编译错误。
+
+示例使用 TypeScript 进行检验：
+
+```tsx
+interface MyComponentProps {
+  name: string;
+  age?: number;
+  hobbies?: string[];
+  address?: {
+    street?: string;
+    city?: string;
+    zipCode?: string;
+  };
+}
+
+class MyComponent extends React.Component<MyComponentProps> {
+  render() {
+    // ...
+  }
+}
+```
+
+验证 props 的目的主要有以下几点：
+
+1. 数据完整性和一致性：通过验证 props，可以确保传递给组件的数据符合预期的类型和格式，从而减少错误数据的传递和使用。
+
+2. 提供开发时的警告和错误提示：当传递给组件的 prop 与预期的类型不匹配时，PropTypes 或 TypeScript 可以提供警告和错误信息，帮助开发者及时发现和修复问题。
+
+3. 组件的可维护性和可复用性：通过明确指定 props 的类型和约束条件，可以提高组件的可维护性和可复用性。在开发过程中，可以更清晰地了解组件所需的数据和用法，降低出错的概率，并使组件更容易被其他开发者理解和使用。
+
+总结：通过使用 PropTypes 或 TypeScript 来检验和验证 props，可以保证传递给组件的数据的完整性、正确性和一致性。验证 props 的目的是提高代码质量、提供开发时的警告和错误提示，并增强组件的可维护性和可复用性。
