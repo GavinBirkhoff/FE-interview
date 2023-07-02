@@ -1065,3 +1065,16 @@ class MyComponent extends React.Component<MyComponentProps> {
 - `componentDidUpdate`：适用于在组件更新完成后执行一些副作用操作，如发送网络请求、操作 DOM、更新其他组件等。在这个方法中，可以根据前一个 props 和当前的 props 进行比较，并根据需要执行相应的操作。注意，这个生命周期方法在组件的初始渲染时不会被调用，只有在组件更新后才会被调用。
 
 需要注意的是，在处理 props 变化时，应该谨慎地使用这些生命周期方法，并遵循 React 的最佳实践。尽量避免直接修改组件的状态，而是根据新的 props 计算出新的状态。同时，确保在适当的生命周期方法中进行处理，避免不必要的渲染和性能问题。
+
+## React-Router 的实现原理是什么？
+
+客户端路由实现的思想：
+
+基于 hash 的路由：
+通过监听 hashchange 事件，感知 hash 的变化 改变 hash 可以直接通过 location.hash=xxx
+
+基于 H5 history 路由：
+改变 url 可以通过 history.pushState 和 resplaceState 等，会 将 URL 压入堆栈，同时能够应用 history.go() 等 API 监听 url 的变化可以通过自定义事件触发实现 react-router
+
+实现的思想：
+基于 history 库来实现上述不同的客户端路由实现思想，并且能够 保存历史记录等，磨平浏览器差异，上层无感知 通过维护的列表，在每次 URL 发生变化的回收，通过配置的 路由路 径，匹配到对应的 Component，并且 render
