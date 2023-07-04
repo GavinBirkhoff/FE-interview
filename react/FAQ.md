@@ -1137,3 +1137,35 @@ Redux 和 Vuex 都是用于管理状态的库，分别用于 JavaScript 应用�
 3. 纯函数的状态变化：Redux 和 Vuex 都使用纯函数来处理状态的变化，通过接收先前的状态和动作对象，返回一个新的状态。这种方式保证了状态变化的可预测性和可追踪性。
 
 综上所述，Redux 和 Vuex 都是基于 Flux 架构的状态管理库，它们有着相似的思想和目标，但在具体的实现和用法上有一些区别，适用于不同的技术栈和应用场景。
+
+## Redux 中间件是怎么拿到 store 和 action? 然后怎么处理?
+
+Redux 中间件是一个位于 action 被发起之后，到达 reducer 之前的扩展点，用于处理额外的逻辑。Redux 中间件可以拿到 store 和 action，并对其进行处理。
+
+在 Redux 中，中间件是通过 `applyMiddleware` 函数来添加的。它接受一个或多个中间件作为参数，并返回一个增强后的 store 创建函数。
+
+中间件函数的形式是 `store => next => action`，其中 `store` 是当前的 Redux store 对象，`next` 是一个函数，表示派发下一个中间件的函数，`action` 则是当前正在处理的 action 对象。
+
+下面是一个简单的中间件示例，展示了如何拿到 store 和 action，并对其进行处理：
+
+```javascript
+const myMiddleware = store => next => action => {
+  console.log('Current state:', store.getState());
+  console.log('Action:', action);
+  
+  // 可以在此处进行一些逻辑处理，如异步操作、日志记录等
+  
+  // 调用下一个中间件，或者派发 action 到 reducer
+  const result = next(action);
+  
+  console.log('New state:', store.getState());
+  
+  return result;
+};
+```
+
+在上述示例中，中间件函数首先打印当前的状态和接收到的 action 对象。然后可以在中间件中进行一些逻辑处理，如异步操作或日志记录。最后，调用 `next(action)` 将控制权传递给下一个中间件，或者如果没有下一个中间件，则将 action 派发到 reducer。
+
+通过使用中间件，可以对 action 进行拦截、修改、延迟或异步处理，以及在派发之前和之后执行其他逻辑。这使得 Redux 可以灵活地扩展和定制应用的行为。
+
+在 Redux 应用中，可以使用多个中间件，并通过 `applyMiddleware` 函数将它们添加到 Redux store 中。这样，每个中间件都可以依次处理 action，并按照需要进行相应的操作。
