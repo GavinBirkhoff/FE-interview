@@ -135,3 +135,25 @@ parcel 适⽤于简单的实验性项⽬: 他可以满⾜低⻔槛的快速看�
 9. `ts-loader`：用于将 TypeScript 代码转换为 JavaScript 代码。
 
 10. `postcss-loader`：使用 PostCSS 对 CSS 进行后处理，可以实现自动添加前缀、压缩等功能。
+
+## 有哪些常⻅的 Plugin？
+
+1. `HtmlWebpackPlugin`：用于生成 HTML 文件，并自动将生成的 bundle 文件注入到 HTML 文件中。
+
+2. `MiniCssExtractPlugin`：将 CSS 从 JavaScript 中提取出来，生成单独的 CSS 文件。
+
+3. `CleanWebpackPlugin`：在每次构建前清理输出目录。
+
+4. `CopyWebpackPlugin`：用于复制文件或文件夹到构建目录。
+
+5. `DefinePlugin`：允许在代码中定义全局常量，可以在开发和生产环境下使用不同的配置。
+
+6. `HotModuleReplacementPlugin`：启用热模块替换功能，使代码更新后能够在浏览器中实时展示，无需刷新页面。
+
+7. `ProvidePlugin`：自动加载模块，将某些模块作为全局变量在所有模块中可用。
+
+8. `webpack-bundle-analyzer`：分析打包结果，可视化地展示每个模块的大小和依赖关系，帮助优化构建产物。
+
+9. `CompressionWebpackPlugin`：在构建过程中对静态资源进行压缩，以减小文件体积，提高加载速度。
+
+10. `ImageminWebpackPlugin`：用于压缩图片资源，减小图片文件的大小。
