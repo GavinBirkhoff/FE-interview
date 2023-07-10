@@ -114,4 +114,24 @@ rollup 适⽤于基础库的打包，如 vue、d3 等: Rollup 就是将各个模
 
 parcel 适⽤于简单的实验性项⽬: 他可以满⾜低⻔槛的快速看到效 果,但是⽣态差、报错信息不够全⾯都是他的硬伤，除了⼀些玩具项 ⽬或者实验项⽬不建议使⽤。
 
+## 有哪些常⻅的 Loader？
 
+1. `babel-loader`：用于将 ES6+ 代码转换为兼容的 JavaScript 代码，以便在旧版本浏览器中运行。
+
+2. `css-loader`：用于加载和处理 CSS 文件，支持处理 CSS 文件中的 `@import` 和 `url()` 引用。
+
+3. `style-loader`：将 CSS 代码注入到页面的 `<style>` 标签中，使其生效。
+
+4. `sass-loader`：用于加载和处理 SASS/SCSS 文件，将其转换为 CSS 代码。
+
+5. `less-loader`：用于加载和处理 LESS 文件，将其转换为 CSS 代码。
+
+6. `file-loader`：用于处理文件资源（如图片、字体等），根据配置将文件移动到输出目录，并返回文件的路径。
+
+7. `url-loader`：与 `file-loader` 类似，但还可以根据文件大小将文件转换为 Base64 字符串嵌入到代码中，以减少 HTTP 请求。
+
+8. `eslint-loader`：用于在构建过程中进行代码的静态检查，可以配合 ESLint 使用。
+
+9. `ts-loader`：用于将 TypeScript 代码转换为 JavaScript 代码。
+
+10. `postcss-loader`：使用 PostCSS 对 CSS 进行后处理，可以实现自动添加前缀、压缩等功能。
