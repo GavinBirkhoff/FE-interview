@@ -179,3 +179,25 @@ Loader 和 Plugin 是 webpack 中两个不同的概念，它们在构建过程�
 2. Plugin（插件）：Plugin 用于扩展 webpack 的功能，它通过在构建过程的不同阶段插入自定义逻辑，来完成各种额外的任务。插件可以用于资源的优化、文件的生成、环境变量的注入、代码的分析等。Plugin 通过 webpack 的插件系统实现，它可以监听 webpack 构建过程中的事件，并在适当的时机执行自定义的逻辑。Plugin 的配置项是一个实例化对象。
 
 总结来说，Loader 主要处理模块的转换和加载，而 Plugin 则用于扩展 webpack 的功能，添加额外的处理逻辑。Loader 和 Plugin 在 webpack 的配置文件中通过不同的配置项进行配置和使用。通过合理使用 Loader 和 Plugin，可以实现对不同类型文件的处理和构建过程的扩展，以满足项目的需求和优化目标。
+
+## webpack 热更新的实现原理？
+
+webpack 的热更新（Hot Module Replacement，HMR）是一种在开发过程中实现实时更新代码和模块的机制。它能够使得在不刷新整个页面的情况下，将修改的代码和模块部分更新到正在运行的应用程序中。
+
+以下是 webpack 热更新的基本实现原理：
+
+1. Webpack Dev Server：webpack-dev-server 是一个基于 Express 的开发服务器，它使用了 webpack 的编译和打包能力，配合热更新实现了实时刷新和模块热替换的功能。
+
+2. HMR Runtime：Webpack 在编译过程中会生成用于热更新的 HMR Runtime 代码。这段代码会注入到客户端应用程序中，负责处理热更新的逻辑。
+
+3. WebSocket 通信：Webpack Dev Server 和客户端之间通过 WebSocket 建立长连接，实现实时的双向通信。
+
+4. 构建更新的代码块：当一个模块发生变化时，Webpack Dev Server 会重新编译该模块，并生成一个更新的代码块。
+
+5. 发送更新通知：Webpack Dev Server 通过 WebSocket 向客户端发送更新通知，告知客户端有哪些模块发生了变化。
+
+6. 客户端更新处理：客户端收到更新通知后，根据更新的代码块信息，使用 HMR Runtime 在运行时更新相应的模块。
+
+7. 应用程序更新：经过热更新处理后，客户端应用程序的界面和状态会实时更新，而不需要刷新整个页面。
+
+总结来说，webpack 的热更新通过与 Webpack Dev Server 的配合，使用 HMR Runtime 和 WebSocket 实现了实时刷新和模块热替换的功能。它能够提高开发效率，减少开发过程中的刷新和重建时间，同时保持应用程序的状态和用户交互。开发者可以在 webpack 的配置中启用热更新功能，以便在开发过程中更快地进行代码修改和调试。
