@@ -169,3 +169,13 @@ parcel 适⽤于简单的实验性项⽬: 他可以满⾜低⻔槛的快速看�
 3. Module（模块）：一个 module 是指应用程序中的一个模块，可以是一个 JavaScript 文件、一个 CSS 文件、一个图片文件等。Webpack 将应用程序中的所有文件都视为模块，并对它们进行处理和组织。
 
 总结来说，module 是 webpack 对应用程序中每个文件的抽象，chunk 是在构建过程中的中间产物，它表示着一组相关的模块，而 bundle 是最终构建出来的文件，它包含了应用程序的代码和资源。在实际开发中，可以通过配置 entry、output、splitChunks 等选项来控制 bundle 和 chunk 的生成和组织方式，以满足项目的需求和优化目标。
+
+## Loader 和 Plugin 的不同？
+
+Loader 和 Plugin 是 webpack 中两个不同的概念，它们在构建过程中扮演不同的角色：
+
+1. Loader（加载器）：Loader 用于告诉 webpack 如何处理非 JavaScript 文件（模块）。它们作为 webpack 构建过程中的转换器，将不同类型的文件转换为模块，使得这些文件能够被应用程序所使用。Loader 在模块的加载阶段被执行，可以对模块的源代码进行处理，例如将 ES6+ 代码转换为 ES5、处理 CSS、处理图片等。Loader 在 webpack 的配置中以函数或字符串的形式进行配置。
+
+2. Plugin（插件）：Plugin 用于扩展 webpack 的功能，它通过在构建过程的不同阶段插入自定义逻辑，来完成各种额外的任务。插件可以用于资源的优化、文件的生成、环境变量的注入、代码的分析等。Plugin 通过 webpack 的插件系统实现，它可以监听 webpack 构建过程中的事件，并在适当的时机执行自定义的逻辑。Plugin 的配置项是一个实例化对象。
+
+总结来说，Loader 主要处理模块的转换和加载，而 Plugin 则用于扩展 webpack 的功能，添加额外的处理逻辑。Loader 和 Plugin 在 webpack 的配置文件中通过不同的配置项进行配置和使用。通过合理使用 Loader 和 Plugin，可以实现对不同类型文件的处理和构建过程的扩展，以满足项目的需求和优化目标。
