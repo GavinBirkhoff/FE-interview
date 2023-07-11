@@ -157,3 +157,15 @@ parcel 适⽤于简单的实验性项⽬: 他可以满⾜低⻔槛的快速看�
 9. `CompressionWebpackPlugin`：在构建过程中对静态资源进行压缩，以减小文件体积，提高加载速度。
 
 10. `ImageminWebpackPlugin`：用于压缩图片资源，减小图片文件的大小。
+
+## bundle，chunk，module 是什么？
+
+在 webpack 中，bundle、chunk 和 module 是三个重要的概念，它们分别代表着不同的概念和组织方式：
+
+1. Bundle（打包文件）：一个 bundle 是由 webpack 构建出来的最终文件，它包含了应用程序的代码和资源。在开发过程中，可以将一个应用程序分割成多个 bundle，每个 bundle 包含一组相关的模块。
+
+2. Chunk（代码块）：一个 chunk 是 webpack 在打包过程中的中间产物，它表示着一个或多个模块的集合。Webpack 根据入口文件和代码的依赖关系，将代码分割成多个 chunk。在默认配置下，一个入口文件对应一个 chunk。
+
+3. Module（模块）：一个 module 是指应用程序中的一个模块，可以是一个 JavaScript 文件、一个 CSS 文件、一个图片文件等。Webpack 将应用程序中的所有文件都视为模块，并对它们进行处理和组织。
+
+总结来说，module 是 webpack 对应用程序中每个文件的抽象，chunk 是在构建过程中的中间产物，它表示着一组相关的模块，而 bundle 是最终构建出来的文件，它包含了应用程序的代码和资源。在实际开发中，可以通过配置 entry、output、splitChunks 等选项来控制 bundle 和 chunk 的生成和组织方式，以满足项目的需求和优化目标。
