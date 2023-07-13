@@ -95,3 +95,21 @@ Rebase是将一个分支的修改放到另一个分支的末尾，使得它们�
 因此，通常情况下，Merge适用于合并公共分支的工作，例如合并主分支到个人分支。Rebase适用于将个人分支的修改合并到公共分支中，例如将个人分支的修改提交到主分支中。选择何时使用哪种方法，取决于具体情况和团队的工作流程。
 
 ## git reset、git revert 和 git checkout 有什么区别
+
+## git 和 svn 的区别
+
+## 经常使用的 git 命令？
+
+## git pull 和 git fetch 的区别
+
+git fetch 只是将远程仓库的变化下载下来，并没有和本地分支合并。
+
+git pull 会将远程仓库的变化下载下来，并和当前分支合并。
+
+## git rebase 和 git merge 的区别
+
+git merge 和 git rebase 都是用于分支合并，关键在 commit 记录 的处理上不同：
+
+git merge 会新建一个新的 commit 对象，然后两个分支以前的 commit 记录都指向这个新 commit 记录。这种方法会保留之前每个 分支的 commit 历史。
+
+git rebase 会先找到两个分支的第一个共同的 commit 祖先记录， 然后将提取当前分支这之后的所有 commit 记录，然后将这个 commit 记录添加到目标分支的最新提交后面。经过这个合并后，两 个分支合并后的 commit 记录就变为了线性的记录了。
