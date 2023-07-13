@@ -116,6 +116,26 @@ Git和SVN是两种常见的版本控制系统，它们有一些区别：
 
 ## 经常使用的 git 命令？
 
+以下是一些经常使用的 Git 命令：
+
+1. `git init`：在当前目录初始化一个新的 Git 仓库。
+2. `git clone <repository>`：克隆一个远程仓库到本地。
+3. `git add <file>`：将文件添加到暂存区。
+4. `git commit -m "<message>"`：将暂存区的文件提交到本地仓库并添加提交信息。
+5. `git status`：查看工作区和暂存区的状态。
+6. `git log`：查看提交历史记录。
+7. `git branch`：查看本地分支列表。
+8. `git checkout <branch>`：切换到指定的分支。
+9. `git checkout -b <new-branch>`：创建新分支并切换到该分支。
+10. `git merge <branch>`：将指定分支的代码合并到当前分支。
+11. `git pull`：从远程仓库拉取最新代码。
+12. `git push`：将本地代码推送到远程仓库。
+13. `git remote add <name> <url>`：添加一个远程仓库。
+14. `git remote -v`：查看远程仓库的详细信息。
+15. `git stash`：将当前的工作保存到一个临时区域，以便切换分支或者回到之前的状态。
+
+这只是一部分常用的 Git 命令，Git 提供了丰富的命令和选项，以支持版本控制和团队协作的各种操作。根据具体的需求，可能会使用到更多的 Git 命令。可以通过 `git --help` 或 `git <command> --help` 来查看每个命令的详细说明和使用方式。
+
 ## git pull 和 git fetch 的区别
 
 git fetch 只是将远程仓库的变化下载下来，并没有和本地分支合并。
