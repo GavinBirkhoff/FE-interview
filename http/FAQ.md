@@ -225,3 +225,21 @@ HTTP 响应头：
 - `Content-Type: text/html`: 表示响应消息体中的数据是 HTML 格式。
 - `Content-Type: image/jpeg`: 表示响应消息体中的数据是 JPEG 图像。
 - `Content-Type: application/octet-stream`: 表示响应消息体中的数据是二进制数据，通常用于下载文件。
+
+## HTTP 1.1 和 HTTP 2.0 的区别
+
+## HTTP 和 HTTPS 协议的区别
+
+## HTTP2 的头部压缩算法是怎样的？
+
+## 说一下 HTTP 3.0
+
+## 什么是 HTTPS 协议？
+
+## HTTPS 通信（握手）过程
+
+## DNS 完整的查询过程
+
+## OSI 七层模型
+
+## TCP 的三次握手和四次挥手
