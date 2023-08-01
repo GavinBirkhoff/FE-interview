@@ -207,3 +207,21 @@ HTTP 响应头：
 6. `Access-Control-Allow-Origin`: 用于 CORS 验证，指定允许访问资源的源地址。
 7. `ETag`: 用于缓存验证，表示资源的标识符，与 If-None-Match 一起用于条件请求。
 8. `Content-Encoding`: 响应消息体的数据编码方式，如 gzip、deflate 等。
+
+## Content-Type
+
+`Content-Type` 是 HTTP 请求和响应头中的一个字段，用于指示消息体的数据类型，即请求或响应中携带的实际数据的格式。
+
+在请求头中，`Content-Type` 用于指示客户端发送给服务器的数据类型，例如：
+
+- `Content-Type: application/json`: 表示请求消息体中的数据是 JSON 格式。
+- `Content-Type: application/x-www-form-urlencoded`: 表示请求消息体中的数据是 URL 编码表单数据。浏览器的原生 form 表 单 ， 如 果 不 设 置 enctype 属 性 ， 那 么 最 终 就 会 以 application/x-www-form-urlencoded 方式提交数据。该种方式提交 的数据放在 body 里面，数据按照 key1=val1&key2=val2 的方式进 行编码，key 和 val 都进行了 URL 转码。
+- `Content-Type: multipart/form-data`: 表示请求消息体中的数据是一个表单，通常用于上传文件。
+- `Content-Type: text/plain`: 表示请求消息体中的数据是纯文本格式。
+
+在响应头中，`Content-Type` 用于指示服务器返回给客户端的数据类型，例如：
+
+- `Content-Type: application/json`: 表示响应消息体中的数据是 JSON 格式。
+- `Content-Type: text/html`: 表示响应消息体中的数据是 HTML 格式。
+- `Content-Type: image/jpeg`: 表示响应消息体中的数据是 JPEG 图像。
+- `Content-Type: application/octet-stream`: 表示响应消息体中的数据是二进制数据，通常用于下载文件。
