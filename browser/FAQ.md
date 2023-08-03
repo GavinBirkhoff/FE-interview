@@ -151,3 +151,54 @@
 3. sessionStorage：与 localStorage 基本类似，区别是 sessionStorage 当⻚⾯关闭后会被清理，⽽且与 cookie、localStorage 不同，他不 能在所有同源窗⼝中共享，是会话级别的储存⽅式；
 4. Web SQL：2010 年被 W3C 废弃的本地数据库数据存储⽅案，但是主流 浏览器（⽕狐除外）都已经有了相关的实现，web sql 类似于 SQLite， 是真正意义上的关系型数据库，⽤sql进⾏操作，当我们⽤JavaScript 时要进⾏转换，较为繁琐；
 5. IndexedDB：是被正式纳⼊HTML5 标准的数据库储存⽅案，它是 NoSQL 数据库，⽤键值对进⾏储存，可以进⾏快速读取操作，⾮常适合 web 场景，同时⽤JavaScript 进⾏操作会⾮常便。
+
+## 标准模式和怪异模式
+
+标准模式（Standard Mode）和怪异模式（Quirks Mode）是浏览器在渲染 HTML 页面时采用的两种不同的渲染模式。它们主要区别于页面的渲染规则和解析方式。
+
+1. **标准模式（Standard Mode）：**
+   - 也称为严格模式（Strict Mode）或标准兼容模式（Standards Mode）。
+   - 在标准模式下，浏览器会按照 HTML 和 CSS 规范进行页面的渲染和排版。
+   - 开发者应该优先考虑在标准模式下编写网页，以确保页面在不同浏览器中一致地呈现。
+
+2. **怪异模式（Quirks Mode）：**
+   - 也称为混杂模式（Compatibility Mode）或怪异兼容模式（Quirks Compatibility Mode）。
+   - 在怪异模式下，浏览器会尝试模拟早期浏览器的渲染行为，以保持旧网站的兼容性。
+   - 怪异模式可能导致页面在不同浏览器中呈现不一致，同时也可能影响到一些现代特性的使用。
+
+如何触发这两种模式取决于页面的 `<!DOCTYPE>` 声明：
+
+- 如果 HTML 文档中包含了有效的 `<!DOCTYPE>` 声明，且声明符合标准，浏览器会进入标准模式。
+- 如果缺少 `<!DOCTYPE>` 声明，或者声明不完整或不规范，浏览器可能会进入怪异模式。
+
+使用标准模式有助于确保页面按照当前的 HTML 和 CSS 规范进行渲染，而怪异模式可能导致页面的渲染方式与标准模式下不一致。因此，在编写网页时，建议始终提供合适的 `<!DOCTYPE>` 声明，以确保页面以标准模式渲染。
+
+## DOCTYPE(⽂档类型) 的作⽤
+
+浏览器渲染页面的两种模式（可通过 document.compatMode 获取.
+
+CSS1Compat：标准模式（Strick mode），默认模式，浏览器使用 W3C 的标准解析渲染页面。在标准模式中，浏览器以其支持的最高标准呈 现页面。
+
+BackCompat：怪异模式(混杂模式)(Quick mode)，浏览器使用自己的 怪异模式解析渲染页面。在怪异模式中，页面以一种比较宽松的向后 兼容的方式显示。
+
+`DOCTYPE`（文档类型）是位于 HTML 文档开头的声明，用于指示浏览器使用哪个 HTML 版本解析文档。它的作用主要包括以下几个方面：
+
+1. **文档解析模式选择：** `DOCTYPE` 声明告诉浏览器使用哪种文档解析模式来解析页面。不同的 HTML 版本有不同的解析规则和特性，`DOCTYPE` 声明帮助浏览器选择正确的解析模式，确保页面以正确的方式呈现。
+
+2. **文档验证：** 一些 HTML 编辑器和工具可以使用 `DOCTYPE` 声明来验证文档的结构和格式是否符合规范。这有助于开发者编写符合标准的 HTML 代码。
+
+3. **浏览器兼容性：** 不同浏览器对 HTML 版本和解析模式的支持可能有所不同。通过提供正确的 `DOCTYPE` 声明，可以确保页面在各种浏览器中以一致的方式呈现。
+
+4. **触发标准模式：** 在标准模式下，浏览器会按照 HTML 和 CSS 规范进行页面渲染。如果缺少 `DOCTYPE` 声明或使用了过时的声明，浏览器可能会进入怪异模式（Quirks Mode），导致页面的渲染方式与标准模式不一致。
+
+5. **性能优化：** 使用正确的 `DOCTYPE` 声明有助于浏览器更快地解析和渲染页面，提升页面加载性能。
+
+常见的 `DOCTYPE` 声明包括以下几种：
+
+- HTML5：`<!DOCTYPE html>`
+- HTML 4.01 Strict：`<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`
+- HTML 4.01 Transitional：`<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">`
+- XHTML 1.0 Strict：`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">`
+- XHTML 1.0 Transitional：`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">`
+
+正确使用 `DOCTYPE` 声明可以确保页面在不同浏览器和设备上以一致的方式呈现，提升页面的可靠性和性能。
