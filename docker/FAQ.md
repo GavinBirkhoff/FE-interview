@@ -31,3 +31,27 @@
 ## 如何水平扩展 Docker 容器？
 
    可以使用 Docker Swarm 或 Kubernetes 对容器集群部署进行编排和管理，以水平扩展 Docker 容器。编排工具可以根据需求自动扩展运行应用程序所需的容器数量。
+
+## 加载本地镜像
+
+1. **保存本地镜像为文件：** 首先，您需要将本地镜像保存为一个文件。使用以下命令将一个本地镜像保存为 tar 归档文件：
+
+   ```sh
+   docker save -o <output-file>.tar <image-name>:<tag>
+   ```
+
+   （1）docker save [镜像id] > [文件名.tar]
+
+   （2）docker save -o [文件名.tar] [镜像id]
+
+   替换 `<output-file>` 为您希望保存的文件名，`<image-name>` 为镜像名称，`<tag>` 为标签（版本）。
+
+2. **导入镜像文件到本地仓库：** 接下来，您可以使用以下命令将保存的镜像文件导入到本地 Docker 镜像仓库中：
+
+   ```sh
+   docker load -i <input-file>.tar
+   ```
+
+   docker load  < 文件名.tar
+
+   替换 `<input-file>` 为您保存的镜像文件名。
