@@ -5,5 +5,6 @@
 3. [WebSocket的实现和应用](./3.md)
 4. [Http缓存](./4.md)
 5. [REST API 详解](./5.md)
+6. [Http 状态码](./6.md)
 
 [FAQ](./FAQ.md)
