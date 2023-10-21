@@ -8,5 +8,10 @@
 6. [git checkout](./6.md)
 7. [git rm](./7.md)
 8. [git revert](./8.md)
+9. [git rebase](./9.md)
+10. [git config](./10.md)
+11. [git pull](./11.md)
+12. [git fetch](./12.md)
+13. [git log](./13.md)
 
 [FAQ](./FAQ.md)
