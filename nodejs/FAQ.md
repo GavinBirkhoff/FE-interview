@@ -92,3 +92,40 @@ server.listen(3000, () => {
 ## 循环事件
 
 // TODO
+
+## path.resolve 和 path.join 有什么不同？它们分别用于什么情况？
+
+**`path.resolve`：**
+
+- `path.resolve` 用于将路径片段解析为绝对路径。
+- 它会将所有传入的路径片段拼接在一起，并返回一个绝对路径。
+- 如果存在以 `/` 开头的路径片段，它会忽略之前的所有片段，并以该路径片段为准。
+- 通常用于生成文件系统中的绝对路径。
+
+**示例：**
+
+```javascript
+const path = require('path');
+const absolutePath = path.resolve('/foo', 'bar', 'baz');
+// 输出：'/foo/bar/baz'
+```
+
+**`path.join`：**
+
+- `path.join` 用于将路径片段连接成一个相对路径。
+- 它会将所有传入的路径片段拼接在一起，并返回一个相对路径。
+- 不会处理绝对路径，始终返回相对路径。
+- 通常用于生成相对于当前工作目录的路径。
+
+**示例：**
+
+```javascript
+const path = require('path');
+const relativePath = path.join('foo', 'bar', 'baz');
+// 输出：'foo/bar/baz'
+```
+
+通常情况下，选择使用 `path.resolve` 还是 `path.join` 取决于您的需求：
+
+- 使用 `path.resolve` 当您需要生成绝对路径，无论传递的路径片段是相对路径还是绝对路径。
+- 使用 `path.join` 当您需要生成相对路径，特别是在构建文件路径或URL时，以相对于当前工作目录的方式连接路径片段。
