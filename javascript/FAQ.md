@@ -1650,3 +1650,9 @@ BMP 的设计目的是为了包括所有主要的世界语言和符号，以便�
 总结，BMP（Basic Multilingual Plane）是 Unicode 字符集的一个平面，包括 U+0000 到 U+FFFF 范围内的大多数字符，它涵盖了主要的世界语言和符号，以促进多语言文本的正确表示和处理。
 
 ## 聊聊前端字符编码：ASCII、Unicode、Base64、UTF-8、UTF-16、UTF-32
+
+## localStorage 和 cookie 到底哪个更安全
+
+## javascript引擎工作流程
+
+## 理解JavaScript的编译过程与运行机制

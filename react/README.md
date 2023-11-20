@@ -11,6 +11,7 @@
 9. [React组件库](./9.md)
 10. [React历史版本](./10.md)
 11. [React技巧](./11.md)
+12. [ErrorBoundary](./12.md)
 
 [FAQ.](./FAQ.md)
 [测试100道面试题你会多少？](./exam.md)
