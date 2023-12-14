@@ -8,7 +8,7 @@ const getChildrenPaths = (dir) => {
         if(err) throw err
         return files
     }).map(item=>path.join('/',dir,item).replace('.md','')).filter(item=>!item.includes('README'))
-  return files;
+  return files.filter(file=>file!=='/javascript/img');
 };
 
 module.exports = getChildrenPaths;

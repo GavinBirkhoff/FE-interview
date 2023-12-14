@@ -109,7 +109,7 @@ module.exports = {
         title: "Javascript",
         path: "/javascript/",
         sidebarDepth: 1,
-        collapsable: false,
+        collapsable: true,
         // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
         children: getChildrenPaths("javascript"),
         priority:10,
