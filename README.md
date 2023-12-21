@@ -15,15 +15,21 @@
 ## 高频面试题
 
 | 题目 | 标签 |
-| ---- | :--: |
+| ---- | :--- |
 |    [css垂直居中布局](./css/5.md)  |    Css  |
 |    [Http缓存-强制、协商缓存](./http/4.md)  |    Http  |
 |    [JS 事件循环(Event Loop)](./javascript/9.md)   |    Javascript  |
+| [type和interface的区别](./typescript/1.md) | typescript |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
 
 ## 目录大纲
 
 - [Javascript](./javascript/)
-- [Typescript](./typescript/)
+- [Typescript](./typescript/) 已完结
 - [CSS](./css/)
 - [HTML](./html/)
 - 浏览器DOM
