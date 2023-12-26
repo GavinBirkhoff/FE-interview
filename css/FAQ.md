@@ -405,4 +405,240 @@ CSS Sprites 在维护的时候比较麻烦，页面背景有少许改 动时，�
 
 5. **使用像素单位：** 在某些情况下，如果您可以接受在高分辨率设备上显示略粗的线条，可以直接使用像素单位（px）绘制边框。
 
-##
+## em/px/rem/vh/vw区别?
+
+px：绝对单位，页面按精确像素展示
+
+em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算，整个页面内1em不是一个固定的值
+
+rem：相对单位，相对的只是HTML根元素font-size的值
+
+vw，就是根据窗口的宽度，分成100等份，100vw就表示满宽，同理，vh则为窗口的高度vh、vw：主要用于页面视口大小布局，在页面布局上更加方便简单
+
+## css中，有哪些方式可以隐藏页面元素？区别?
+
+1、display:none 将元素设置为display:none后，元素在页面上将彻底消失，导致浏览器的重排和重绘，无法响应点击事件。
+
+2、visibility:hidden 仅仅是隐藏该元素，DOM结果均会存在，只是当时在一个不可见的状态，不会触发重排，但是会触发重绘，无法响应点击事件。
+
+3、opacity:0 将元素的透明度设置为0后，元素也是隐藏的，不会引发重排，一般情况下也会引发重绘，可以响应点击事件
+
+4、设置height、width模型属性为0 将元素的height和width等影响元素盒模型的属性设置成0，如果元素内有子元素或内容，还应该设置其overflow:hidden来隐藏其子元素，无法响应点击事件
+
+5、position:absolute 将元素移出可视区域 top: -9999px; left:-9999px; 特点：元素不可见，不影响页面布局
+
+## 清除浮动的方式有哪几种？
+
+清除浮动是为了解决浮动元素引起的父元素高度塌陷问题。以下是几种清除浮动的常见方式：
+
+1. **使用空的块级元素清除浮动（Empty Block Method）：**
+   - 在浮动元素后面插入一个空的块级元素，并对其应用`clear`属性。
+
+   ```html
+   <div style="clear: both;"></div>
+   ```
+
+   或者使用CSS类：
+
+   ```css
+   .clearfix::after {
+     content: "";
+     display: table;
+     clear: both;
+   }
+   ```
+
+   然后将这个类应用于需要清除浮动的容器元素：
+
+   ```html
+   <div class="clearfix">
+     <!-- 浮动元素在这里 -->
+   </div>
+   ```
+
+2. **使用伪元素清除浮动（:after伪元素）：**
+   - 利用`:after`伪元素创建一个空元素，应用`clear`属性。
+
+   ```css
+   .clearfix::after {
+     content: "";
+     display: table;
+     clear: both;
+   }
+   ```
+
+   然后将这个类应用于需要清除浮动的容器元素。
+
+3. **使用父元素触发BFC（Block Formatting Context）：**
+   - 通过给父元素应用`overflow: hidden;` 或 `overflow: auto;` 触发BFC，来清除浮动。
+
+   ```css
+   .clearfix {
+     overflow: hidden;
+   }
+   ```
+
+   或者：
+
+   ```css
+   .clearfix {
+     overflow: auto;
+   }
+   ```
+
+   注意：这种方法会触发BFC，可能会影响盒模型和布局。
+
+4. **使用清除浮动的类（clearfix class）：**
+   - 使用专门设计的清除浮动的类，通常被称为clearfix类，其中包含适当的样式规则，如第一种方法中的样式。
+
+   ```css
+   .clearfix::after {
+     content: "";
+     display: table;
+     clear: both;
+   }
+   ```
+
+   然后将这个类应用于需要清除浮动的容器元素。
+
+## 如果要做优化，CSS提高性能的方法有哪些？
+
+实现方式有很多种，主要有如下：
+
+1、内联首屏关键CSS：通过内联css关键代码能够使浏览器在下载完html后就能立刻渲染
+
+2、异步加载CSS：
+
+3、资源压缩：利用webpack等模块化工具，将css代码进行压缩，使文件变小，大大降低了浏览器的加载时间
+
+4、合理使用选择器：不要嵌套使用过多复杂选择器
+
+5、减少使用昂贵的属性：在页面发生重绘的时候，昂贵属性如box-shadow/border-radius/filter/透明度/:nth-child等，会降低浏览器的渲染性能
+
+6、不要使用@import：@import会影响浏览器的并行下载，使得页面在加载时增加额外的延迟，增添了额外的往返耗时
+
+## 什么是响应式设计？响应式设计的基本原理是什么？如何做？
+
+响应式网站设计是一种网络页面设计布局，页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整
+
+响应式设计的基本原理：通过媒体查询检测不同的设备屏幕尺寸做处理，为了处理移动端，页面头部必须有meta声明viewport
+
+实现响应式布局的方式有如下：1、媒体查询 2、百分比 3、vw/vh 4、rem
+
+媒体查询语法：
+
+```css
+@mediascreen (min-width: 375px) and (max-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+}
+```
+
+响应式布局优点：1、面对不同分辨率设备灵活性强2、能够快捷解决多设备显示适应问题
+
+缺点：
+
+1、仅适用布局、信息、框架并不复杂的部门类型网站
+
+2、兼容各种设备工作量大，效率低下
+
+## 如何实现单行／多行文本溢出的省略样式？
+
+一、单行文本溢出省略
+
+1、text-overflow: ellipsis：规定当文本溢出时，显示省略符号来代表被修剪的文本
+
+2、white-space:nowrap：设置文字在一行显示，不能换行
+
+3、overflow:hidden：文字长度超出限定宽度，则隐藏超出的内容
+
+二、多行文本溢出省略
+
+基于行数截断
+
+-webkit-line-clamp:2：用来限制在一个块元素显示的文本的行数，为了实现该效果，它需要组合其他的WebKit属性）
+
+display:-webkit-box：和1结合使用，将对象作为弹性伸缩盒子模型显示
+
+-webkit-box-orient:vertical：和1结合使用 ，设置或检索伸缩盒对象的子元素的排列方式
+
+overflow:hidden：文本溢出限定的宽度就隐藏内容
+
+text-overflow:ellipsis：多行文本的情况下，用省略号“…”隐藏溢出范围的文本
+
+## 如何使用css完成视差滚动效果?
+
+视差滚动（Parallax Scrolling）是指多层背景以不同的速度移动，形成立体的运动效果，带来非常出色的视觉体验
+
+可以使用transform:translate3D来实现
+
+transform:css3 属性，可以对元素进行变换(2d/3d)，包括平移 translate,旋转 rotate,缩放 scale,
+
+perspective:css3 属性，当元素涉及 3d 变换时，perspective 可以定义我们眼睛看到的 3d 立体效果，即空间感
+
+这种方式实现视觉差动的原理如下：
+
+1、容器设置上 transform-style: preserve-3d 和 perspective: xpx，那么处于这个容器的子元素就将位于3D空间中，
+
+2、子元素设置不同的 transform: translateZ()，这个时候，不同元素在 3D Z轴方向距离屏幕（我们的眼睛）的距离也就不一样
+
+3、滚动滚动条，由于子元素设置了不同的 transform: translateZ()，那么他们滚动的上下距离 translateY 相对屏幕（我们的眼睛），也是不一样的，这就达到了滚动视差的效果
+
+## CSS如何画一个三角形？原理是什么？
+
+```css
+/*记忆口诀：盒子宽高均为零，三面边框皆透明。 */
+div:after{
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-right: 100px solid transparent;
+    border-top: 100px solid #ff0;
+    border-left: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+}
+```
+
+## 让Chrome支持小于12px的文字方式有哪些？区别？
+
+1、zoom
+
+zoom的字面意思是“变焦”，可以改变页面上元素的尺寸，属于真实尺寸
+
+其支持的类型有：
+
+zoom:50%，表示缩小到原来的一半
+
+zoom:0.5，表示缩小到原来的一半
+
+2、-webkit-transform:scale()
+
+针对chrome浏览器,加webkit前缀，用transform:scale()这个属性进行放缩
+
+3、-webkit-text-size-adjust:none
+
+该属性用来设定文字大小是否根据设备(浏览器)来自动调整显示大小
+
+## 说说对Css预编语言的理解？有哪些区别?
+
+Css作为一门标记性语言，语法相对简单，但同时也带来一些问题。需要书写大量看似没有逻辑的代码，不方便维护及扩展，不利于复用，Css预处理器便是针对上述问题的解决方案
+
+Css预编译语言在前端里面有三大优秀的预编处理器，分别是：
+
+1、sass 2、less 3、stylus
+
+变量：less声明的变量必须以@开头，后面紧跟变量名和变量值，而且变量名和变量值需要使用冒号:分隔开
+
+嵌套：三者的嵌套语法都是一致的
+
+作用域：Css 预编译器把变量赋予作用域，也就是存在生命周期。就像 js一样，它会先从局部作用域查找变量，依次向上级作用域查找
+
+混入：Mixins可以将一部分样式抽出，作为单独定义的模块，被很多选择器重复使用
+
+代码模块化：模块化就是将Css代码分成一个个模块
+
+使用方法：
+
+@import './common';
