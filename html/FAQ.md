@@ -1,22 +1,22 @@
 # FAQ
 
-## JSONP的缺点
+## JSONP 的缺点
 
 ## 跨域（jsonp，ajax）
 
 ## 如何实现跨域
 
-## dom是什么，你的理解？
+## dom 是什么，你的理解？
 
-## 关于dom的api有什么
+## 关于 dom 的 api 有什么
 
-## 节点类型nodeType - 返回值
+## 节点类型 nodeType - 返回值
 
 ## 如何对项目中的图片进行优化？
 
-1. 图片压缩：使用适当的图像压缩算法来减小图像文件的大小。可以使用图像编辑工具，如Adobe Photoshop、GIMP或在线压缩工具来压缩图片。压缩图片可以减少文件大小，而不会显著降低图像质量。
+1. 图片压缩：使用适当的图像压缩算法来减小图像文件的大小。可以使用图像编辑工具，如 Adobe Photoshop、GIMP 或在线压缩工具来压缩图片。压缩图片可以减少文件大小，而不会显著降低图像质量。
 
-2. 选择合适的图像格式：选择适当的图像格式可以降低文件大小。对于复杂的图像、照片等，使用JPEG格式，对于图标、线条图像等，使用PNG格式。避免使用无损格式如BMP或TIFF，因为它们通常具有较大的文件大小。
+2. 选择合适的图像格式：选择适当的图像格式可以降低文件大小。对于复杂的图像、照片等，使用 JPEG 格式，对于图标、线条图像等，使用 PNG 格式。避免使用无损格式如 BMP 或 TIFF，因为它们通常具有较大的文件大小。
 
 3. 图片尺寸调整：根据需要调整图片的尺寸。如果在网页上显示的图片尺寸较小，可以将其调整为实际显示大小，以减少加载时间。
 
@@ -24,13 +24,13 @@
 
 5. 懒加载：采用懒加载技术，只有当图片进入可见区域时才加载它们。这样可以减少初始加载时间，提高页面加载速度。
 
-6. CDN（内容分发网络）：使用CDN来存储和交付图片。CDN可以将图片存储在全球各地的服务器上，以降低图片加载时间。
+6. CDN（内容分发网络）：使用 CDN 来存储和交付图片。CDN 可以将图片存储在全球各地的服务器上，以降低图片加载时间。
 
 7. 图片缓存：启用浏览器缓存，以便当用户再次访问页面时，可以从缓存中加载图片，而不是从服务器重新下载。
 
-8. 图片精灵：将多个小图标或小图片合并成一个大图，通过CSS的background-position属性来显示需要的部分。这样可以减少HTTP请求的数量。
+8. 图片精灵：将多个小图标或小图片合并成一个大图，通过 CSS 的 background-position 属性来显示需要的部分。这样可以减少 HTTP 请求的数量。
 
-9. 使用矢量图形：对于简单的图标和矢量图形，可以考虑使用SVG（可缩放矢量图形）格式，它们可以在不失真的情况下进行放大和缩小。
+9. 使用矢量图形：对于简单的图标和矢量图形，可以考虑使用 SVG（可缩放矢量图形）格式，它们可以在不失真的情况下进行放大和缩小。
 
 ## 常见的图片格式及使用场景
 
@@ -42,11 +42,11 @@
 
 4. SVG（Scalable Vector Graphics）：适用于线条图形、图标和可缩放图像，基于矢量而非像素，可无损放大和缩小。常用于响应式设计和需要在不同分辨率和设备上显示的图像。
 
-5. WebP：由Google开发的现代图像格式，提供更高的压缩效率。适用于减小图片文件大小，但在某些平台上的浏览器支持有限。
+5. WebP：由 Google 开发的现代图像格式，提供更高的压缩效率。适用于减小图片文件大小，但在某些平台上的浏览器支持有限。
 
-6. BMP（Bitmap）：无压缩的位图图像格式，存储每个像素的颜色信息。通常文件大小较大，适用于某些特定的应用场景，如在一些Windows应用程序中使用的图标。
+6. BMP（Bitmap）：无压缩的位图图像格式，存储每个像素的颜色信息。通常文件大小较大，适用于某些特定的应用场景，如在一些 Windows 应用程序中使用的图标。
 
-7. TIFF（Tagged Image File Format）：常用的无损压缩图像格式，适用于存储高质量的图像和照片。常用于印刷行业和图像处理应用中，但文件大小较大，在Web上的使用相对较少。
+7. TIFF（Tagged Image File Format）：常用的无损压缩图像格式，适用于存储高质量的图像和照片。常用于印刷行业和图像处理应用中，但文件大小较大，在 Web 上的使用相对较少。
 
 ## 行内元素有哪些？块级元素有哪些？空(void)元素有哪些？
 
@@ -159,26 +159,246 @@ Canvas（画布）和 SVG（可缩放矢量图形）都是用于在 web 页面�
 - drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。
 - dragend：事件主体是被拖放元素，在整个拖放操作结束时触发。
 
-## iframe有那些缺点
+## iframe 有那些缺点
 
 尽管 `<iframe>` 标签在某些情况下是有用的，但它也有一些缺点，需要在使用时仔细考虑：
 
 1. **安全性问题：**
+
    - **跨域安全性：** 如果嵌套的内容和包含它的页面属于不同的域，浏览器的同源策略会导致许多安全限制。因此，通过 `<iframe>` 加载来自其他域的内容可能会受到限制。
    - **点击劫持：** `<iframe>` 可能受到点击劫持攻击，其中攻击者通过将透明的 `<iframe>` 放在一个看似无害的页面上来欺骗用户进行点击操作。
 
 2. **性能问题：**
+
    - **资源加载：** 加载 `<iframe>` 内容可能需要额外的网络请求和资源下载，可能会导致页面加载速度变慢。
    - **内存占用：** 如果页面中包含大量的 `<iframe>` 元素，可能会占用较多的内存，特别是在移动设备上。
 
 3. **可访问性问题：**
+
    - **屏幕阅读器：** `<iframe>` 内的内容对于使用屏幕阅读器的用户可能不太友好，因为这些用户可能无法直接访问嵌套内容。
 
 4. **搜索引擎优化问题：**
+
    - **SEO：** 对于搜索引擎优化（SEO）来说，`<iframe>` 中的内容可能不会被搜索引擎索引，因为搜索引擎通常不会深入到 `<iframe>` 中。
 
 5. **响应式设计问题：**
+
    - **响应式布局：** 在使用响应式设计时，`<iframe>` 内容的大小可能难以适应不同的屏幕尺寸，可能需要额外的处理。
 
 6. **脚本访问限制：**
    - **JavaScript 访问：** 在默认情况下，`<iframe>` 中的脚本无法直接访问包含它的页面，也无法通过常规手段直接与父页面通信，除非使用一些跨文档通信的技术。
+
+## script 标签中 defer 和 async 属性的区别
+
+script 标签存在两个属性，defer 和 async，因此 script 标签的使用分为三种情况：
+
+```
+<script src="example.js"></script>
+```
+
+没有 defer 或 async 属性，浏览器会立即加载并执行相应的脚本。也就是说在渲染 script 标签之后的文档之前，不等待后续加载的文档元素，读到就开始加载和执行，此举会阻塞后续文档的加载；
+
+```
+<script async src="example.js"></script>
+```
+
+有了 async 属性，表示后续文档的加载和渲染与 js 脚本的加载和执行是并行进行的，即异步执行；
+
+```
+<script defer src="example.js"></script>
+```
+
+有了defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本的执行需要等到文档所有元素解析完成之后，DOMContentLoaded事件触发执行之前。
+
+![script](./img/script.png)
+
+其中蓝色代表js脚本网络加载时间，红色代表js脚本执行时间，绿色代表html解析。
+
+从图中我们可以明确一下几点：
+1.defer和async在网络加载过程是一致的，都是异步执行的；
+2.两者的区别在于脚本加载完成之后何时执行，可以看出defer更符合大多数场景对应用脚本加载和执行的要求；
+3.如果存在多个有defer属性的脚本，那么它们是按照加载顺序执行脚本的；而对于async，它的加载和执行是紧紧挨着的，无论声明顺序如何，只要加载完成就立刻执行，它对于应用脚本用处不大，因为它完全不考虑依赖。
+
+## 说一下web worker
+
+## 如何解决＜a＞标签点击后hover事件失效的问题?
+
+改变a标签css属性的排列顺序: link→visited→hover→active
+各个阶段的含义：
+
+a:link：未访问时的样式，一般省略成a
+a:visited：已经访问后的样式
+a:hover：鼠标移上去时的样式
+a:active：鼠标按下时的样式
+
+## 点击一个input，事件的触发顺序
+
+1. mousedown： 当鼠标按下时触发。表示用户开始点击元素。
+2. focus： 如果输入框之前没有焦点，点击会导致输入框获得焦点。
+3. mouseup： 当鼠标释放时触发。表示用户完成点击。
+4. click： 在 mouseup 之后触发。表示用户点击了元素。
+
+## 有写过原生的自定义事件吗
+
+```js
+// 1.
+// let myEvent = new Event('myEvent');
+// 2.
+// let myEvent = new CustomEvent('myEvent', {
+//   detail: {
+//     name: 'gavin'
+//   }
+// })
+// 3.
+let myEvent = document.createEvent('CustomEvent');
+myEvent.initEvent('myEvent', true, true)
+
+let btn = document.getElementsByTagName('button')[0]
+btn.addEventListener('myEvent', function (e) {
+  console.log(e)
+  console.log(e.detail)
+})
+setTimeout(() => {
+  btn.dispatchEvent(myEvent)
+}, 2000)
+```
+
+## addEventListener和attachEvent的区别？
+
+`addEventListener` 和 `attachEvent` 是用于在 JavaScript 中添加事件处理程序的两种不同的方法。它们在实现和用法上存在一些重要的区别：
+
+1. **浏览器兼容性：**
+   - `addEventListener` 是 DOM Level 2 标准的一部分，支持较新的浏览器。
+   - `attachEvent` 是 IE 特有的方法，仅在 Internet Explorer 8 及其以下版本中有效。
+
+2. **参数的不同：**
+   - `addEventListener` 接受三个参数：事件名称、事件处理程序函数、和一个可选的布尔值，用于指定事件是在捕获阶段还是冒泡阶段触发（`true` 表示在捕获阶段，`false` 或省略表示在冒泡阶段，默认为冒泡阶段）。
+   - `attachEvent` 接受两个参数：事件名称和事件处理程序函数。IE8 及其以下版本不支持事件捕获，所以 `attachEvent` 只能在冒泡阶段触发事件。
+
+3. **事件处理程序内部的上下文：**
+   - 在使用 `addEventListener` 时，事件处理程序函数内部的 `this` 指向触发事件的元素。
+   - 在使用 `attachEvent` 时，事件处理程序函数内部的 `this` 指向全局对象 `window`。如果需要访问触发事件的元素，需要通过 `event.srcElement` 获取。
+
+4. **事件处理程序的执行顺序：**
+   - `addEventListener` 注册的事件处理程序按照它们被添加的顺序执行。
+   - `attachEvent` 注册的事件处理程序执行顺序与添加的相反，即后添加的先执行。
+
+考虑到跨浏览器兼容性，推荐使用 `addEventListener`，并在需要支持较旧的 Internet Explorer 版本时，通过条件语句同时使用 `attachEvent` 进行处理。例如：
+
+```javascript
+var element = document.getElementById('myElement');
+
+if (element.addEventListener) {
+  element.addEventListener('click', myFunction, false);
+} else if (element.attachEvent) {
+  element.attachEvent('onclick', function() {
+    myFunction.call(element, window.event); // 通过 call 修改事件处理程序内的上下文
+  });
+}
+
+function myFunction(event) {
+  // 事件处理程序的代码
+}
+```
+
+这样可以确保在较新的浏览器中使用标准的 `addEventListener`，而在老版本的 IE 中使用 `attachEvent`。
+
+## DOM事件流是什么？
+
+DOM（文档对象模型）事件流描述的是在文档中发生事件时，事件的传播路径或流程。DOM 事件流分为三个阶段：捕获阶段、目标阶段和冒泡阶段。
+
+1. **捕获阶段（Capture Phase）：**
+   事件从文档的根节点一直传播到触发事件的目标元素。在这个阶段，事件捕获从外向内进行。具体来说，事件会从最外层的祖先元素开始，逐级向目标元素传播。
+
+2. **目标阶段（Target Phase）：**
+   事件达到目标元素。这是事件的目标阶段，事件正好触发在目标元素上。
+
+3. **冒泡阶段（Bubble Phase）：**
+   事件从目标元素开始，逐级向外传播到文档的根节点。与捕获阶段相反，冒泡阶段是从内向外进行的。
+
+事件流的三个阶段可以用下面的伪代码表示：
+
+```plaintext
+|-----------------------------|  (捕获阶段)
+|          Root Element       |
+|-----------------------------|
+|          Ancestor1          |
+|-----------------------------|
+|          Ancestor2          |
+|-----------------------------|
+|          Ancestor3          |
+|-----------------------------|
+|          Target Element      |  (目标阶段)
+|-----------------------------|
+|          Ancestor3          |
+|-----------------------------|
+|          Ancestor2          |
+|-----------------------------|
+|          Ancestor1          |
+|-----------------------------|
+|          Root Element       |  (冒泡阶段)
+|-----------------------------|
+```
+
+在实际使用中，通过 `addEventListener` 添加的事件处理程序可以选择在捕获阶段或冒泡阶段执行。默认情况下，事件处理程序在冒泡阶段执行。你可以通过将第三个参数 `useCapture` 设置为 `true`，将事件处理程序放在捕获阶段执行。
+
+## 所有的事件都有冒泡吗？
+
+并不是所有的事件都有冒泡的，例如以下事件就没有：
+
+- onblur
+- onfocus
+- onmouseenter
+- onmouseleave
+
+## 如何阻止冒泡和默认事件(兼容写法)
+
+阻止事件冒泡和默认行为可以通过事件对象的方法来实现。在不同的浏览器中，阻止冒泡和默认行为的方式有所不同。以下是一个兼容写法的示例：
+
+```javascript
+function handleEvent(event) {
+  // 阻止冒泡
+  if (event.stopPropagation) {
+    event.stopPropagation(); // W3C标准
+  } else {
+    event.cancelBubble = true; // IE
+  }
+
+  // 阻止默认行为
+  if (event.preventDefault) {
+    event.preventDefault(); // W3C标准
+  } else {
+    event.returnValue = false; // IE
+  }
+
+  // 在这里可以添加你的其他事件处理逻辑
+}
+
+var element = document.getElementById('myElement');
+
+// 添加事件处理程序
+if (element.addEventListener) {
+  element.addEventListener('click', handleEvent, false); // W3C标准
+} else if (element.attachEvent) {
+  element.attachEvent('onclick', function() {
+    handleEvent(window.event); // IE
+  });
+}
+```
+
+在上述代码中，`handleEvent` 函数是事件处理程序。它首先使用 `stopPropagation` 或 `cancelBubble` 来阻止事件冒泡，然后使用 `preventDefault` 或 `returnValue` 来阻止默认行为。
+
+注意事项：
+
+- `event.stopPropagation()` 和 `event.preventDefault()` 是 W3C 标准的方法，适用于大多数现代浏览器。
+- `event.cancelBubble` 和 `event.returnValue` 是 Internet Explorer (IE) 的方式，用于兼容旧版 IE 浏览器。
+
+## 拖拽有哪些知识点
+
+## offset、scroll、client的区别
+
+## target="_blank"有哪些问题？
+
+## children以及childNodes的区别
+
+## HTMLCollection和NodeList的区别
