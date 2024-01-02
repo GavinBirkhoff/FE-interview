@@ -1199,3 +1199,85 @@ React Hooks 有一些使用限制，需要遵循以下规则：
 5. Hooks 的顺序和依赖数组：在使用 `useState`、`useEffect` 等具有依赖项的 Hooks 时，需要确保传递的依赖数组是正确的，以避免不必要的渲染或副作用。需要注意的是，依赖数组中的每个元素都应该是稳定的引用，不要在依赖数组中使用变化的对象或数组。
 
 需要遵守这些限制是为了确保 React Hooks 的正确使用和预期行为。违反这些限制可能导致错误的渲染结果、性能问题或其他不可预测的行为。因此，在使用 React Hooks 时，应该仔细阅读官方文档，并遵循规范和最佳实践。
+
+## 对虚拟DOM的理解
+
+## 谈谈你对React的理解
+
+## 如何避免React生命周期中的坑
+
+## React Fiber架构
+
+## createElement过程
+
+## 调和阶段 setState内部干了什么
+
+## setState
+
+## setState原理分析
+
+## React事务机制
+
+## React组件和渲染更新过程
+
+## 如何解释 React 的渲染流程
+
+## diff算法是怎么运作
+
+## 合成事件原理
+
+## JSX语法糖本质
+
+## 为什么 React 元素有一个 $$typeof 属性
+
+## Virtual DOM 的工作原理是什么
+
+## React有哪些优化性能的手段
+
+## Redux实现原理解析
+
+## 谈谈你对状态管理的理解
+
+## connect组件原理分析
+
+## React Hooks
+
+## 受控组件和非受控组件
+
+## 如何避免ajax数据请求重新获取
+
+## 组件之间通信
+
+## 类组件与函数组件有什么区别呢？
+
+## 如何设计React组件
+
+## 组件的协同及（不）可控组件
+
+## React-Router 的实现原理及工作方式分别是什么
+
+## React 17 带来了哪些改变
+
+## 如何理解React State不可变性的原则
+
+React 中的状态不可变性原则是指一旦创建了组件的状态（state），就不能直接修改它，而应该通过 setState 方法来进行更新。这个原则的核心思想是确保状态的变更是可控、可预测的，以提高代码的可维护性和性能。
+
+## JSX本质
+
+1. **语法糖：** JSX 实际上是 JavaScript 的语法糖，它提供了一种更易读、更直观的方式来描述 UI 结构。在运行时，JSX 会被转译为普通的 JavaScript 对象，这些对象描述了要渲染的 UI 结构。
+
+2. **React.createElement：** JSX 元素最终会被转译为对 `React.createElement` 函数的调用。`React.createElement` 接受三个参数：要创建的元素类型、元素的属性（props），以及子元素。它返回一个描述虚拟 DOM 结构的对象。
+
+例如，以下的 JSX 代码：
+
+```jsx
+const element = <h1 className="greeting">Hello, React!</h1>;
+```
+
+将被转译为类似于下面的 JavaScript 代码：
+
+```jsx
+const element = React.createElement('h1', { className: 'greeting' }, 'Hello, React!');
+```
+
+JSX 是 React 提供的一种方便的语法糖，使得在 JavaScript 中描述 UI 结构更加清晰和直观，而它的本质则是通过 `React.createElement` 函数来创建虚拟 DOM 对象。
