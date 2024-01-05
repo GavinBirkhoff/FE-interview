@@ -223,6 +223,15 @@ module.exports = {
         priority:100,
       },
       {
+        title: "Vue3",
+        path: "/vue3/",
+        sidebarDepth: 1,
+        collapsable: true,
+        // initialOpenGroupIndex: -1, // 可选的, 默认值是 0
+        children: getChildrenPaths("vue3"),
+        priority:100,
+      },
+      {
         title: "Webpack",
         path: "/webpack/",
         sidebarDepth: 1,
