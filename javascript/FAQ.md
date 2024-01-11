@@ -1674,3 +1674,65 @@ function myInstanceof(left, right) {
     }
 }
 ```
+
+## for in 和 for of 的区别
+
+1. for in 是ES5的语法，for of 是ES6的语法
+2. for in 是无序遍历数组或对象的，也就是随机遍历，不按照顺序来； for of 是按照顺序遍历的
+3. for in 是对key值遍历的，对于对象来说，遍历的是对象的key值，对于数组来说，遍历的是数组的下标； for of是对数值遍历的，不能遍历对象，可以遍历数组，是对数组的每一个元素数值遍历
+4. for in会把数组或对象的原型上的属性或方法也遍历出来 ，对于对象来说，可以使用对象的hasOwnProperty()这个方法判断是否是自身实例属性，可以只对自身属性遍历，或者使用Object.keys()方法获取对象键值组成的数组，这个数组不包含原型的属性和方法；而for of 只会把当前数组自己本身的元素值遍历出来
+5. 普通的for循环能使用break、continue、 return跳出循环，forEach中可以使用return跳出循环，无法使用break和continue；在for in和for of是可以使用break和return和continue
+
+## forEach跳出循环体
+
+1. 跳出本次循环
+
+```
+forEach 跳出本次循环，使用return
+    [1,2,3,4,5].forEach(function(item,index){
+        if(item == 3){
+            return
+        }
+        console.log(3)// item == 3时，执行不到该部分，结束本次循环
+    })
+
+```
+
+2. 跳出整个循环
+
+```
+forEach 跳出整个循环，需要抛出异常
+try {
+    [1,2,3,4,5].forEach(function(item,index){
+        if(item == 3){
+            thorw new Error(); //结束整体循环
+        }
+    })
+} catch(e) {
+
+}
+```
+
+3. 跳出嵌套循环
+
+```
+try {
+    ["a","b","c"].forEach(function(item,index){
+
+        try {
+            [1,2,3,4,5].forEach(function(item,index){
+                if(item == 3){
+                    thorw new Error(); //结束整体循环
+                }
+            })
+        } finally{}//try不能单独存在
+
+        <!--catch(e) {-->
+            //内层的catch不能存在，不然会捕获异常，只结束内层forEach
+        <!--}-->
+
+    })
+} catch(e) { //在最外层捕获异常，可结束嵌套循环
+
+}
+```
