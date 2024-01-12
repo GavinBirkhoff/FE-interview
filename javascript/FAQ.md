@@ -1378,7 +1378,7 @@ getData();
 
 总结：`async/await` 是一种基于 Promise 的异步编程方式，通过使用 `async` 和 `await` 关键字，使得异步代码的书写更加简洁、可读，并提供了方便的错误处理机制。它是异步编程的一种更高级的语法糖，使得异步操作更加直观和易于编写。
 
-# async/await 的优势
+## async/await 的优势
 
 1. 可读性和可维护性：`async/await` 提供了一种更直观、类似同步代码的写法，使得异步操作的代码更易于理解和维护。它能够避免回调地狱（Callback Hell）和过多的嵌套，代码结构更加清晰和简洁。
 
@@ -1736,3 +1736,74 @@ try {
 
 }
 ```
+
+## try...catch 可以捕获到异步代码中的错误吗？
+
+1. __使用async/await：__ 如果你在异步函数中使用了`async`关键字和`await`操作符，那么`try...catch`能够捕获异步操作中的错误。
+
+```javascript
+async function myAsyncFunction() {
+  try {
+    await someAsyncOperation();
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}
+```
+
+2. __Promise：__ 如果你在使用Promise，你可以使用`catch`方法来捕获异步操作中的错误。
+
+```javascript
+someAsyncOperation()
+  .then(result => {
+    // handle result
+  })
+  .catch(error => {
+    console.error('An error occurred:', error);
+  });
+```
+
+无论是使用`async/await`还是`Promise`，都可以捕获异步操作中的错误。但是需要注意的是，如果你在异步操作中使用的是回调函数而不是`async/await`或者`Promise`，`try...catch`是不能捕获异步操作中的错误的。
+
+## 需要在本地实现一个聊天室，多个tab页相互通信，不能用websocket，你会怎么做？
+
+TODO
+
+## e.target 和 e.currentTarget 有什么区别？
+
+e.target 触发事件的元素，e.currentTarget 绑定事件的元素。
+
+## async、await 实现原理
+
+async、await 是 co 库的官方实现。也可以看作自带启动器的 generator 函数的语法糖。不同的是，async、await 只支持 Promise 和原始类型的值。
+
+## 如何确保你的构造函数只能被new调用，而不能被普通调用？
+
+```js
+function MyClass() {
+  // 确保通过 new 调用, 在ES6后建议只用 new.target来判断
+  if (!(this instanceof MyClass)) {
+    throw new Error('MyClass must be instantiated with new');
+  }
+
+  // 构造函数的其他代码...
+}
+
+// 正确的用法
+const obj = new MyClass();
+
+// 错误的用法
+const obj2 = MyClass(); // 这里会抛出一个错误
+```
+
+## 怎么实现图片懒加载？
+
+TODO
+
+## es5 中的类和es6中的class有什么区别？
+
+TODO
+
+## setTimeout 为什么不能保证能够及时执行？
+
+如果主线程被阻塞，就无法从消息队列中取出定时器任务。
