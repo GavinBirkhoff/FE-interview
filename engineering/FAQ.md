@@ -269,3 +269,24 @@ CDN 是一种用于加速内容传输的网络架构。CDN 的主要目标是提
 ## 进程线程死锁
 
 ## restful 接口规范是什么？
+
+RESTful（Representational State Transfer）是一种基于 HTTP 协议的软件架构风格，它定义了一组约束和规范，用于创建可扩展的、高性能的网络应用程序。RESTful API 是按照 RESTful 架构风格设计的 Web API，它遵循了 RESTful 的原则和约束。
+
+每个资源都会对应一组操作方法，用户通过 API 来完成对应的操作（使用HTTP Method），常见的操作方法如下：
+
+| **操作类型** | **HTTP 映射**         | **举例**                                                |
+| ------------ | --------------------- | ------------------------------------------------------- |
+| 获取资源集合 | GET <collection URL>  | curl -X GET <https://foo.bar.com/api/v1/customers>        |
+| 获取单个资源 | GET <resource URL>    | curl -X GET <https://foo.bar.com/api/v1/customers/123>    |
+| 创建资源     | POST <collection URL> | curl -X POST <https://foo.bar.com/api/v1/customers>       |
+| 更新资源     | PUT <resource URL>    | curl -X PUT <https://foo.bar.com/api/v1/customers/123>    |
+| 局部更新资源 | PATCH <resource URL>  | curl -X PATCH <https://foo.bar.com/api/v1/customers/123>  |
+| 删除资源     | DELETE <resource URL> | curl -X DELETE <https://foo.bar.com/api/v1/customers/123> |
+
+*其中：POST/PUT 与 PATCH的区别在于全部更新，还是局部信息的更新，POST/PUT为该资源的所有字段均被更新或者覆盖。*
+
+## 说说sourcemap的原理？
+
+TODO
+
+## 说说你对SPA的理解
