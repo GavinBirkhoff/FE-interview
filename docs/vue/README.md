@@ -4,6 +4,4 @@ sidebar_position: 1
 # 目录大纲
 
 1. [Vue生命周期]
-
-[FAQ.](./FAQ.md)
-[测试100道面试题你会多少？](./exam.md)
+2. [FAQ.](./FAQ.md)

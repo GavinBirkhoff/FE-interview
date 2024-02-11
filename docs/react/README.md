@@ -16,6 +16,4 @@ sidebar_position: 1
 11. [React技巧](./11.md)
 12. [ErrorBoundary](./12.md)
 13. [React合成事件机制](./13.md)
-
-[FAQ.](./FAQ.md)
-[测试100道面试题你会多少？](./exam.md)
+14. [FAQ.](./FAQ.md)

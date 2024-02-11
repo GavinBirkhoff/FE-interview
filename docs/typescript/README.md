@@ -10,7 +10,4 @@ sidebar_position: 1
 5. [条件类型](./5.md)
 6. [特殊类型](./6.md)
 7. [官方文档](https://www.typescriptlang.org/docs/)
-
-[FAQ](./FAQ.md)
-
-[测试100道面试题你会多少？](./exam.md)
+8. [FAQ](./FAQ.md)
