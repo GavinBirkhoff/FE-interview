@@ -11,7 +11,7 @@ const config: Config = {
   url: 'https://gavinbirkhoff.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/FE-interview',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -38,16 +38,15 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/GavinBirkhoff/FE-interview',
+            'https://github.com/GavinBirkhoff/FE-interview/tree/main/',
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/GavinBirkhoff/FE-interview',
-        // },
-        blog:false,
+        blog: {
+          showReadingTime: true,
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/GavinBirkhoff/FE-interview/tree/main/',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -71,7 +70,7 @@ const config: Config = {
           position: 'left',
           label: '面试八股文',
         },
-        // {to: '/blog', label: '实战案例', position: 'left'},
+        {to: '/blog', label: '实战案例', position: 'left'},
         {
           href: 'https://github.com/GavinBirkhoff/FE-interview',
           label: 'GitHub',
@@ -83,16 +82,16 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: '文档中心',
           items: [
             {
-              label: 'Tutorial',
+              label: '八股文提纲',
               to: '/docs/intro',
             },
           ],
         },
         {
-          title: 'Community',
+          title: '社区',
           items: [
             {
               label: 'Stack Overflow',
@@ -101,10 +100,10 @@ const config: Config = {
           ],
         },
         {
-          title: 'More',
+          title: '更多',
           items: [
             {
-              label: 'Blog',
+              label: '博客',
               to: '/blog',
             },
             {
@@ -114,7 +113,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with GavinBirkhoff's Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} FE-interview. Built with GavinBirkhoff's Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
