@@ -10,32 +10,30 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: '实战案例',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        解决实际问题的能力，能够熟练使用搜索引擎和技术文档查找解决方案。
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: '前端八股文',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        前端开发中常见的基本知识点和技能总结，通常是面试准备时需要熟悉的内容。
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: '文档贡献',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        一个人业余时间有限，需要借助社区和开源项目，才能在工作中获得成长。
+        通过贡献文档，帮助他人，提升自己。
       </>
     ),
   },
