@@ -44,7 +44,7 @@ Next.js可以使用以下方法来实现代码分割：
 
 在Next.js中，可以使用以下方式来使用样式：
 
-- CSS模块：可以将样式文件命名为[filename].module.css，通过import { styles } from './styles.module.css’来导入，并通过className={styles.button}来使用样式。
+- CSS模块：可以将样式文件命名为[filename].module.css，通过`import { styles } from './styles.module.css’`来导入，并通过`className={styles.button}`来使用样式。
 - styled-jsx：可以在组件内部使用`<style jsx>`标签来定义样式，例如：
 
 ```
@@ -65,7 +65,7 @@ function Button() {
 
 - 第三方CSS库：可以通过在_head.js文件中引入第三方CSS库来使用样式，例如：
 
-```
+```jsx
 import Head from 'next/head';
 
 function Layout({ children }) {
