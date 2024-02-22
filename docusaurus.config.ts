@@ -26,7 +26,7 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['en', 'zh-Hans'],
+    locales: ['zh-Hans'],
   },
 
   presets: [
@@ -70,7 +70,15 @@ const config: Config = {
           position: 'left',
           label: '面试八股文',
         },
+        {to: '/docs/category/前端基础', label: '基础', position: 'left'},
+        {to: '/docs/category/前端框架', label: '框架', position: 'left'},
+        {to: '/docs/category/前端进阶', label: '进阶', position: 'left'},
+        {to: '/docs/category/浏览器', label: '浏览器', position: 'left'},
+        {to: '/docs/category/打包构建', label: '构建', position: 'left'},
         {to: '/blog', label: '实战案例', position: 'left'},
+        {to: '/docs/category/计算机网络', label: '计算机网络', position: 'right'},
+        {to: '/docs/category/服务端开发', label: '服务端', position: 'right'},
+        {to: '/docs/category/devops开发运维', label: '运维', position: 'right'},
         {
           href: 'https://github.com/GavinBirkhoff/FE-interview',
           label: 'GitHub',

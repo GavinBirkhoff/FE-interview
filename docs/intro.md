@@ -12,7 +12,7 @@ sidebar_position: 1
 
 | 推荐内容                  |    标签    |
 | ------------------------- | :--------: |
-| [闭包](./javascript/1.md) | Javascript |
+| [闭包](./basic/javascript/1.md) | Javascript |
 |                           |            |
 |                           |            |
 
@@ -20,11 +20,11 @@ sidebar_position: 1
 
 | 题目                                          | 标签       |
 | --------------------------------------------- | :--------- |
-| [css 垂直居中布局](./css/5.md)                | Css        |
-| [BFC (块格式化上下文)](./css//4.md)           | Css        |
-| [Http 缓存-强制、协商缓存](./http/4.md)       | Http       |
-| [JS 事件循环(Event Loop)](./javascript/9.md)  | Javascript |
-| [type 和 interface 的区别](./typescript/1.md) | typescript |
+| [css 垂直居中布局](./basic/css/5.md)                | Css        |
+| [BFC (块格式化上下文)](./basic/css//4.md)           | Css        |
+| [Http 缓存-强制、协商缓存](./network/http/4.md)       | Http       |
+| [JS 事件循环(Event Loop)](./basic/javascript/9.md)  | Javascript |
+| [type 和 interface 的区别](./advance/typescript/1.md) | typescript |
 |                                               |            |
 |                                               |            |
 |                                               |            |
@@ -32,15 +32,15 @@ sidebar_position: 1
 
 # 目录大纲
 
-- [Javascript](./javascript/)
-- [Typescript](./typescript/) 已完结
-- [CSS](./css/) 已完结
-- [HTML](./html/)
+- [Javascript](./basic/javascript/)
+- [Typescript](./advance/typescript/) 已完结
+- [CSS](./basic/css/) 已完结
+- [HTML](./basic/html/)
 - 浏览器 DOM
-- [React](./react/)
-- [Vue](./vue/)
+- [React](./frame/react/)
+- [Vue](./frame/vue/)
 - Angular
-- [浏览器](./browser/)
+- [浏览器](./software/browser/)
 - 正则表达式
 - webpack
 - babel
@@ -52,10 +52,9 @@ sidebar_position: 1
 - 智能化 指通过前端技术实现人工智能功能，如自动化模型训练和测试、自然语言处理、图像识别等。
 - 移动 web 开发
 - 性能优化
-- [HTTP/HTTPS/计算机网络](./http/)
+- [HTTP/HTTPS/计算机网络](./network/http/)
 - nodejs
-- [DevOps](./devops/)
-- [Linux](./linux/)
+- [Linux](./devops/linux/)
 
 ## 参与贡献人员
 
