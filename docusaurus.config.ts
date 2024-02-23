@@ -6,44 +6,28 @@ const config: Config = {
   title: '前端面试',
   tagline: '前端面试题收集汇总并全面给出权威优质的答案，更欢迎👏大家issues投稿 ❤️ 💞 💖，一起维护一套优质权威的前端知识体系。',
   favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
   url: 'https://gavinbirkhoff.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/FE-interview',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'GavinBirkhoff', // Usually your GitHub org/user name.
-  projectName: 'FE-interview', // Usually your repo name.
-
+  organizationName: 'GavinBirkhoff',
+  projectName: 'FE-interview',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans'],
   },
-
   presets: [
     [
       'classic',
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/GavinBirkhoff/FE-interview/tree/main/',
+          sidebarCollapsed: true,
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/GavinBirkhoff/FE-interview/tree/main/',
         },
@@ -66,19 +50,59 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docs',
           position: 'left',
-          label: '面试八股文',
+          label: '八股文',
         },
-        {to: '/docs/category/前端基础', label: '基础', position: 'left'},
-        {to: '/docs/category/前端框架', label: '框架', position: 'left'},
-        {to: '/docs/category/前端进阶', label: '进阶', position: 'left'},
-        {to: '/docs/category/浏览器', label: '浏览器', position: 'left'},
-        {to: '/docs/category/打包构建', label: '构建', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'basic',
+          position: 'left',
+          label: '基础',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'frame',
+          position: 'left',
+          label: '框架',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'advance',
+          position: 'left',
+          label: '进阶',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'browser',
+          position: 'left',
+          label: '浏览器',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'pkg',
+          position: 'left',
+          label: '构建',
+        },
         {to: '/blog', label: '实战案例', position: 'left'},
-        {to: '/docs/category/计算机网络', label: '计算机网络', position: 'right'},
-        {to: '/docs/category/服务端开发', label: '服务端', position: 'right'},
-        {to: '/docs/category/devops开发运维', label: '运维', position: 'right'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'network',
+          position: 'right',
+          label: '计算机网络',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'server',
+          position: 'right',
+          label: '服务端',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'devops',
+          position: 'right',
+          label: '运维',
+        },
         {
           href: 'https://github.com/GavinBirkhoff/FE-interview',
           label: 'GitHub',
@@ -90,10 +114,10 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: '文档中心',
+          title: '面试宝典',
           items: [
             {
-              label: '八股文提纲',
+              label: '前端八股文',
               to: '/docs/intro',
             },
           ],
@@ -126,6 +150,18 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
+    announcementBar: {
+      id: 'announcementBar-1',
+      content: `⭐️ 如果您喜欢本网站，请点这里在<a class="cta" href="https://github.com/GavinBirkhoff/FE-interview"> <strong>GitHub</strong> </a>上给它一颗小星星！ ⭐️`,
+      isCloseable: true,
+      backgroundColor: '#0AC1CF',
+      textColor: '#000b34',
     },
   } satisfies Preset.ThemeConfig,
 };
