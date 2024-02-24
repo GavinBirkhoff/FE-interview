@@ -118,7 +118,7 @@ const config: Config = {
           items: [
             {
               label: '前端八股文',
-              to: '/docs/intro',
+              to: '/docs',
             },
           ],
         },
