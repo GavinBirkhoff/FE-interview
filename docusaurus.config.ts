@@ -48,12 +48,12 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'docs',
-          position: 'left',
-          label: '八股文',
-        },
+        // {
+        //   type: 'docSidebar',
+        //   sidebarId: 'docs',
+        //   position: 'left',
+        //   label: '八股文',
+        // },
         {
           type: 'docSidebar',
           sidebarId: 'basic',
@@ -119,6 +119,22 @@ const config: Config = {
             {
               label: '前端八股文',
               to: '/docs',
+            },
+            {
+              label: '设计模式',
+              to: '/docs/category/设计模式',
+            },
+            {
+              label: '服务端开发',
+              to: '/docs/category/服务端开发',
+            },
+            {
+              label: '算法',
+              to: '/docs/category/算法',
+            },
+            {
+              label: '手写练习场',
+              to: '/docs/category/手写练习场',
             },
           ],
         },

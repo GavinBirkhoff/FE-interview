@@ -13,8 +13,7 @@ sidebar_position: 1
 | 推荐内容                  |    标签    |
 | ------------------------- | :--------: |
 | [闭包](./basic/javascript/1.md) | Javascript |
-|                           |            |
-|                           |            |
+
 
 ## 高频面试题
 
@@ -25,10 +24,7 @@ sidebar_position: 1
 | [Http 缓存-强制、协商缓存](./network/http/4.md)       | Http       |
 | [JS 事件循环(Event Loop)](./basic/javascript/9.md)  | Javascript |
 | [type 和 interface 的区别](./advance/typescript/1.md) | typescript |
-|                                               |            |
-|                                               |            |
-|                                               |            |
-|                                               |            |
+
 
 # 目录大纲
 
