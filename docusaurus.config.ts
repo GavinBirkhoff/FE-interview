@@ -91,12 +91,12 @@ const config: Config = {
           position: 'right',
           label: '计算机网络',
         },
-        {
-          type: 'docSidebar',
-          sidebarId: 'server',
-          position: 'right',
-          label: '服务端',
-        },
+        // {
+        //   type: 'docSidebar',
+        //   sidebarId: 'server',
+        //   position: 'right',
+        //   label: '服务端',
+        // },
         {
           type: 'docSidebar',
           sidebarId: 'devops',
@@ -117,7 +117,7 @@ const config: Config = {
           title: '面试宝典',
           items: [
             {
-              label: '前端八股文',
+              label: '八股文(ALL.)',
               to: '/docs',
             },
             {
@@ -125,12 +125,16 @@ const config: Config = {
               to: '/docs/category/设计模式',
             },
             {
-              label: '服务端开发',
-              to: '/docs/category/服务端开发',
-            },
-            {
               label: '算法',
               to: '/docs/category/算法',
+            },
+            {
+              label: '软件服务',
+              to: '/docs/category/软件服务',
+            },
+            {
+              label: '服务端开发',
+              to: '/docs/category/服务端开发',
             },
             {
               label: '手写练习场',
@@ -174,7 +178,7 @@ const config: Config = {
     },
     announcementBar: {
       id: 'announcementBar-1',
-      content: `⭐️ 如果您喜欢本网站，请点这里在<a class="cta" href="https://github.com/GavinBirkhoff/FE-interview"> <strong>GitHub</strong> </a>上给它一颗小星星！ ⭐️`,
+      content: `⭐️ 如果您喜欢本网站，请点这里在<a target="_blank" class="cta" href="https://github.com/GavinBirkhoff/FE-interview"> <strong>GitHub</strong> </a>上给它一颗小星星！ ⭐️`,
       isCloseable: true,
       backgroundColor: '#0AC1CF',
       textColor: '#000b34',
