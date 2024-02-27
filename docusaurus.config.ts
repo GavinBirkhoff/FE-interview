@@ -143,6 +143,23 @@ const config: Config = {
           ],
         },
         {
+          title:'多端开发',
+          items: [
+            {
+              label: '移动端',
+              to: '#',
+            },
+            {
+              label: '小程序',
+              to: '#',
+            },
+            {
+              label: '桌面软件',
+              to: '/docs/category/移动端开发',
+            },
+           ]
+        },
+        {
           title: '社区',
           items: [
             {
