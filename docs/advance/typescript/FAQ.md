@@ -5,6 +5,8 @@ sidebar_position: 2
 
 ## TypeScript 是什么，和 JavaScript 有什么区别？
 
+`TypeScript` 是 `JavaScript` 的类型的超集，支持`ES6`语法，支持面向对象编程的概念，如类、接口、继承、泛型等。
+
 - TypeScript 是一个强类型的 JavaScript 超集，能够在开发阶段发现和防止许多常见的运行时错误。
 - TypeScript 提供了类、接口、泛型等面向对象的编程特性，并且拥有强大的类型检查能力。
 - 与 JavaScript 相比，TypeScript 更加可靠、可维护、可扩展，能够让复杂的应用程序更容易开发和维护。
@@ -161,7 +163,7 @@ console.log(calculator.add(3, 5));  // Logging output: add([3, 5]) ; 8
 - 泛型是指一种可以在函数、类、接口中支持多种数据类型的机制，通过泛型可以提高代码的复用性和灵活性。
 - 在 TypeScript 中可以使用以下语法来定义一个泛型函数：
 
-```
+```ts
 function identity<T>(arg: T): T {
   return arg;
 }
@@ -169,7 +171,7 @@ function identity<T>(arg: T): T {
 
 上面的代码定义了一个名为 identity 的泛型函数，它接收一个类型为 T 的参数，并将该参数直接返回。可以通过以下方式来使用该泛型函数：
 
-```
+```ts
 let output = identity<string>("hello world");
 console.log(output);  // hello world
 ```
@@ -336,3 +338,90 @@ TypeScript（TS）是JavaScript的一个超集，它添加了静态类型检查�
 4. **更好的协作：** 静态类型使得代码更加自文档化，有助于团队协作，提高代码可读性。
 
 5. **适用于大型项目：** TypeScript在大型项目中的优势更为显著，能够降低项目维护的难度。
+
+## TypeScript 中命名空间与模块的区别？
+
+**模块**
+
+`TypeScript` 与` ECMAScript` 2015 一样，任何包含顶级 `import` 或者 `export` 的文件都被当成一个模块。
+
+相反地，如果一个文件不带有顶级的`import`或者`export`声明，那么它的内容被视为全局可见的。
+
+**命名空间**
+
+主要为了解决命名冲突问题，命名空间本质上就是一个对象。也会冲突，也无法解决依赖关系。
+
+:::tip
+
+在正常的TS项目开发过程中并不建议用命名空间，但通常在通过 d.ts 文件标记 js 库类型的时候使用命名空间，主要作用是给编译器编写代码的时候参考使用
+
+:::
+
+## 什么是Typescript的方法重载？
+
+在 TypeScript 中，方法重载（Method Overloading）是一种通过定义多个具有相同名称但参数类型和数量不同的函数签名，以实现不同的行为的机制。在调用函数时，TypeScript 编译器会根据传递给函数的参数来确定应该调用哪个重载版本的函数。
+
+TypeScript 中使用方法重载：
+
+```typescript
+function reverse(x: string): string;
+function reverse(x: number): number;
+function reverse(x: string | number): string | number {
+    if (typeof x === 'string') {
+        return x.split('').reverse().join('');
+    } else if (typeof x === 'number') {
+        return Number(x.toString().split('').reverse().join(''));
+    }
+}
+
+// 调用重载版本的函数
+console.log(reverse("hello")); // Output: olleh
+console.log(reverse(12345));   // Output: 54321
+```
+
+## typescript 中的 is 关键字有什么用？
+
+在 TypeScript 中，`is` 关键字通常用于自定义类型守卫（Type Guards）。类型守卫是一种用来在运行时检查变量的类型的技术，它可以帮助开发者在代码中更准确地处理不同类型的数据。
+
+```typescript
+// 自定义类型守卫函数，用于检查是否是数组类型
+function isArray(value: any): value is Array<any> {
+    return Array.isArray(value);
+}
+
+// 使用自定义类型守卫进行类型检查
+let arr: any = [1, 2, 3];
+if (isArray(arr)) {
+    console.log("arr is an array");
+} else {
+    console.log("arr is not an array");
+}
+```
+
+## TypeScript支持的访问修饰符有哪些？
+
+TypeScript支持访问修饰符 public，private 和 protected，它们决定了类成员的可访问性。
+
+- 公共（public），类的所有成员，其子类以及该类的实例都可以访问。
+- 受保护（protected），该类及其子类的所有成员都可以访问它们。 但是该类的实例无法访问。
+- 私有（private），只有类的成员可以访问它们。
+
+如果未指定访问修饰符，则它是隐式公共的，因为它符合 JavaScript 的便利性。
+
+## TypeScript 的内置数据类型有哪些？
+
+- boolean：表示布尔值，可以是 true 或 false。
+- number：表示数字，包括整数和浮点数。
+- string：表示字符串。可以使用单引号或双引号来表示字符串。
+- void：表示没有任何返回值的函数的返回类型。
+- null 和 undefined：这两个类型是所有类型的子类型。 symbol：表示独特的值，类似于数字或字符串。
+
+除此之外，TypeScript 还支持以下复合类型：
+
+- array：表示一个元素类型为 T 的数组。例如，number[] 表示一个数字数组。
+- tuple：表示已知元素数量和类型的数组。例如，[string, number] 表示一个字符串和数字组成的元组。
+- enum：表示一个命名的常量枚举。
+- any：表示任意类型。
+- unknown：与 any 类似，但是在更严格的类型检查下使用。
+- object：表示非原始类型的对象。
+- 还有一些其他的类型，例如 never、union 和 intersection，它们可以用于描述更复杂的类型。
