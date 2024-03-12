@@ -86,26 +86,6 @@ type MyAlias = string | number;
 
 上面的代码定义了一个名为 MyAlias 的类型别名，它可以是一个字符串或者数字类型。
 
-## TypeScript 中的枚举（Enum）是什么，如何定义和使用一个枚举？
-
-- TypeScript 中的枚举可以用来给一组相关的常量赋予一个有意义的名字，从而使代码更易读和维护。
-- 可以使用以下语法来定义一个枚举：
-
-```
-enum Color {
-  Red,
-  Green,
-  Blue,
-}
-```
-
-上面的代码定义了一个名为 Color 的枚举，其中包含了三个成员：Red、Green 和 Blue。可以通过以下方式来使用枚举：
-
-```
-const color: Color = Color.Red;
-console.log(color);  // 0
-```
-
 ## 如何为 TypeScript 中的类（Class）添加一个静态属性或方法？
 
 - 可以使用 static 关键字来定义一个 TypeScript 类的静态属性或方法。
@@ -176,118 +156,7 @@ let output = identity<string>("hello world");
 console.log(output);  // hello world
 ```
 
-## TypeScript 中的交叉类型（Intersection Types）是什么？如何使用？
 
-- 交叉类型可以用来将多个类型合并为一个类型，新的类型将具有所有类型的特性。
-- 在 TypeScript 中可以使用 & 符号来定义交叉类型，以下是一个例子：
-
-```
-interface User {
-  name: string;
-  age: number;
-}
-
-interface Employee {
-  company: string;
-  position: string;
-}
-
-type Staff = User & Employee;
-
-const staff: Staff = {
-  name: 'Tom',
-  age: 30,
-  company: 'Apple',
-  position: 'Engineer',
-};
-```
-
-上面的代码中，定义了两个接口 User 和 Employee，分别表示用户和员工的信息。然后，使用 & 符号定义一个 Staff 类型，表示既是用户又是员工的新类型。最后，可以创建一个 Staff 类型的对象 staff，它既包含了 User 类型的属性，又包含了 Employee 类型的属性。
-
-## TypeScript 中的类型保护是什么？如何在代码中使用类型保护？
-
-- 类型保护可以用来在 TypeScript 中对一个变量的类型进行更精确的判断，从而避免在代码中出现类型错误。
-- 以下是一些 TypeScript 中常用的类型保护方法：
-
-- typeof 类型保护：使用 typeof 运算符可以判断一个变量的类型是否为 string、number、boolean、symbol 中的一种。
-
-  ```
-  function isNumber(value: unknown): value is number {
-    return typeof value === 'number';
-  }
-  ```
-
-- instanceof 类型保护：使用 instanceof 运算符可以判断一个对象是否属于某个类的实例。
-
-  ```
-  class Circle {
-    radius: number;
-    constructor(radius: number) {
-      this.radius = radius;
-    }
-  }
-  
-  function isCircle(shape: unknown): shape is Circle {
-    return shape instanceof Circle;
-  }
-  ```
-
-- in 类型保护：使用 in 运算符可以判断一个对象是否包含某个属性。
-
-  ```
-  interface Rectangle {
-    width: number;
-    height: number;
-  }
-  
-  function isRectangle(shape: unknown): shape is Rectangle {
-    return 'width' in shape && 'height' in shape;
-  }
-  ```
-
-- 自定义类型保护：通过一个函数来判断一个变量的类型是否符合要求。
-
-  ```
-  interface User {
-    name: string;
-    age: number;
-  }
-  
-  interface Employee extends User {
-    company: string;
-    position: string;
-  }
-  
-  function isEmployee(user: User): user is Employee {
-    return 'company' in user && 'position' in user;
-  }
-  ```
-
-上面的代码中，分别定义了四种类型保护方法，并且在相应的函数中使用了 is 关键字来说明这是一个类型保护函数，这样在使用的时候，TypeScript 就能更好地推断变量类型。
-
-## typescript 守护类型
-
-TypeScript的“守护类型”是指使用类型断言或类型保护来在运行时检查值的类型。它可以帮助在编译时减少类型错误，同时保持JavaScript的动态特性。
-
-例如，在 TypeScript 中，您可以使用以下类型保护函数检查值的类型：
-
-```
-function isNumber(value: any): value is number {
-  return typeof value === 'number';
-}
-
-let value: any = 42;
-
-if (isNumber(value)) {
-  console.log('Value is a number:', value.toFixed(2));
-} else {
-  console.log('Value is not a number.');
-}
-```
-
-在这个例子中，`isNumber`函数接受一个值作为参数，并返回一个布尔值。如果参数的类型是`number`，则返回`true`；否则返回`false`。在`if`语句中，我们使用`isNumber`函数来检查`value`的类型。如果`value`是一个数字，我们就调用`toFixed`方法打印出该数字的值，否则我们打印一个错误消息。
-
-这种基于类型保护函数的“守护类型”可以让您在编译时发现类型错误，并提供更好的类型安全保证。
 
 ## TS有什么优缺点？
 
@@ -379,24 +248,7 @@ console.log(reverse("hello")); // Output: olleh
 console.log(reverse(12345));   // Output: 54321
 ```
 
-## typescript 中的 is 关键字有什么用？
 
-在 TypeScript 中，`is` 关键字通常用于自定义类型守卫（Type Guards）。类型守卫是一种用来在运行时检查变量的类型的技术，它可以帮助开发者在代码中更准确地处理不同类型的数据。
-
-```typescript
-// 自定义类型守卫函数，用于检查是否是数组类型
-function isArray(value: any): value is Array<any> {
-    return Array.isArray(value);
-}
-
-// 使用自定义类型守卫进行类型检查
-let arr: any = [1, 2, 3];
-if (isArray(arr)) {
-    console.log("arr is an array");
-} else {
-    console.log("arr is not an array");
-}
-```
 
 ## TypeScript支持的访问修饰符有哪些？
 
@@ -408,20 +260,125 @@ TypeScript支持访问修饰符 public，private 和 protected，它们决定了
 
 如果未指定访问修饰符，则它是隐式公共的，因为它符合 JavaScript 的便利性。
 
-## TypeScript 的内置数据类型有哪些？
+## TypeScript中的 Declare 关键字有什么用？
 
-- boolean：表示布尔值，可以是 true 或 false。
-- number：表示数字，包括整数和浮点数。
-- string：表示字符串。可以使用单引号或双引号来表示字符串。
-- void：表示没有任何返回值的函数的返回类型。
-- null 和 undefined：这两个类型是所有类型的子类型。 symbol：表示独特的值，类似于数字或字符串。
+JavaScript库或框架没有TypeScript声明文件。 但是，如果要在TypeScript文件中使用它们而没有任何编译错误，则必须使用declare关键字。 declare关键字用于环境声明和您要定义可能在其他位置存在的变量的方法。
 
-除此之外，TypeScript 还支持以下复合类型：
+如果要在我们的TypeScript代码中使用该库，则可以使用以下代码：
 
-- array：表示一个元素类型为 T 的数组。例如，number[] 表示一个数字数组。
-- tuple：表示已知元素数量和类型的数组。例如，[string, number] 表示一个字符串和数字组成的元组。
-- enum：表示一个命名的常量枚举。
-- any：表示任意类型。
-- unknown：与 any 类似，但是在更严格的类型检查下使用。
-- object：表示非原始类型的对象。
-- 还有一些其他的类型，例如 never、union 和 intersection，它们可以用于描述更复杂的类型。
+```ts
+declare var myLibrary;
+```
+
+TypeScript运行时会将myLibrary变量分配为 any。
+
+## 什么是TypeScript映射文件？
+
+- TypeScript Map文件是一个源映射文件，其中包含有关我们原始文件的信息。
+- .map文件是源映射文件，可让工具在发出的JavaScript代码和创建它的TypeScript源文件之间进行映射。
+- 许多调试器可以使用这些文件，因此我们可以调试TypeScript文件而不是JavaScript文件。
+
+## TypeScript 中的模块是什么？
+
+在 TypeScript 中，模块（Module）是用来组织和封装代码的单元，可以包含变量、函数、类等。模块提供了一种组织和管理代码的方式，使得代码更易于维护、复用和扩展。
+
+在 TypeScript 中，有几种不同的模块系统，包括：
+
+1. **ES6 模块**: TypeScript 原生支持 ES6 模块系统，使用 `import` 和 `export` 关键字来导入和导出模块中的成员。
+
+    ```typescript
+    // greeter.ts
+    export function greet(name: string) {
+        return `Hello, ${name}!`;
+    }
+
+    // app.ts
+    import { greet } from './greeter';
+    console.log(greet('John')); // 输出：Hello, John!
+    ```
+
+2. **CommonJS 模块**: CommonJS 是 Node.js 中使用的模块系统，通过 `require()` 和 `module.exports` 来导入和导出模块中的成员。TypeScript 也支持使用 CommonJS 模块。
+
+    ```typescript
+    // greeter.ts
+    function greet(name: string) {
+        return `Hello, ${name}!`;
+    }
+    module.exports = greet;
+
+    // app.ts
+    const greet = require('./greeter');
+    console.log(greet('John')); // 输出：Hello, John!
+    ```
+
+3. **AMD 模块**: Asynchronous Module Definition (AMD) 是用于浏览器端异步加载模块的一种模块系统，使用 `define()` 来定义模块。
+
+    ```typescript
+    // greeter.ts
+    define([], function() {
+        return function(name: string) {
+            return `Hello, ${name}!`;
+        };
+    });
+
+    // app.ts
+    require(['greeter'], function(greet) {
+        console.log(greet('John')); // 输出：Hello, John!
+    });
+    ```
+
+4. **UMD 模块**: Universal Module Definition (UMD) 是一种兼容 AMD 和 CommonJS 的模块定义规范，TypeScript 也支持使用 UMD 模块。
+
+    ```typescript
+    // greeter.ts
+    (function(root, factory) {
+        if (typeof define === 'function' && define.amd) {
+            // AMD
+            define([], factory);
+        } else if (typeof exports === 'object') {
+            // CommonJS
+            module.exports = factory();
+        } else {
+            // Global variable
+            root.greet = factory();
+        }
+    })(this, function() {
+        return function(name: string) {
+            return `Hello, ${name}!`;
+        };
+    });
+    
+    // app.ts
+    const greet = require('./greeter'); // CommonJS
+    console.log(greet('John')); // 输出：Hello, John!
+    ```
+
+无论是哪种模块系统，TypeScript 都提供了灵活的语法来支持模块化开发，开发人员可以根据项目的需求选择适合的模块系统。
+
+## 为什么推荐使用 TypeScript ？
+
+TypeScript是微软公司开发和维护的一种面向对象的编程语言。它是JavaScript的超集，包含其所有元素。
+
+强类型和弱类型、静态类型和动态类型是两组不同的概念。
+
+类型强弱是针对类型转换是否显示来区分，静态和动态类型是针对类型检查的时机来区分。
+
+TS对JS的改进主要是静态类型检查，静态类型检查有何意义？标准答案是“静态类型更有利于构建大型应用”。
+
+推荐使用TypeScript的原因有：
+
+- TypeScript简化了JavaScript代码，使其更易于阅读和调试。
+- TypeScript是开源的。
+- TypeScript为JavaScript ide和实践（如静态检查）提供了高效的开发工具。
+- TypeScript使代码更易于阅读和理解。
+- 使用TypeScript，我们可以大大改进普通的JavaScript。
+- TypeScript为我们提供了ES6（ECMAScript 6）的所有优点，以及更高的生产率。
+- TypeScript通过对代码进行类型检查，可以帮助我们避免在编写JavaScript时经常遇到的令人痛苦的错误。
+- 强大的类型系统，包括泛型。
+- TypeScript只不过是带有一些附加功能的JavaScript。
+- TypeScript代码可以按照ES5和ES6标准编译，以支持最新的浏览器。
+- 与ECMAScript对齐以实现兼容性。
+- 以JavaScript开始和结束。
+- 支持静态类型。
+- TypeScript将节省开发人员的时间。
+- TypeScript是ES3、ES5和ES6的超集。
