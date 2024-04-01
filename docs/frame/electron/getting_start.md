@@ -154,3 +154,9 @@ app.on('quit', () => {
   });
 
   ```
+## 数据持久化方案
+
+- JSON 文件, 可以使用electron-store库来管理JSON文件
+- SQLite 数据库, SQLite 是一个轻量级的嵌入式 SQL 数据库，适合存储结构化数据。 可以使用electron-db-manager库来管理SQLite数据库
+- LocalStorage 和 IndexedDB。对于较小的数据量，可以使用浏览器自带的 LocalStorage 或 IndexedDB，这些 API 可以直接在 Electron 的渲染进程中使用。
+- NoSQL 数据库，NeDB 是一个嵌入式的 NoSQL 数据库，具有类似 MongoDB 的 API。适用于中小型应用的数据存储需求。
