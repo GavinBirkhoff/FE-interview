@@ -3,13 +3,6 @@ sidebar_position: 2
 ---
 # FAQ?
 
-## 说一下图片的懒加载和预加载
-
-预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。
-懒加载：懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数。
-两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。
-懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。
-
 ## JS 的各种位置，比如 clientHeight,scrollHeight,offsetHeight ,以 及 scrollTop, offsetTop,clientTop 的区别？
 
 clientHeight：表示的是可视区域的高度，不包含 border 和滚动条
