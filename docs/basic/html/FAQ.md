@@ -86,6 +86,144 @@ Node的一些方法，返回值为Node，比如说文本节点，注释节点之
 
 所以我们平时使用的 html上的元素，即`Element`，是类型为`ELEMENT_NODE`的`Node`。
 
+## 前端跨页面通信，你知道哪些方法？
+
+前端跨页面通信的方法主要包括：
+
+1. **Web 存储 API**：使用 `LocalStorage` 或 `SessionStorage` 存储数据，在不同页面之间共享。
+2. **Cookies**：通过设置和读取 Cookie 值在同一域名下的不同页面间传递信息。
+3. **PostMessage**：允许在不同的窗口之间发送和接收消息，通过 `origin` 限制接收范围。
+4. **Broadcast Channel**：创建频道实现类似发布-订阅模式的通信，适合标签页和 iframe 之间。
+5. **SharedWorker**：共享的 Web Worker，允许不同页面通过 `postMessage` 进行双向通信。
+6. **IndexedDB**：浏览器提供的客户端数据库，允许在不同页面间存储和共享数据。
+7. **WebSockets**：全双工通信通道，适合实时通信，客户端和服务器间实时数据传输。
+
+## 什么是 DOM 和 BOM？
+
+DOM（Document Object Model）和 BOM（Browser Object Model）是 JavaScript 中常用的两个概念，用于描述浏览器中的不同对象模型。
+
+1. **DOM（Document Object Model）**:
+   - DOM 是表示 HTML 和 XML 文档的标准的对象模型。它将文档中的每个组件（如元素、属性、文本等）都看作是一个对象，开发者可以使用 JavaScript 来操作这些对象，从而动态地改变页面的内容、结构和样式。
+   - DOM 以树状结构组织文档的内容，其中树的根节点是 `document` 对象，它代表整个文档。`document` 对象有各种方法和属性，可以用来访问和修改文档的内容和结构。
+2. **BOM（Browser Object Model）**:
+   - BOM 是表示浏览器窗口及其各个组件的对象模型。它提供了一组对象，用于访问和控制浏览器窗口及其各个部分，如地址栏、历史记录等。
+   - BOM 的核心对象是 `window` 对象，它表示浏览器窗口，并且是 JavaScript 中的全局对象。`window` 对象提供了许多属性和方法，用于控制浏览器窗口的各个方面，如页面导航、定时器、对话框等。
+   - BOM 还提供了其他一些对象，如 `navigator`（提供浏览器相关信息）、`location`（提供当前文档的 URL 信息）、`history`（提供浏览器历史记录）、`screen`（提供屏幕信息）等。
+
+总的来说，DOM 是用于访问和操作网页文档的对象模型，而 BOM 是用于控制浏览器窗口及其各个组件的对象模型。在 JavaScript 编程中，开发者通常会同时使用 DOM 和 BOM 来完成各种任务，如操作网页元素、导航控制、事件处理等。
+
+## 简单描述从输入网址到页面显示的过程
+
+当输入URL到页面加载完成，发生了以下几个关键过程：
+
+1. **DNS解析**：浏览器将URL解析为对应的IP地址。这个过程涉及多级DNS服务器，从本地缓存开始，如果没有找到，则递归查询根域名服务器、顶级域名服务器，直到找到目标服务器的IP地址。
+2. **TCP连接**：浏览器通过三次握手与服务器建立TCP连接。一旦连接建立，浏览器可以发送HTTP请求。
+3. **HTTP请求**：浏览器构建HTTP请求报文，通过TCP连接发送到服务器。请求报文包含请求行、请求头和请求正文。
+4. **服务器处理请求**：服务器接收HTTP请求，解析请求内容，执行相应的处理（如数据库查询、文件读取等），并构建HTTP响应报文。
+5. **HTTP响应**：服务器将响应报文通过TCP连接发送回浏览器。响应报文包含状态码、响应头和响应正文。
+6. **浏览器解析渲染**：浏览器接收到HTTP响应后，解析HTML文档构建DOM树，解析CSS构建CSSOM树，合并两者形成渲染树，然后开始渲染页面。
+7. **连接结束**：当浏览器完成页面渲染或收到服务器关闭连接的信号时，浏览器会发送TCP连接关闭的信号，服务器收到后，双方断开连接。
+
+## 简述 html 页面渲染过程
+
+1. **解析 HTML** -> 构建 DOM 树。
+2. **解析 CSS** -> 构建 CSSOM 树。
+3. **合并 DOM 和 CSSOM** -> 构建渲染树。
+4. **计算布局** -> 生成布局信息。
+5. **绘制页面** -> 将内容绘制到屏幕。
+6. **合成和显示** -> 合成图层并显示页面。
+7. **JavaScript 执行** -> 执行脚本可能导致重绘或回流。
+
+## HTML5 有哪些新特性？
+
+- 新增语义化标签：nav、header、footer、aside、section、article
+- 音频、视频标签：audio、video
+- 数据存储：localStorage、sessionStorage
+- canvas（画布）、Geolocation（地理定位）、websocket（通信协议）
+- input标签新增属性：placeholder、autocomplete、autofocus、required
+- history API
+  - go、forward、back、pushstate
+
+## `<!DOCTYPE html>` 标签有什么用？
+
+`<!DOCTYPE html>` 是 HTML5 文档的标准声明，用于告知浏览器当前页面遵循 HTML5 标准。它帮助浏览器以标准模式渲染网页，确保一致的用户体验和网页表现。
+
+## iframe是什么？有哪些优缺点？
+
+`<iframe>` 标签提供了一种便捷的方法来嵌入外部内容和实现特定的布局，但它也带来了一些性能、安全性、SEO 和用户体验方面的挑战。合理使用 `<iframe>` 并考虑其优缺点可以帮助开发人员在实现页面功能和保持页面性能之间找到平衡。
+
+## canvas在标签上设置宽高，与在style中设置宽高有什么区别？
+
+canvas标签的width和height是画布实际宽度和高度，绘制的图形都是在这个上面。
+
+而style的width和height是canvas在浏览器中被渲染的高度和宽度。
+
+如果canvas的width和height没指定或值不正确，就被设置成默认值。
+
+## 如何禁用a标签跳转页面或定位链接?
+
+当页面中a标签不需要任何跳转时，从原理上来讲，可分如下两种方法：
+
+- 标签属性href，使其指向空或不返回任何内容。如：
+
+```
+<a href="javascript:void(0);" >点此无反应javascript:void(0)</a>
+
+<a href="javascript:;" >点此无反应javascript:</a>
+```
+
+- 从标签事件入手，阻止其默认行为。如：
+
+html方法：
+
+```
+<a href="" onclick="return false;">return false;</a>
+<a href="#" onclick="return false;">return false;</a>
+```
+
+或者在js文件中阻止默认点击事件：
+
+```
+Event.preventDefault()
+```
+
+还可以在css文件中处理点击，不响应任何鼠标事件：
+
+```
+pointer-events: none;
+```
+
+## script 标签中， async 和 defer 两个属性有什么用途和区别？
+
+在HTML的`<script>`标签中，`async`和`defer`两个属性都用于控制脚本的异步加载，但它们之间存在关键的区别，主要体现在脚本加载和执行顺序上。
+
+async属性
+
+- **用途**：`async`属性用于指定脚本应该异步执行，即脚本的加载和解析不会阻塞HTML文档的解析，并且脚本一旦加载完成就会立即执行，不等待DOMContentLoaded事件触发。
+- **特点**：`async`脚本的加载和执行是独立的，不会按照在HTML文档中出现的顺序执行。如果页面中有多个`async`脚本，它们的执行顺序是不确定的。
+
+defer属性
+
+- **用途**：`defer`属性也用于指定脚本的异步加载，但与`async`不同的是，`defer`脚本会等到整个文档被解析完成后，才会执行。这意呀着，脚本的执行会按照在HTML文档中出现的顺序进行。
+- **特点**：使用`defer`属性的脚本不会阻塞HTML文档的解析，同时保证了脚本的执行顺序，这对于依赖DOM元素或顺序执行的脚本非常有用。
+
+区别
+
+- **执行时机**：`async`脚本一旦加载完成就会立即执行，不等待其他脚本或DOM的加载完成；而`defer`脚本会等待整个文档解析完成后，按照在HTML文档中出现的顺序执行。
+- **执行顺序**：`async`脚本的执行顺序是不确定的，多个`async`脚本可能会乱序执行；而`defer`脚本会按照在HTML文档中出现的顺序执行。
+
+## 常用的 meta 元素有哪些？
+
+- **字符集**：`<meta charset="UTF-8">`
+- **描述**：`<meta name="description" content="...">`
+- **关键词**：`<meta name="keywords" content="...">`
+- **作者**：`<meta name="author" content="...">`
+- **视口**：`<meta name="viewport" content="...">`
+- **刷新和重定向**：`<meta http-equiv="refresh" content="...">`
+- **网页权限设置**：`<meta name="robots" content="...">`
+- **兼容性**：`<meta http-equiv="X-UA-Compatible" content="IE=edge">`
+- **Open Graph** 和 **Twitter Card** 元素用于社交媒体优化：`<meta property="og:image" content="...">`、`<meta name="twitter:card" content="summary_large_image">`
+
 ## JSONP 的缺点
 
 ## 跨域（jsonp，ajax）
