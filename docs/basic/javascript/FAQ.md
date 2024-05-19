@@ -29,19 +29,19 @@ scrollTop：滚动后被隐藏的高度，获取对象相对于由 offsetParent 
 
 在 JavaScript 中，本地对象、内置对象和宿主对象的定义和区别如下：
 
-### **1. 本地对象（Native Objects）**
+ **1. 本地对象（Native Objects）**
 
 - **定义**：本地对象是由 JavaScript 语言本身提供的对象，不依赖于任何外部环境。
 - **例子**：`Object`、`Array`、`Function`、`Number`、`String`、`Boolean`、`RegExp` 等。
 - **特点**：这些对象的构造函数和方法是 JavaScript 语言标准的一部分，能够在任何 JavaScript 环境中使用。
 
-### **2. 内置对象（Built-in Objects）**
+ **2. 内置对象（Built-in Objects）**
 
 - **定义**：内置对象是本地对象的一部分，提供了标准的功能和方法，通常用来处理特定的数据类型或提供通用的功能。
 - **例子**：`Math`、`JSON`、`Date`、`Promise` 等。
 - **特点**：内置对象提供了用于特定任务的功能，比如数学计算、日期处理等，通常用于增强语言的功能。
 
-### **3. 宿主对象（Host Objects）**
+ **3. 宿主对象（Host Objects）**
 
 - **定义**：宿主对象是由宿主环境（如浏览器或 Node.js）提供的对象，通常用于与环境相关的功能。
 - **例子**：在浏览器中，`window`、`document`、`XMLHttpRequest`、`console` 等；在 Node.js 中，`fs`、`http` 等模块。
@@ -59,6 +59,93 @@ scrollTop：滚动后被隐藏的高度，获取对象相对于由 offsetParent 
 
 - 接收函数作为参数：一个函数可以接受另一个函数作为参数。
 - 返回函数：一个函数可以返回另一个函数。
+
+## get 请求的参数是否能够使用数组？
+
+GET 请求的参数可以使用数组。
+
+虽然在 URL 查询字符串中直接表示数组略有复杂，但有几种常见的方式来实现数组的传递。以下是一些常见的处理数组参数的方法：
+
+ 1. **使用重复的参数名**
+
+最简单的方法是使用重复的参数名，每个数组元素作为一个独立的参数传递。例如，传递一个数组 `[1, 2, 3]` 可以表示为：
+
+```
+?numbers=1&numbers=2&numbers=3
+```
+
+这种方式常见于许多后端框架和库，它们能够解析这种格式的参数。
+
+ 2. **使用方括号表示法**
+
+在一些编程环境中，可以使用方括号表示法来传递数组，这种方式可以表示嵌套的数组和对象。例如：
+
+```
+?numbers[]=1&numbers[]=2&numbers[]=3
+```
+
+这种方式在 PHP 和 Ruby 等语言中非常常见，它们能够解析这样的查询字符串。
+
+ 3. **使用逗号分隔的字符串**
+
+另一种常见的方法是将数组元素用逗号或其他分隔符连接成一个字符串。例如：
+
+```
+?numbers=1,2,3
+```
+
+在服务器端，需要将这个字符串分隔开来以恢复原始数组。这种方式在 JavaScript 中也比较常见，尤其是当数组的顺序不需要保留时。
+
+ 4. **使用 JSON 字符串**
+
+在一些情况下，可以将数组序列化为 JSON 字符串进行传递。例如：
+
+```
+?numbers=%5B1%2C2%2C3%5D
+```
+
+这里的 `%5B`, `%2C`, 和 `%5D` 是 URL 编码形式的 `[`，`,` 和 `]`。在服务器端，需将 JSON 字符串解析回数组。
+
+ **示例代码**
+
+**前端示例：**
+
+```
+// 使用重复的参数名
+const array = [1, 2, 3];
+const queryString = array.map(value => `numbers=${value}`).join('&');
+const url = `https://example.com?${queryString}`;
+
+// 使用方括号表示法
+const queryStringBrackets = array.map(value => `numbers[]=${value}`).join('&');
+const urlBrackets = `https://example.com?${queryStringBrackets}`;
+
+// 使用逗号分隔的字符串
+const queryStringComma = `numbers=${array.join(',')}`;
+const urlComma = `https://example.com?${queryStringComma}`;
+
+// 使用 JSON 字符串
+const queryStringJSON = `numbers=${encodeURIComponent(JSON.stringify(array))}`;
+const urlJSON = `https://example.com?${queryStringJSON}`;
+```
+
+**后端示例（Node.js Express）：**
+
+```
+app.get('/', (req, res) => {
+  // 使用重复的参数名
+  const numbers = req.query.numbers; // [1, 2, 3] - 自动解析为数组
+
+  // 使用方括号表示法
+  const numbersBrackets = req.query['numbers[]']; // [1, 2, 3] - 自动解析为数组
+
+  // 使用逗号分隔的字符串
+  const numbersComma = req.query.numbers.split(','); // ['1', '2', '3'] - 需要转换为数字数组
+
+  // 使用 JSON 字符串
+  const numbersJSON = JSON.parse(req.query.numbers); // [1, 2, 3]
+});
+```
 
 ## JS的节流和防抖
 
