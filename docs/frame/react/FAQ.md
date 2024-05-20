@@ -1310,3 +1310,26 @@ componentWillMount、componentWillReceiveProps、componentWillUpdate 这三个�
 而 React 又没法强迫开发者不去这样做，因为怎么样使用 React 是开发者的自由，所以 React 就新增了一个静态的生命周期 `getDerivedStateFromProps`，来解决这个问题。
 
 用一个静态函数 `getDerivedStateFromProps `来取代被废弃的几个生命周期函数，这样开发者就无法通过 this 获取到组件的实例，也不能发送网络请求以及调用 this.setState。它就是强制开发者在 render 之前只做无副作用的操作，间接强制我们无法进行这些不合理不规范的操作，从而避免对生命周期的滥用。
+
+## 如何通过 React.memo 优化条件渲染？
+
+- **`React.memo`** 通过 **props 比较** 来决定是否跳过组件渲染，从而优化性能。
+- 适用于组件的 **props** 在某些情况下不会变化的场景。
+- 如果组件接收的 **props** 比较复杂，可以提供一个 **自定义比较函数** 来优化判断。
+
+## redux-thunk 和 redux 是什么关系？
+
+- **Redux** 主要用于同步状态管理。
+- **`redux-thunk`** 作为中间件扩展了 Redux，支持异步操作和复杂的逻辑，使 Action Creators 可以返回函数以处理异步请求和状态更新。
+
+## React Router 中，HashRouter 和 BrowserRouter 的区别和原理？
+
+- **`HashRouter`**：
+  - **原理**：使用 URL 的哈希部分（`#`）来管理路由。
+  - **优点**：不需要服务器配置，适合不支持 HTML5 History API 的浏览器。
+  - **缺点**：URL 中包含 `#` 符号，不太友好。
+- **`BrowserRouter`**：
+  - **原理**：使用 HTML5 History API 管理路由，URL 更干净。
+  - **优点**：支持传统的 URL 链接和书签功能，用户体验更好。
+  - **缺点**：需要服务器配置来处理路由。
+
