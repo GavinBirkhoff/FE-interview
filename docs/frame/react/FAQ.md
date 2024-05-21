@@ -1333,3 +1333,9 @@ componentWillMount、componentWillReceiveProps、componentWillUpdate 这三个�
   - **优点**：支持传统的 URL 链接和书签功能，用户体验更好。
   - **缺点**：需要服务器配置来处理路由。
 
+## React中，useRef、ref、forwardsRef 的区别是什么?
+
+- **`useRef`**：在函数组件中创建和管理引用，适用于访问 DOM 元素或保存任意数据。
+- **`ref`**：用于类组件和通过 `forwardRef` 的函数组件来访问 DOM 节点或组件实例。
+- **`forwardRef`**：允许函数组件接收和转发 `ref`，使得 `ref` 能够传递到子组件的 DOM 元素。
+
