@@ -1459,3 +1459,49 @@ React 中的 Fiber 架构是一种新的协调算法，旨在提高 React 的性
 
 - **错误边界**：Fiber 提供了更好的错误处理机制，可以局部地处理渲染中的错误。即使在渲染过程中发生错误，也能保证 UI 的部分更新和恢复。
 
+## 你对 createPortal 的了解
+
+`ReactDOM.createPortal` 是 React 的一个 API，用于将子节点渲染到 DOM 的不同部分，而不是当前组件的父级节点中。这对于需要在 DOM 的不同层级中插入内容（如模态框、工具提示、下拉菜单等）非常有用，因为它允许我们将子元素渲染到指定的 DOM 节点中，保持其逻辑上的位置和结构。
+
+### **`createPortal` 的用法**
+
+```
+ReactDOM.createPortal(child, container)
+```
+
+- **`child`**：要渲染的子元素或 React 元素。
+- **`container`**：要将 `child` 渲染到的 DOM 节点。
+
+### **特点和使用场景**
+
+1. **DOM 层级结构**：
+   - 通过 `createPortal`，你可以将子元素插入到 DOM 的任意位置，这对于需要在页面不同层级中展示内容的情况很有帮助。例如，模态框通常需要渲染在页面的顶层。
+2. **维持 React 组件的生命周期和状态**：
+   - 使用 `createPortal` 渲染的元素仍然保持在 React 组件树中，因此它们会遵循 React 的生命周期方法，状态和上下文不会受到影响。
+3. **避免 CSS 影响**：
+   - 在某些情况下，使用 `createPortal` 可以避免子组件的 CSS 被父组件的样式干扰，因为渲染到的 DOM 节点通常是在 `body` 或其他顶层容器中。
+
+### **示例**
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Modal extends React.Component {
+  render() {
+    return ReactDOM.createPortal(
+      <div className="modal">
+        <h1>I'm a modal!</h1>
+        <button onClick={this.props.onClose}>Close</button>
+      </div>,
+      document.body  // Modal 将被渲染到 body 元素中
+    );
+  }
+}
+
+export default Modal;
+```
+
+### **原理**
+
+- `createPortal` 创建的组件会挂载到指定的 DOM 节点 `container` 中，但它仍然在 React 的组件树中。这意味着 React 可以处理它的生命周期和更新，而不是直接操作 DOM。
