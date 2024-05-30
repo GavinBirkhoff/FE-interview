@@ -1551,3 +1551,346 @@ export default Modal;
   // 在函数组件中访问上下文
   const value = useContext(MyContext);
   ```
+
+## 使用 react-router 跳转时，如何将参数传递给下一个页面？
+
+**方式一 URL 参数（路径参数）**
+
+适用于参数是页面的一部分，例如 `/user/:id`。
+
+**传递参数**
+
+```tsx
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+      <Link to="/user/123">Go to User 123</Link>
+    </div>
+  );
+}
+
+function UserPage() {
+  const { id } = useParams(); // 获取 URL 参数
+  return <h2>User ID: {id}</h2>;
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<UserPage />} />
+      </Routes>
+    </Router>
+  );
+}
+```
+
+**解析参数**
+
+在目标页面使用 `useParams()`：
+
+```tsx
+import { useParams } from 'react-router-dom';
+
+function UserPage() {
+  const { id } = useParams(); // 获取 URL 参数
+  return <h2>User ID: {id}</h2>;
+}
+```
+
+------
+
+**方式二 查询参数（Query Parameters）**
+
+适用于可选参数，例如 `/search?query=react`。
+
+**传递参数**
+
+```tsx
+import { Link } from 'react-router-dom';
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+      <Link to="/search?query=react">Search React</Link>
+    </div>
+  );
+}
+```
+
+**解析参数**
+
+在目标页面使用 `useSearchParams()`：
+
+```tsx
+import { useSearchParams } from 'react-router-dom';
+
+function SearchPage() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
+
+  return <h2>Search Query: {query}</h2>;
+}
+```
+
+------
+**方式三 `state` 参数（`useNavigate` 传递）**
+
+适用于不希望参数出现在 URL 上的情况，使用 `useNavigate()`。
+
+**传递参数**
+
+```tsx
+import { useNavigate } from 'react-router-dom';
+
+function Home() {
+  const navigate = useNavigate();
+
+  const goToDetail = () => {
+    navigate('/detail', { state: { name: 'Alice', age: 25 } });
+  };
+
+  return (
+    <div>
+      <h2>Home</h2>
+      <button onClick={goToDetail}>Go to Detail</button>
+    </div>
+  );
+}
+```
+
+**解析参数**
+
+在目标页面使用 `useLocation().state`：
+
+```tsx
+import { useLocation } from 'react-router-dom';
+
+function DetailPage() {
+  const location = useLocation();
+  const { name, age } = location.state || {}; // 确保 state 存在
+
+  return (
+    <div>
+      <h2>Detail Page</h2>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+```
+
+------
+
+**方式四 全局状态管理（Context / Redux / Zustand）**
+
+适用于跨页面共享状态。
+
+```tsx
+import { createContext, useContext, useState } from 'react';
+
+// 创建 Context
+const UserContext = createContext(null);
+
+function App() {
+  const [user, setUser] = useState({ name: 'Alice', age: 25 });
+
+  return (
+    <UserContext.Provider value={user}>
+      <Home />
+      <Detail />
+    </UserContext.Provider>
+  );
+}
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function Detail() {
+  const user = useContext(UserContext);
+
+  return (
+    <div>
+      <h2>Detail Page</h2>
+      <p>Name: {user.name}</p>
+      <p>Age: {user.age}</p>
+    </div>
+  );
+}
+```
+
+------
+
+**总结**
+
+| 方式                                       | 适用场景                    | 解析方式              |
+| ------------------------------------------ | --------------------------- | --------------------- |
+| **URL 参数** (`/user/:id`)                 | 关键参数，必须出现在 URL 中 | `useParams()`         |
+| **查询参数** (`?query=value`)              | 可选参数                    | `useSearchParams()`   |
+| **`state` 参数** (`useNavigate`)           | 需要隐藏参数                | `useLocation().state` |
+| **全局状态** (`Context / Redux / Zustand`) | 需要在多个页面共享数据      | `useContext()`        |
+
+**推荐方案：**
+
+- **数据较小、关键参数** → **URL 参数**
+- **搜索、筛选等可选参数** → **查询参数**
+- **不想暴露在 URL 中的数据** → **`state` 参数**
+- **长期存储或跨组件共享** → **全局状态**
+
+## react 中，数组用useState做状态管理的时候，使用push，pop，splice等直接更改数组对象，会引起页面渲染吗？
+
+在 React 中，直接使用 `push`、`pop`、`splice` 等方法修改数组不会触发页面重新渲染。React 的状态更新机制依赖于状态的不可变性（immutability），即通过创建新的状态对象来更新状态。直接修改原始状态对象（如数组）不会创建新的对象引用，因此 React 不会检测到状态的变化，也不会触发重新渲染。
+
+## react 中，在什么场景下需要使用 useContext？
+
+在 React 中，`useContext` 是一个用于在组件树中共享状态或数据的钩子。它允许我们在没有通过属性逐层传递的情况下，将数据从祖先组件传递到后代组件。`useContext` 主要用于避免 prop drilling 问题，即当需要将数据从顶层组件传递到深层嵌套的组件时，可能会涉及多层组件传递属性，代码会变得冗长和难以维护。
+
+### 使用 `useContext` 的场景
+
+1. **全局状态管理**：
+
+   - 当你需要在多个组件之间共享全局状态时，`useContext` 是一个简单而有效的工具。例如，用户认证状态、主题设置或语言选择等全局数据可以通过 `useContext` 在整个应用中访问。
+
+   ```jsx
+   const UserContext = React.createContext();
+   
+   function App() {
+       const [user, setUser] = useState(null);
+   
+       return (
+           <UserContext.Provider value={user}>
+               <UserProfile />
+           </UserContext.Provider>
+       );
+   }
+   
+   function UserProfile() {
+       const user = useContext(UserContext);
+       return <div>{user ? `Welcome, ${user.name}` : 'Not logged in'}</div>;
+   }
+   ```
+
+2. **避免 prop drilling**：
+
+   - 当数据需要从顶层组件传递到深层嵌套的子组件时，使用 `useContext` 可以避免将数据逐层通过 `props` 传递。这样可以减少中间组件不必要的属性传递，保持代码的简洁和清晰。
+
+   ```jsx
+   const ThemeContext = React.createContext();
+   
+   function App() {
+       const theme = 'dark';
+   
+       return (
+           <ThemeContext.Provider value={theme}>
+               <Toolbar />
+           </ThemeContext.Provider>
+       );
+   }
+   
+   function Toolbar() {
+       return (
+           <div>
+               <ThemedButton />
+           </div>
+       );
+   }
+   
+   function ThemedButton() {
+       const theme = useContext(ThemeContext);
+       return <button className={theme}>Themed Button</button>;
+   }
+   ```
+
+3. **跨组件通信**：
+
+   - 在组件树的不同部分之间进行通信时，`useContext` 提供了一种简单的方式来共享信息，而不需要通过复杂的回调或全局事件总线。
+
+4. **复杂应用中的配置和设置**：
+
+   - 在需要全局配置（如路由、表单验证、国际化等）的复杂应用中，`useContext` 使得这些配置可以被所有需要的组件访问，而不需要反复传递。
+
+5. **在与 `useReducer` 结合使用时**：
+
+   - `useReducer` 可以用来管理复杂的本地状态。将 `useReducer` 与 `useContext` 结合使用时，可以将状态和分发函数提供给需要的组件，而无需逐层传递。
+
+   ```jsx
+   const CountContext = React.createContext();
+   
+   function reducer(state, action) {
+       switch (action.type) {
+           case 'increment':
+               return { count: state.count + 1 };
+           case 'decrement':
+               return { count: state.count - 1 };
+           default:
+               throw new Error();
+       }
+   }
+   
+   function Counter() {
+       const [state, dispatch] = useReducer(reducer, { count: 0 });
+   
+       return (
+           <CountContext.Provider value={{ state, dispatch }}>
+               <ChildComponent />
+           </CountContext.Provider>
+       );
+   }
+   
+   function ChildComponent() {
+       const { state, dispatch } = useContext(CountContext);
+       return (
+           <div>
+               Count: {state.count}
+               <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+               <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+           </div>
+       );
+   }
+   ```
+
+### 适用性与注意事项
+
+- **适用性**：
+  - `useContext` 适用于需要跨多个组件共享状态的场景，避免不必要的属性传递，特别是在状态涉及到多个组件层级时。
+- **注意事项**：
+  - 不要滥用 `useContext`。如果数据仅在少量组件之间共享，或局部状态足够处理问题，可能并不需要使用 `useContext`。
+  - `useContext` 提供的数据是引用类型的，如果上下文中的数据变化会导致使用该上下文的所有组件重新渲染。因此，确保合理组织和管理上下文的数据以避免性能问题。
+
+## React 中的 hooks 和 memorizedState 是什么关系?
+
+在 React 中，**Hooks** 和 **MemorizedState** 都与组件的状态管理和性能优化有关，但它们的作用和实现方式不同。
+
+### **Hooks**
+
+Hooks 是 React 16.8 引入的一组 API，使函数组件能够拥有状态和副作用管理的能力，之前这些特性只有在类组件中才可以使用。常用的 Hooks 包括：
+
+- **`useState`**：用于在函数组件中添加状态。
+- **`useEffect`**：用于处理副作用，如数据获取和订阅。
+- **`useContext`**：用于在组件树中共享状态。
+- **`useReducer`**：用于处理更复杂的状态逻辑。
+- **`useMemo`** 和 **`useCallback`**：用于性能优化，避免不必要的重新渲染。
+
+### **MemorizedState**
+
+**MemorizedState** 是 React 内部的一种实现机制，用于优化组件的性能。它是 React 在内部管理组件状态时使用的一种状态存储方式，尤其是与 Hooks 的实现密切相关。
+
+- **在 React 中，`useState` 和 `useReducer` 的实现依赖于 MemorizedState**：当你调用 `useState` 或 `useReducer` 时，React 会为每个组件实例创建一个 `MemorizedState` 对象来存储状态。这些状态在组件重新渲染时会被保留，确保组件的状态在生命周期中保持一致。
+- **`MemorizedState` 的作用是优化性能**：它帮助 React 追踪状态的变化，并在组件重新渲染时有效地管理和更新状态。
+
+### **Hooks 与 MemorizedState 的关系**
+
+1. **状态管理**：Hooks（如 `useState` 和 `useReducer`）允许你在函数组件中管理状态。它们背后使用了 MemorizedState 来存储和管理这些状态。
+2. **性能优化**：
+   - **`useMemo` 和 `useCallback`**：这些 Hooks 依赖于 MemorizedState 来缓存计算结果和函数，从而避免不必要的重新计算和重新渲染。
+   - **MemorizedState 的缓存机制**：React 使用 MemorizedState 来缓存组件的状态和计算结果，这与 `useMemo` 和 `useCallback` 的功能类似，但在更底层的实现中起作用。
+3. **内部实现**：
+   - **`useState` 和 `useReducer`**：当调用这些 Hooks 时，React 内部会创建一个 MemorizedState 对象来存储状态值。
+   - **性能优化 Hooks**：`useMemo` 和 `useCallback` 使用 MemorizedState 来存储缓存的计算结果或函数引用，从而避免每次渲染时重新计算。
+
