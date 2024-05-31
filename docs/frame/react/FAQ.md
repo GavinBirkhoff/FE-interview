@@ -1894,3 +1894,54 @@ Hooks 是 React 16.8 引入的一组 API，使函数组件能够拥有状态和�
    - **`useState` 和 `useReducer`**：当调用这些 Hooks 时，React 内部会创建一个 MemorizedState 对象来存储状态值。
    - **性能优化 Hooks**：`useMemo` 和 `useCallback` 使用 MemorizedState 来存储缓存的计算结果或函数引用，从而避免每次渲染时重新计算。
 
+## React 中，怎么给 children 添加额外的属性？
+
+- **React.cloneElement**：用于在渲染过程中动态地为 `children` 添加属性。
+- **Context API**：用于全局传递数据或配置，适合多个嵌套组件。
+- **通过 Props 传递**：显式地将额外的属性作为 prop 传递给子组件。
+
+## React 中，构建组件的方式有哪些？
+
+在 React 中，组件可以通过函数组件、类组件、高阶组件、组合组件、Render Props 和自定义 Hook 等多种方式构建。选择合适的组件构建方式，可以提高代码的可读性、复用性和维护性。函数组件与 Hooks 是现代 React 推荐的主要开发方式。
+
+## React 是怎么渲染出页面的？
+
+React 渲染页面的过程主要包括以下几个步骤：
+
+### **1. 创建虚拟 DOM**
+
+- **组件定义**：当你定义一个组件并调用 `render` 方法时，React 会根据组件的 JSX 结构创建一个虚拟 DOM。这是一个轻量级的 JavaScript 对象，描述了 UI 的结构。
+
+### **2. 渲染到真实 DOM**
+
+- **初始渲染**：在组件首次渲染时，React 会将虚拟 DOM 转换为实际的 DOM 元素，并将其插入到页面中。通常是通过 `ReactDOM.render()` 方法完成的。
+
+```
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(<MyComponent />, document.getElementById('root'));
+```
+
+### **3. 组件更新**
+
+- **状态或属性变化**：当组件的状态（state）或属性（props）发生变化时，React 会重新调用组件的 `render` 方法，生成新的虚拟 DOM。
+
+### **4. Diff 算法**
+
+- **比较新旧虚拟 DOM**：React 使用高效的 Diff 算法对比新旧虚拟 DOM，以找到需要更新的部分。这个过程称为“调和”（reconciliation）。
+
+### **5. 更新真实 DOM**
+
+- **最小化 DOM 操作**：根据 Diff 算法的结果，React 会计算出最小的 DOM 更新操作，只对那些发生变化的部分进行实际更新，而不是重新渲染整个页面。
+
+### **6. 生命周期方法**
+
+- **调用生命周期方法**：在渲染过程中，React 会调用组件的生命周期方法，例如 `componentDidMount`、`componentDidUpdate` 等，以允许开发者在不同的渲染阶段执行特定的逻辑。
+
+### **7. 批处理更新**
+
+- **批量更新**：在事件处理时，React 会将多个状态更新合并为一次渲染，减少不必要的 DOM 操作，提高性能。
+
+### **8. 异步渲染**
+
+- **并发渲染**：从 React 16 开始，React 支持异步渲染，可以在不阻塞主线程的情况下进行 UI 更新，以提升用户体验。
