@@ -2083,3 +2083,12 @@ export default App;
 
 - 对于中大型应用，或者需要复杂路由管理的场景，**`react-router`** 提供了更加完整和高效的解决方案。
 - 对于小型应用，或者当你想完全控制路由逻辑时，使用 **原生 `history` API** 会更加灵活、简洁。
+
+## React 为什么要自己实现调度器， 而不是直接使用 requestIdleCallback ？
+
+- **优先级控制**：React 需要精确控制任务优先级，`requestIdleCallback` 无法满足这一需求。
+- **中断与抢占**：React 需要中断低优先级任务，确保高优先级任务优先执行，而 `requestIdleCallback` 无法做到这一点。
+- **跨浏览器兼容性**：React 自定义调度器支持更广泛的浏览器，避免依赖不被所有浏览器支持的 `requestIdleCallback`。
+- **性能优化**：React 调度器能更好地进行能效和性能优化，避免不必要的任务执行。
+- **任务灵活性**：React 需要处理复杂的任务调度，而 `requestIdleCallback` 只是一个简单的空闲时间回调，无法满足 React 的复杂需求。
+
