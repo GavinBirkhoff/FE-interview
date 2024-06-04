@@ -2102,3 +2102,15 @@ export default App;
 
 使用 `forwardRef` 使得函数组件也能够支持 `ref`，并且能够灵活地控制组件的行为，尤其是在涉及到 DOM 操作或与其他库交互时。
 
+## React 19 有哪些新特性？
+
+TODO
+
+## React 中，如何避免使用 context 时， 引起整个挂载节点树的重新渲染
+
+1. **分离 Context**：减少依赖的组件范围。
+2. **使用 React.memo**：避免无关组件重渲染。
+3. **使用选择器**：只订阅需要的 `context` 部分值。借助外部库（如 react-context-selector）实现细粒度选择器，只订阅 context 的部分值，而不是整个 context 对象。
+4. **嵌套 Provider**：限制影响范围。对于大型项目，可以将 context 的范围限制到尽可能小的组件子树。
+5. **直接传递 Props**：绕过 `context` 带来的渲染问题。
+
