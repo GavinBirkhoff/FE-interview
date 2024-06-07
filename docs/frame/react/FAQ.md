@@ -2179,3 +2179,8 @@ Vue在设计上采用了一种不同的响应式系统和渲染机制，不需�
 2. **`react-dom`：** 这是 React 专门为 DOM 环境提供的包，它包含了与浏览器 DOM 相关的功能。`react-dom` 提供了用于在浏览器中渲染 React 组件的方法，包括 `ReactDOM.render`。在 Web 开发中，`react-dom` 被用于将 React 应用渲染到浏览器的 DOM 中。
 
 基本上，`react` 和 `react-dom` 是为了分离 React 的核心功能，以便更好地处理不同的环境和平台。这种分离使得 React 更加灵活，可以适应不同的渲染目标，而不仅仅局限于浏览器环境。
+
+## useMemo 和 useCallback 有什么区别？
+
+- `useMemo` 主要用于缓存计算结果，适用于任何需要缓存值的场景。
+- `useCallback` 主要用于缓存回调函数，适用于需要传递给子组件的事件处理函数，以避免不必要的重新渲染。
